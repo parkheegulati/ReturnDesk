@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "db:migrate": "drizzle-kit migrate",
-    "db:seed": "tsx scripts/seed.ts"
+    "db:seed": "tsx scripts/seed.ts",
+    "test:rules": "tsx scripts/verify-business-rules.ts"
   },
   "dependencies": {
     "drizzle-orm": "^0.45.2",
