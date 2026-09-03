@@ -142,11 +142,28 @@ export default function RequestsPage() {
           </p>
         </div>
 
-        {/* Live Metrics Summary */}
+        {/* Dashboard Signals: High-impact KPI counts */}
         <div className="flex items-center gap-2 text-xs">
-          <div className="bg-white border border-frido-line rounded-md px-3 py-1.5 shadow-sm">
-            <span className="text-zinc-500">Total Live:</span>{' '}
-            <span className="font-bold font-mono text-frido-ink">{pagination.total}</span>
+          <div className="flex items-center bg-white border border-frido-line rounded-lg shadow-2xs divide-x divide-frido-line overflow-hidden">
+            <div className="px-3 py-1.5 flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-sky-500" />
+              <span className="text-zinc-500 text-[11px]">Open:</span>
+              <span className="font-bold font-mono text-zinc-900">
+                {items.filter((i) => i.status === 'open').length}
+              </span>
+            </div>
+            <div className="px-3 py-1.5 flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-[#FCD00F]" />
+              <span className="text-zinc-500 text-[11px]">In Review:</span>
+              <span className="font-bold font-mono text-zinc-900">
+                {items.filter((i) => i.status === 'in_review').length}
+              </span>
+            </div>
+            <div className="px-3 py-1.5 flex items-center gap-1.5">
+              <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="text-zinc-500 text-[11px]">Total Live:</span>
+              <span className="font-bold font-mono text-zinc-900">{pagination.total}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -191,26 +208,33 @@ export default function RequestsPage() {
           <div className="relative sm:col-span-2">
             <input
               type="text"
-              placeholder="Search by reference (RD-...), order ID, customer name, or item..."
+              placeholder="Search by reference, order, or customer..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-8 py-2 text-sm rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-amber focus:border-transparent bg-zinc-50 focus:bg-white text-zinc-900"
+              className="w-full pl-9 pr-12 py-2 text-sm rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-amber focus:border-transparent bg-zinc-50 focus:bg-white text-zinc-900"
             />
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-400">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </div>
-            {search && (
-              <button
-                onClick={() => setSearch('')}
-                className="absolute inset-y-0 right-0 pr-2.5 flex items-center text-zinc-400 hover:text-zinc-600"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            )}
+            <div className="absolute inset-y-0 right-0 pr-3 flex items-center gap-1.5">
+              {search ? (
+                <button
+                  onClick={() => setSearch('')}
+                  className="text-zinc-400 hover:text-zinc-600"
+                  aria-label="Clear search"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              ) : (
+                <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono text-zinc-400 bg-zinc-100 border border-zinc-200 rounded">
+                  /
+                </kbd>
+              )}
+            </div>
           </div>
 
           {/* Reason Filter */}
@@ -232,7 +256,7 @@ export default function RequestsPage() {
             </select>
           </div>
 
-          {/* Clear Filters button */}
+          {/* Reset Filters button */}
           {(search || statusFilter || reasonFilter) && (
             <button
               onClick={() => {
@@ -241,12 +265,67 @@ export default function RequestsPage() {
                 setReasonFilter('');
                 setPagination((p) => ({ ...p, page: 1 }));
               }}
-              className="text-xs font-medium text-zinc-600 hover:text-frido-ink border border-dashed border-zinc-300 rounded-md py-2 px-3 hover:border-zinc-400 transition-colors flex items-center justify-center gap-1"
+              className="text-xs font-semibold text-zinc-600 hover:text-frido-ink border border-dashed border-zinc-300 rounded-md py-2 px-3 hover:border-zinc-400 transition-colors flex items-center justify-center gap-1"
             >
               Reset Filters
             </button>
           )}
         </div>
+
+        {/* Active Filter Chips */}
+        {(debouncedSearch || statusFilter || reasonFilter) && (
+          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-zinc-100 text-xs">
+            <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
+              Active:
+            </span>
+            {debouncedSearch && (
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-800 font-medium text-xs border border-zinc-200">
+                Query: &ldquo;{debouncedSearch}&rdquo;
+                <button
+                  onClick={() => setSearch('')}
+                  className="text-zinc-400 hover:text-zinc-700 font-bold"
+                  aria-label="Remove search filter"
+                >
+                  ✕
+                </button>
+              </span>
+            )}
+            {statusFilter && (
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-800 font-medium text-xs border border-zinc-200 capitalize">
+                Status: {statusFilter.replace('_', ' ')}
+                <button
+                  onClick={() => setStatusFilter('')}
+                  className="text-zinc-400 hover:text-zinc-700 font-bold"
+                  aria-label="Remove status filter"
+                >
+                  ✕
+                </button>
+              </span>
+            )}
+            {reasonFilter && (
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-800 font-medium text-xs border border-zinc-200 capitalize">
+                Reason: {reasonFilter.replace('_', ' ')}
+                <button
+                  onClick={() => setReasonFilter('')}
+                  className="text-zinc-400 hover:text-zinc-700 font-bold"
+                  aria-label="Remove reason filter"
+                >
+                  ✕
+                </button>
+              </span>
+            )}
+            <button
+              onClick={() => {
+                setSearch('');
+                setStatusFilter('');
+                setReasonFilter('');
+              }}
+              className="text-xs font-semibold text-amber-700 hover:text-amber-900 hover:underline ml-1"
+            >
+              Clear all
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Error state */}
@@ -271,9 +350,18 @@ export default function RequestsPage() {
       {/* Main Table or Card List */}
       <div className="bg-white rounded-lg border border-frido-line shadow-sm overflow-hidden">
         {loading ? (
-          <div className="p-12 text-center text-zinc-500">
-            <div className="inline-block animate-spin w-6 h-6 border-2 border-frido-amber border-t-transparent rounded-full mb-3" />
-            <p className="text-sm font-medium">Loading return requests..</p>
+          /* Table Skeleton Loader (eliminates layout shift) */
+          <div className="divide-y divide-frido-line bg-white">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div key={i} className="px-4 py-3 flex items-center justify-between gap-4 animate-pulse">
+                <div className="w-24 h-4 bg-zinc-100 rounded" />
+                <div className="w-36 h-4 bg-zinc-100 rounded hidden sm:block" />
+                <div className="w-52 h-4 bg-zinc-100 rounded flex-1" />
+                <div className="w-20 h-4 bg-zinc-100 rounded hidden md:block" />
+                <div className="w-24 h-5 bg-zinc-100 rounded-full" />
+                <div className="w-16 h-4 bg-zinc-100 rounded text-right" />
+              </div>
+            ))}
           </div>
         ) : items.length === 0 ? (
           /* Empty state */
@@ -307,92 +395,98 @@ export default function RequestsPage() {
             {/* Desktop Table View */}
             <div className="hidden md:block overflow-x-auto">
               <table className="min-w-full divide-y divide-frido-line text-left text-sm">
-                <thead className="bg-[#F7F7F7] text-xs font-semibold text-zinc-600 uppercase tracking-wider select-none">
+                <thead className="bg-[#F7F7F7] text-[11px] font-semibold text-zinc-500 uppercase tracking-wider select-none">
                   <tr>
-                    <th scope="col" className="px-5 py-3.5">
+                    <th scope="col" className="px-4 py-3">
                       <button
                         onClick={() => handleSort('reference')}
-                        className="flex items-center gap-1.5 group hover:text-frido-ink focus:outline-none"
+                        className="flex items-center gap-1 group hover:text-frido-ink focus:outline-none"
                       >
                         Reference {getSortIcon('reference')}
                       </button>
                     </th>
-                    <th scope="col" className="px-4 py-3.5">
+                    <th scope="col" className="px-4 py-3">
                       <button
                         onClick={() => handleSort('customer_name')}
-                        className="flex items-center gap-1.5 group hover:text-frido-ink focus:outline-none"
+                        className="flex items-center gap-1 group hover:text-frido-ink focus:outline-none"
                       >
                         Customer {getSortIcon('customer_name')}
                       </button>
                     </th>
-                    <th scope="col" className="px-4 py-3.5">
+                    <th scope="col" className="px-4 py-3">
                       <button
                         onClick={() => handleSort('order_id')}
-                        className="flex items-center gap-1.5 group hover:text-frido-ink focus:outline-none"
+                        className="flex items-center gap-1 group hover:text-frido-ink focus:outline-none"
                       >
-                        Order & Item {getSortIcon('order_id')}
+                        Item & Order {getSortIcon('order_id')}
                       </button>
                     </th>
-                    <th scope="col" className="px-4 py-3.5">
+                    <th scope="col" className="px-4 py-3">
                       <button
                         onClick={() => handleSort('reason')}
-                        className="flex items-center gap-1.5 group hover:text-frido-ink focus:outline-none"
+                        className="flex items-center gap-1 group hover:text-frido-ink focus:outline-none"
                       >
                         Reason {getSortIcon('reason')}
                       </button>
                     </th>
-                    <th scope="col" className="px-4 py-3.5">
+                    <th scope="col" className="px-4 py-3">
                       <button
                         onClick={() => handleSort('status')}
-                        className="flex items-center gap-1.5 group hover:text-frido-ink focus:outline-none"
+                        className="flex items-center gap-1 group hover:text-frido-ink focus:outline-none"
                       >
                         Status {getSortIcon('status')}
                       </button>
                     </th>
-                    <th scope="col" className="px-4 py-3.5 text-right">
+                    <th scope="col" className="px-4 py-3 text-right">
                       <button
                         onClick={() => handleSort('created_at')}
-                        className="inline-flex items-center gap-1.5 group hover:text-frido-ink focus:outline-none"
+                        className="inline-flex items-center gap-1 group hover:text-frido-ink focus:outline-none"
                       >
                         Created {getSortIcon('created_at')}
                       </button>
                     </th>
+                    <th scope="col" className="w-8 px-2 py-3" />
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-frido-line bg-white">
                   {items.map((item) => (
                     <tr
                       key={item.id}
-                      className="hover:bg-amber-50/40 transition-colors group cursor-pointer"
+                      className="hover:bg-amber-50/25 transition-colors group cursor-pointer"
                       onClick={() => (window.location.href = `/requests/${item.id}`)}
                     >
-                      <td className="px-5 py-4 whitespace-nowrap">
+                      <td className="px-4 py-3 whitespace-nowrap">
                         <Link
                           href={`/requests/${item.id}`}
-                          className="font-mono font-bold text-frido-ink group-hover:text-amber-700 hover:underline"
+                          className="font-mono text-xs font-bold text-frido-ink group-hover:text-amber-800 hover:underline"
                           onClick={(e) => e.stopPropagation()}
                         >
                           {item.reference}
                         </Link>
                       </td>
-                      <td className="px-4 py-4">
-                        <div className="font-medium text-frido-ink">{item.customer_name}</div>
-                        <div className="text-xs text-zinc-500 truncate max-w-[180px]">
+                      <td className="px-4 py-3">
+                        <div className="font-semibold text-xs text-zinc-900">{item.customer_name}</div>
+                        <div className="text-[11px] font-mono text-zinc-400 truncate max-w-[160px]">
                           {item.customer_contact}
                         </div>
                       </td>
-                      <td className="px-4 py-4">
-                        <div className="text-xs font-mono text-zinc-500">{item.order_id}</div>
-                        <div className="font-medium text-zinc-900 line-clamp-1 max-w-[260px]">
-                          {item.item_name} <span className="text-zinc-500 font-normal">×{item.quantity}</span>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-1.5 font-medium text-xs text-zinc-900">
+                          <span className="line-clamp-1 max-w-[240px]">{item.item_name}</span>
+                          <span className="px-1.5 py-0.2 rounded bg-zinc-100 text-[10px] font-mono text-zinc-600 font-semibold shrink-0">
+                            ×{item.quantity}
+                          </span>
+                        </div>
+                        <div className="text-[11px] font-mono text-zinc-400 mt-0.5">
+                          {item.order_id}
                         </div>
                       </td>
-                      <td className="px-4 py-4 whitespace-nowrap">
+                      <td className="px-4 py-3 whitespace-nowrap">
                         <ReasonBadge reason={item.reason} />
                       </td>
-                      <td className="px-4 py-4 whitespace-nowrap">
+                      <td className="px-4 py-3 whitespace-nowrap">
                         <div className="flex flex-col gap-1 items-start">
-                          <StatusBadge status={item.status} />
+                          <StatusBadge status={item.status} size="sm" />
                           {item.resolution && (
                             <ResolutionBadge
                               resolution={item.resolution}
@@ -401,12 +495,21 @@ export default function RequestsPage() {
                           )}
                         </div>
                       </td>
-                      <td className="px-4 py-4 whitespace-nowrap text-right text-xs text-zinc-500 font-mono">
+                      <td className="px-4 py-3 whitespace-nowrap text-right text-xs text-zinc-500 font-mono">
                         {new Date(item.created_at).toLocaleDateString(undefined, {
                           month: 'short',
                           day: 'numeric',
-                          year: 'numeric',
                         })}
+                      </td>
+                      <td className="px-2 py-3 text-right">
+                        <svg
+                          className="w-4 h-4 text-zinc-300 group-hover:text-zinc-600 transition-colors ml-auto"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
                       </td>
                     </tr>
                   ))}

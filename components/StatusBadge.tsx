@@ -20,7 +20,7 @@ const STATUS_CONFIG: Record<
     label: 'In Review',
     bg: 'bg-[#FFFBE5]',
     text: 'text-[#876500]',
-    border: 'border-[#FCD00F]',
+    border: 'border-[#FCD00F]/70',
     dot: 'bg-[#FCD00F]',
   },
   approved: {
@@ -56,14 +56,14 @@ export function StatusBadge({ status, size = 'md' }: StatusBadgeProps) {
   };
 
   const sizeClasses = {
-    sm: 'text-xs px-2 py-0.5 gap-1',
-    md: 'text-xs font-semibold px-2.5 py-1 gap-1.5',
-    lg: 'text-sm font-semibold px-3 py-1.5 gap-2',
+    sm: 'text-[11px] px-2 py-0.5 gap-1 font-medium',
+    md: 'text-xs font-semibold px-2.5 py-0.5 gap-1.5',
+    lg: 'text-sm font-semibold px-3 py-1 gap-2',
   }[size];
 
   return (
     <span
-      className={`inline-flex items-center rounded-full border ${config.bg} ${config.text} ${config.border} ${sizeClasses} whitespace-nowrap tracking-wide`}
+      className={`inline-flex items-center rounded-full border shadow-2xs ${config.bg} ${config.text} ${config.border} ${sizeClasses} whitespace-nowrap tracking-tight select-none`}
     >
       <span className={`w-1.5 h-1.5 rounded-full ${config.dot} shrink-0`} />
       <span>{config.label}</span>

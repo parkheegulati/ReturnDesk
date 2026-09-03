@@ -13,7 +13,7 @@ if (!globalForDns._dnsPatched) {
   const resolver = new dns.promises.Resolver();
   resolver.setServers(['8.8.8.8', '1.1.1.1']);
 
-  dns.lookup = function (hostname: string, options: any, callback: any) {
+  (dns as any).lookup = function (hostname: string, options: any, callback: any) {
     if (typeof options === 'function') {
       callback = options;
       options = {};
