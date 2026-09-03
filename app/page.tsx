@@ -148,7 +148,7 @@ export default function RequestsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
           <h1 className="text-[24px] font-medium tracking-tight text-[var(--text-primary)] m-0">
-            Return Management Center
+            ReturnDesk
           </h1>
           <p className="text-[13px] font-normal text-[var(--text-secondary)] mt-1">
             Track and resolve customer returns in real-time.

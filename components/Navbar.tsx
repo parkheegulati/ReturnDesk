@@ -7,21 +7,18 @@ export function Navbar() {
     <header className="bg-[var(--surface-2)] border-b border-[var(--border)] sticky top-0 z-10">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
-          {/* Left half: Logo + "ReturnDesk" */}
-          <Link href="/" className="flex items-center space-x-2.5">
-            <div className="relative w-8 h-8 flex items-center justify-center">
+          {/* Left half: Brand Logo only */}
+          <Link href="/" className="flex items-center">
+            <div className="relative w-9 h-9 flex items-center justify-center">
               <Image
                 src="/logo.png"
                 alt="ReturnDesk Logo"
-                width={32}
-                height={32}
-                className="h-8 w-auto object-contain"
+                width={36}
+                height={36}
+                className="h-9 w-auto object-contain hover:opacity-90 transition-opacity"
                 priority
               />
             </div>
-            <span className="font-medium text-[18px] tracking-tight text-[var(--text-primary)]">
-              Return<span className="text-[var(--text-accent)]">Desk</span>
-            </span>
           </Link>
 
           {/* Right half: "Raise Return" + Light/Dark Toggle */}
