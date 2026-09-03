@@ -7,34 +7,25 @@ export function Navbar() {
     <header className="bg-[var(--surface-2)] border-b border-[var(--border)] sticky top-0 z-10">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
-          {/* Brand Logo, Wordmark & Status Badge */}
-          <div className="flex items-center space-x-3 sm:space-x-4">
-            <Link href="/" className="flex items-center space-x-2.5">
-              <div className="relative w-8 h-8 flex items-center justify-center">
-                <Image
-                  src="/logo.png"
-                  alt="ReturnDesk Logo"
-                  width={32}
-                  height={32}
-                  className="h-8 w-auto object-contain"
-                  priority
-                />
-              </div>
-              <span className="font-medium text-[18px] tracking-tight text-[var(--text-primary)]">
-                Return<span className="text-[var(--text-accent)]">Desk</span>
-              </span>
-            </Link>
-
-            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-[var(--radius)] bg-[var(--bg-success)] border border-[var(--border-success)] text-[12px] font-medium text-[var(--text-success)]">
-              <span className="w-[7px] h-[7px] rounded-full bg-[var(--fill-success)] pulse-dot inline-block" />
-              <span>Operations live</span>
+          {/* Left half: Logo + "ReturnDesk" */}
+          <Link href="/" className="flex items-center space-x-2.5">
+            <div className="relative w-8 h-8 flex items-center justify-center">
+              <Image
+                src="/logo.png"
+                alt="ReturnDesk Logo"
+                width={32}
+                height={32}
+                className="h-8 w-auto object-contain"
+                priority
+              />
             </div>
-          </div>
+            <span className="font-medium text-[18px] tracking-tight text-[var(--text-primary)]">
+              Return<span className="text-[var(--text-accent)]">Desk</span>
+            </span>
+          </Link>
 
-          {/* Action Buttons: Theme Mode Switch + Raise return */}
-          <div className="flex items-center space-x-2 sm:space-x-3">
-            <ThemeToggle />
-
+          {/* Right half: "Raise Return" + Light/Dark Toggle */}
+          <div className="flex items-center space-x-2.5 sm:space-x-3">
             <Link
               href="/requests/new"
               className="inline-flex items-center justify-center px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] bg-[var(--fill-accent)] text-[var(--on-accent)] hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-[var(--bg-accent)]"
@@ -48,8 +39,10 @@ export function Navbar() {
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
               </svg>
-              Raise return
+              Raise Return
             </Link>
+
+            <ThemeToggle />
           </div>
         </div>
       </div>

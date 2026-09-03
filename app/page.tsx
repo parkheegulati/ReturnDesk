@@ -148,10 +148,10 @@ export default function RequestsPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
           <h1 className="text-[24px] font-medium tracking-tight text-[var(--text-primary)] m-0">
-            Returns Operations
+            Return Management Center
           </h1>
           <p className="text-[13px] font-normal text-[var(--text-secondary)] mt-1">
-            Real-time customer return tickets, lifecycle progression, and resolutions.
+            Track and resolve customer returns in real-time.
           </p>
         </div>
 
