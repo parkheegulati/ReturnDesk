@@ -516,18 +516,12 @@ export default function RequestsPage() {
                 </thead>
                 <tbody className="divide-y divide-[var(--border)]">
                   {items.map((item) => {
-                    const statusRowClasses = {
-                      completed: 'bg-[var(--bg-success)]/40 hover:bg-[var(--bg-success)]/65 border-l-2 border-l-[var(--fill-success)]',
-                      in_review: 'bg-[var(--bg-warning)]/40 hover:bg-[var(--bg-warning)]/65 border-l-2 border-l-[var(--fill-warning)]',
-                      approved: 'bg-[var(--bg-accent)]/35 hover:bg-[var(--bg-accent)]/60 border-l-2 border-l-[var(--fill-accent)]',
-                      rejected: 'bg-[var(--bg-danger)]/30 hover:bg-[var(--bg-danger)]/55 border-l-2 border-l-[var(--fill-danger)]',
-                      open: 'bg-[var(--surface-2)] hover:bg-[var(--surface-1)] border-l-2 border-l-[var(--border-strong)]',
-                    }[item.status] || 'hover:bg-[var(--surface-1)]';
+                    const statusClass = `row-status-${item.status || 'open'}`;
 
                     return (
                       <tr
                         key={item.id}
-                        className={`transition-colors cursor-pointer ${statusRowClasses}`}
+                        className={`transition-colors cursor-pointer ${statusClass}`}
                         onClick={() => (window.location.href = `/requests/${item.id}`)}
                       >
                         <td className="px-4 py-3.5 whitespace-nowrap">
@@ -596,19 +590,13 @@ export default function RequestsPage() {
             {/* Mobile Card View (down to 375px) */}
             <div className="md:hidden divide-y divide-[var(--border)]">
               {items.map((item) => {
-                const statusCardClasses = {
-                  completed: 'bg-[var(--bg-success)]/40 hover:bg-[var(--bg-success)]/65 border-l-4 border-l-[var(--fill-success)]',
-                  in_review: 'bg-[var(--bg-warning)]/40 hover:bg-[var(--bg-warning)]/65 border-l-4 border-l-[var(--fill-warning)]',
-                  approved: 'bg-[var(--bg-accent)]/35 hover:bg-[var(--bg-accent)]/60 border-l-4 border-l-[var(--fill-accent)]',
-                  rejected: 'bg-[var(--bg-danger)]/30 hover:bg-[var(--bg-danger)]/55 border-l-4 border-l-[var(--fill-danger)]',
-                  open: 'bg-[var(--surface-2)] hover:bg-[var(--surface-1)] border-l-4 border-l-[var(--border-strong)]',
-                }[item.status] || 'hover:bg-[var(--surface-1)]';
+                const statusClass = `row-status-${item.status || 'open'}`;
 
                 return (
                   <Link
                     key={item.id}
                     href={`/requests/${item.id}`}
-                    className={`block p-4 transition-colors space-y-2 ${statusCardClasses}`}
+                    className={`block p-4 transition-colors space-y-2 ${statusClass}`}
                   >
                     <div className="flex items-center justify-between gap-2">
                       <span className="font-mono font-medium text-[13px] text-[var(--text-primary)]">

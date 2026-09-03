@@ -117,3 +117,96 @@ html.dark,
 .pulse-dot {
   animation: livePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* Allotted Status Row & Card Background Tints */
+.row-status-completed {
+  background-color: rgba(22, 163, 74, 0.08) !important;
+  border-left: 3px solid #16A34A !important;
+}
+.row-status-completed:hover {
+  background-color: rgba(22, 163, 74, 0.15) !important;
+}
+
+.row-status-in_review {
+  background-color: rgba(245, 158, 11, 0.12) !important;
+  border-left: 3px solid #F59E0B !important;
+}
+.row-status-in_review:hover {
+  background-color: rgba(245, 158, 11, 0.20) !important;
+}
+
+.row-status-approved {
+  background-color: rgba(37, 99, 235, 0.09) !important;
+  border-left: 3px solid #2563EB !important;
+}
+.row-status-approved:hover {
+  background-color: rgba(37, 99, 235, 0.16) !important;
+}
+
+.row-status-rejected {
+  background-color: rgba(220, 38, 38, 0.09) !important;
+  border-left: 3px solid #DC2626 !important;
+}
+.row-status-rejected:hover {
+  background-color: rgba(220, 38, 38, 0.16) !important;
+}
+
+.row-status-open {
+  background-color: rgba(100, 116, 139, 0.06) !important;
+  border-left: 3px solid #94A3B8 !important;
+}
+.row-status-open:hover {
+  background-color: rgba(100, 116, 139, 0.13) !important;
+}
+
+/* Dark mode adjustments */
+html.dark .row-status-completed,
+.dark .row-status-completed {
+  background-color: rgba(34, 197, 94, 0.14) !important;
+  border-left-color: #22C55E !important;
+}
+html.dark .row-status-completed:hover,
+.dark .row-status-completed:hover {
+  background-color: rgba(34, 197, 94, 0.22) !important;
+}
+
+html.dark .row-status-in_review,
+.dark .row-status-in_review {
+  background-color: rgba(245, 158, 11, 0.18) !important;
+  border-left-color: #FBBF24 !important;
+}
+html.dark .row-status-in_review:hover,
+.dark .row-status-in_review:hover {
+  background-color: rgba(245, 158, 11, 0.26) !important;
+}
+
+html.dark .row-status-approved,
+.dark .row-status-approved {
+  background-color: rgba(59, 130, 246, 0.14) !important;
+  border-left-color: #3B82F6 !important;
+}
+html.dark .row-status-approved:hover,
+.dark .row-status-approved:hover {
+  background-color: rgba(59, 130, 246, 0.22) !important;
+}
+
+html.dark .row-status-rejected,
+.dark .row-status-rejected {
+  background-color: rgba(239, 68, 68, 0.14) !important;
+  border-left-color: #EF4444 !important;
+}
+html.dark .row-status-rejected:hover,
+.dark .row-status-rejected:hover {
+  background-color: rgba(239, 68, 68, 0.22) !important;
+}
+
+html.dark .row-status-open,
+.dark .row-status-open {
+  background-color: rgba(148, 163, 184, 0.10) !important;
+  border-left-color: #64748B !important;
+}
+html.dark .row-status-open:hover,
+.dark .row-status-open:hover {
+  background-color: rgba(148, 163, 184, 0.18) !important;
+}
+
