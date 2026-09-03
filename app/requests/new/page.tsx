@@ -99,7 +99,7 @@ export default function NewRequestPage() {
                 placeholder="e.g. John Doe"
                 value={form.customer_name}
                 onChange={(e) => setForm({ ...form, customer_name: e.target.value })}
-                className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-amber focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white"
+                className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-violet focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white"
               />
             </div>
 
@@ -114,7 +114,7 @@ export default function NewRequestPage() {
                 placeholder="e.g. john@example.com or +1 555-0199"
                 value={form.customer_contact}
                 onChange={(e) => setForm({ ...form, customer_contact: e.target.value })}
-                className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-amber focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white"
+                className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-violet focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white"
               />
             </div>
           </div>
@@ -137,7 +137,7 @@ export default function NewRequestPage() {
                 placeholder="e.g. ORD-2024-9941"
                 value={form.order_id}
                 onChange={(e) => setForm({ ...form, order_id: e.target.value })}
-                className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-amber focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white font-mono"
+                className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-violet focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white font-mono"
               />
             </div>
 
@@ -152,7 +152,7 @@ export default function NewRequestPage() {
                 required
                 value={form.quantity}
                 onChange={(e) => setForm({ ...form, quantity: parseInt(e.target.value) || 1 })}
-                className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-amber focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white"
+                className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-violet focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white"
               />
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function NewRequestPage() {
               placeholder="e.g. Orthopedic Arch Support Insoles - Size 10"
               value={form.item_name}
               onChange={(e) => setForm({ ...form, item_name: e.target.value })}
-              className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-amber focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white"
+              className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-violet focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white"
             />
             <p className="text-[11px] text-zinc-500 mt-1">
               Note: Business Rule 3 ensures only one live request exists per (Order ID, Item Name).
@@ -183,7 +183,7 @@ export default function NewRequestPage() {
               id="reason"
               value={form.reason}
               onChange={(e) => setForm({ ...form, reason: e.target.value as ReturnReason })}
-              className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-amber focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white"
+              className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-violet focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white"
             >
               <option value="damaged">Damaged (arrived defective or damaged in transit)</option>
               <option value="wrong_item">Wrong Item (incorrect SKU received)</option>
@@ -205,7 +205,7 @@ export default function NewRequestPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-md bg-frido-amber hover:bg-frido-amber-dark text-frido-ink transition-colors shadow-sm disabled:opacity-50"
+            className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg bg-frido-violet hover:bg-frido-violet-dark text-white transition-all shadow-xs hover:shadow-sm active:scale-[0.98] disabled:opacity-50"
           >
             {submitting ? 'Creating Request...' : 'Submit Return Request'}
           </button>

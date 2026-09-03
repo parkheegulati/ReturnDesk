@@ -2,27 +2,33 @@ import Link from 'next/link';
 
 export function Navbar() {
   return (
-    <header className="bg-frido-ink text-white border-b border-frido-charcoal sticky top-0 z-30 shadow-sm">
+    <header className="bg-white/95 backdrop-blur-md border-b border-frido-line sticky top-0 z-30 shadow-2xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Brand Wordmark & Environment Badge */}
-          <div className="flex items-center space-x-3">
-            <Link href="/" className="flex items-center space-x-2 group">
-              <span className="font-bold text-xl tracking-tight text-white flex items-center">
-                Return<span className="text-frido-amber">Desk</span>
+          {/* Brand Wordmark & Operations Pill */}
+          <div className="flex items-center space-x-3 sm:space-x-4">
+            <Link href="/" className="flex items-center space-x-2.5 group">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-frido-violet to-purple-800 flex items-center justify-center text-white shadow-xs group-hover:scale-105 transition-transform">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h10a5 5 0 015 5v2m0 0l-4-4m4 4l4-4" />
+                </svg>
+              </div>
+              <span className="font-bold text-xl tracking-tight text-frido-ink flex items-center">
+                Return<span className="text-frido-violet">Desk</span>
               </span>
             </Link>
-            <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-frido-charcoal border border-zinc-700/80 text-[11px] text-zinc-300 font-mono">
+
+            <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-50 border border-purple-200/80 text-[11px] text-purple-800 font-medium">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Internal Ops</span>
+              <span>Operations Live</span>
             </div>
           </div>
 
-          {/* Primary Action */}
-          <div className="flex items-center space-x-4">
+          {/* Primary Action Button */}
+          <div className="flex items-center space-x-3">
             <Link
               href="/requests/new"
-              className="inline-flex items-center justify-center px-4 py-2 text-xs sm:text-sm font-bold rounded-md bg-frido-amber hover:bg-frido-amber-dark text-frido-ink transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-frido-amber focus:ring-offset-2 focus:ring-offset-frido-ink"
+              className="inline-flex items-center justify-center px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-frido-violet hover:bg-frido-violet-dark text-white transition-all shadow-xs hover:shadow-sm active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-frido-violet focus:ring-offset-2"
             >
               <svg
                 className="w-4 h-4 mr-1.5 shrink-0"
@@ -39,7 +45,7 @@ export function Navbar() {
         </div>
       </div>
       {/* Brand accent hairline */}
-      <div className="h-0.5 bg-gradient-to-r from-frido-amber via-frido-amber to-transparent opacity-90" />
+      <div className="h-[2px] bg-gradient-to-r from-frido-violet via-purple-300 to-transparent opacity-80" />
     </header>
   );
 }

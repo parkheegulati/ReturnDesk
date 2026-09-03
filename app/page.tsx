@@ -129,53 +129,105 @@ export default function RequestsPage() {
     );
   };
 
+  // Calculate live operational metrics from loaded items
+  const openCount = items.filter((i) => i.status === 'open').length;
+  const inReviewCount = items.filter((i) => i.status === 'in_review').length;
+  const approvedCount = items.filter((i) => i.status === 'approved').length;
+  const completedCount = items.filter((i) => i.status === 'completed').length;
+  const totalApprovedRefunds = items
+    .filter((i) => i.status === 'approved' && i.refund_amount)
+    .reduce((sum, i) => sum + Number(i.refund_amount || 0), 0);
+
   return (
     <div className="space-y-6">
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-frido-ink">
-            Returns Overview
+            Returns Operations
           </h1>
           <p className="text-xs sm:text-sm text-zinc-500 mt-1">
             Real-time customer return tickets, lifecycle progression, and resolutions.
           </p>
         </div>
 
-        {/* Dashboard Signals: High-impact KPI counts */}
-        <div className="flex items-center gap-2 text-xs">
-          <div className="flex items-center bg-white border border-frido-line rounded-lg shadow-2xs divide-x divide-frido-line overflow-hidden">
-            <div className="px-3 py-1.5 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-sky-500" />
-              <span className="text-zinc-500 text-[11px]">Open:</span>
-              <span className="font-bold font-mono text-zinc-900">
-                {items.filter((i) => i.status === 'open').length}
-              </span>
-            </div>
-            <div className="px-3 py-1.5 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-[#FCD00F]" />
-              <span className="text-zinc-500 text-[11px]">In Review:</span>
-              <span className="font-bold font-mono text-zinc-900">
-                {items.filter((i) => i.status === 'in_review').length}
-              </span>
-            </div>
-            <div className="px-3 py-1.5 flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span className="text-zinc-500 text-[11px]">Total Live:</span>
-              <span className="font-bold font-mono text-zinc-900">{pagination.total}</span>
-            </div>
+        <div className="hidden sm:flex items-center gap-2">
+          <div className="px-3 py-1.5 rounded-lg bg-white border border-frido-line text-xs font-medium text-zinc-600 shadow-2xs flex items-center gap-1.5">
+            <svg className="w-3.5 h-3.5 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span>Live Sync</span>
           </div>
         </div>
       </div>
 
-      {/* Status Filter Tabs (One-click lifecycle filtering) */}
+      {/* 4 Executive KPI Metric Cards (Option 2 Layout) */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        {/* Card 1: Total Live Returns */}
+        <div className="bg-white rounded-xl border border-frido-line p-4 shadow-2xs hover:shadow-xs transition-shadow">
+          <div className="flex items-center justify-between text-xs text-zinc-500">
+            <span className="font-medium">Total Returns</span>
+            <span className="w-2 h-2 rounded-full bg-frido-violet" />
+          </div>
+          <div className="text-2xl sm:text-3xl font-bold font-mono text-frido-ink mt-2">
+            {pagination.total}
+          </div>
+          <div className="text-[11px] text-emerald-600 font-medium mt-1 flex items-center gap-1">
+            <span>↑ Live tickets</span>
+          </div>
+        </div>
+
+        {/* Card 2: In Review */}
+        <div className="bg-white rounded-xl border border-frido-line p-4 shadow-2xs hover:shadow-xs transition-shadow">
+          <div className="flex items-center justify-between text-xs text-zinc-500">
+            <span className="font-medium">In Review</span>
+            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+          </div>
+          <div className="text-2xl sm:text-3xl font-bold font-mono text-amber-900 mt-2">
+            {inReviewCount}
+          </div>
+          <div className="text-[11px] text-amber-700 font-medium mt-1">
+            Pending agent action
+          </div>
+        </div>
+
+        {/* Card 3: Approved */}
+        <div className="bg-white rounded-xl border border-frido-line p-4 shadow-2xs hover:shadow-xs transition-shadow">
+          <div className="flex items-center justify-between text-xs text-zinc-500">
+            <span className="font-medium">Approved</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+          </div>
+          <div className="text-2xl sm:text-3xl font-bold font-mono text-emerald-900 mt-2">
+            {approvedCount}
+          </div>
+          <div className="text-[11px] text-emerald-700 font-medium mt-1 font-mono">
+            {totalApprovedRefunds > 0 ? `₹${totalApprovedRefunds.toFixed(0)} refunds` : 'Ready to fulfill'}
+          </div>
+        </div>
+
+        {/* Card 4: Completed */}
+        <div className="bg-white rounded-xl border border-frido-line p-4 shadow-2xs hover:shadow-xs transition-shadow">
+          <div className="flex items-center justify-between text-xs text-zinc-500">
+            <span className="font-medium">Completed</span>
+            <span className="w-2 h-2 rounded-full bg-slate-400" />
+          </div>
+          <div className="text-2xl sm:text-3xl font-bold font-mono text-slate-700 mt-2">
+            {completedCount}
+          </div>
+          <div className="text-[11px] text-zinc-500 font-medium mt-1">
+            Closed & fulfilled
+          </div>
+        </div>
+      </div>
+
+      {/* Status Filter Tabs (Option 2: Soft Lilac/Violet Pill style) */}
       <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 border-b border-frido-line scrollbar-none">
         {[
-          { key: '', label: 'All' },
-          { key: 'open', label: 'Open' },
-          { key: 'in_review', label: 'In Review' },
-          { key: 'approved', label: 'Approved' },
-          { key: 'completed', label: 'Completed' },
+          { key: '', label: 'All Returns', count: pagination.total },
+          { key: 'open', label: 'Open', count: openCount },
+          { key: 'in_review', label: 'In Review', count: inReviewCount },
+          { key: 'approved', label: 'Approved', count: approvedCount },
+          { key: 'completed', label: 'Completed', count: completedCount },
           { key: 'rejected', label: 'Rejected' },
         ].map((tab) => {
           const isActive = statusFilter === tab.key;
@@ -186,23 +238,31 @@ export default function RequestsPage() {
                 setStatusFilter(tab.key);
                 setPagination((p) => ({ ...p, page: 1 }));
               }}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all whitespace-nowrap flex items-center gap-1.5 ${
+              className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all whitespace-nowrap flex items-center gap-1.5 ${
                 isActive
-                  ? 'bg-frido-ink text-white shadow-sm'
-                  : 'bg-white text-zinc-600 hover:text-frido-ink hover:bg-zinc-100 border border-frido-line'
+                  ? 'bg-purple-100/90 text-purple-900 border border-purple-200 shadow-2xs'
+                  : 'bg-white text-zinc-600 hover:text-frido-ink hover:bg-zinc-50 border border-frido-line'
               }`}
             >
-              {tab.key === 'in_review' && (
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FCD00F]" />
-              )}
               <span>{tab.label}</span>
+              {typeof tab.count === 'number' && (
+                <span
+                  className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full font-bold ${
+                    isActive
+                      ? 'bg-purple-200/80 text-purple-900'
+                      : 'bg-zinc-100 text-zinc-500'
+                  }`}
+                >
+                  {tab.count}
+                </span>
+              )}
             </button>
           );
         })}
       </div>
 
       {/* Filter and Search Bar Card */}
-      <div className="bg-white rounded-lg border border-frido-line p-3.5 shadow-sm space-y-3">
+      <div className="bg-white rounded-xl border border-frido-line p-3.5 shadow-2xs space-y-3">
         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3">
           {/* Debounced Search */}
           <div className="relative sm:col-span-2">
@@ -211,7 +271,7 @@ export default function RequestsPage() {
               placeholder="Search by reference, order, or customer..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-12 py-2 text-sm rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-amber focus:border-transparent bg-zinc-50 focus:bg-white text-zinc-900"
+              className="w-full pl-9 pr-12 py-2 text-sm rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-frido-violet focus:border-transparent bg-zinc-50/70 focus:bg-white text-zinc-900 placeholder:text-zinc-400"
             />
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-400">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -245,7 +305,7 @@ export default function RequestsPage() {
                 setReasonFilter(e.target.value);
                 setPagination((p) => ({ ...p, page: 1 }));
               }}
-              className="w-full py-2 px-3 text-sm rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-amber focus:border-transparent bg-zinc-50 focus:bg-white text-zinc-800"
+              className="w-full py-2 px-3 text-sm rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-frido-violet focus:border-transparent bg-zinc-50/70 focus:bg-white text-zinc-800"
             >
               <option value="">All Return Reasons</option>
               <option value="damaged">Damaged</option>
@@ -265,7 +325,7 @@ export default function RequestsPage() {
                 setReasonFilter('');
                 setPagination((p) => ({ ...p, page: 1 }));
               }}
-              className="text-xs font-semibold text-zinc-600 hover:text-frido-ink border border-dashed border-zinc-300 rounded-md py-2 px-3 hover:border-zinc-400 transition-colors flex items-center justify-center gap-1"
+              className="text-xs font-semibold text-zinc-600 hover:text-frido-violet border border-dashed border-zinc-300 rounded-lg py-2 px-3 hover:border-zinc-400 transition-colors flex items-center justify-center gap-1"
             >
               Reset Filters
             </button>
@@ -279,11 +339,11 @@ export default function RequestsPage() {
               Active:
             </span>
             {debouncedSearch && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-800 font-medium text-xs border border-zinc-200">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-900 font-medium text-xs border border-purple-200">
                 Query: &ldquo;{debouncedSearch}&rdquo;
                 <button
                   onClick={() => setSearch('')}
-                  className="text-zinc-400 hover:text-zinc-700 font-bold"
+                  className="text-purple-400 hover:text-purple-700 font-bold"
                   aria-label="Remove search filter"
                 >
                   ✕
@@ -291,11 +351,11 @@ export default function RequestsPage() {
               </span>
             )}
             {statusFilter && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-800 font-medium text-xs border border-zinc-200 capitalize">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-900 font-medium text-xs border border-purple-200 capitalize">
                 Status: {statusFilter.replace('_', ' ')}
                 <button
                   onClick={() => setStatusFilter('')}
-                  className="text-zinc-400 hover:text-zinc-700 font-bold"
+                  className="text-purple-400 hover:text-purple-700 font-bold"
                   aria-label="Remove status filter"
                 >
                   ✕
@@ -303,11 +363,11 @@ export default function RequestsPage() {
               </span>
             )}
             {reasonFilter && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-800 font-medium text-xs border border-zinc-200 capitalize">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-900 font-medium text-xs border border-purple-200 capitalize">
                 Reason: {reasonFilter.replace('_', ' ')}
                 <button
                   onClick={() => setReasonFilter('')}
-                  className="text-zinc-400 hover:text-zinc-700 font-bold"
+                  className="text-purple-400 hover:text-purple-700 font-bold"
                   aria-label="Remove reason filter"
                 >
                   ✕
@@ -320,7 +380,7 @@ export default function RequestsPage() {
                 setStatusFilter('');
                 setReasonFilter('');
               }}
-              className="text-xs font-semibold text-amber-700 hover:text-amber-900 hover:underline ml-1"
+              className="text-xs font-semibold text-frido-violet hover:text-frido-violet-dark hover:underline ml-1"
             >
               Clear all
             </button>
@@ -330,7 +390,7 @@ export default function RequestsPage() {
 
       {/* Error state */}
       {error && (
-        <div className="rounded-lg bg-rose-50 border border-rose-200 p-4 text-sm text-rose-800 flex items-start gap-3 shadow-sm">
+        <div className="rounded-xl bg-rose-50 border border-rose-200 p-4 text-sm text-rose-800 flex items-start gap-3 shadow-2xs">
           <svg className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
@@ -340,7 +400,7 @@ export default function RequestsPage() {
           </div>
           <button
             onClick={() => fetchRequests()}
-            className="text-xs font-semibold px-2.5 py-1 rounded bg-rose-100 hover:bg-rose-200 text-rose-800 transition-colors"
+            className="text-xs font-semibold px-2.5 py-1 rounded-md bg-rose-100 hover:bg-rose-200 text-rose-800 transition-colors"
           >
             Retry
           </button>
@@ -348,12 +408,12 @@ export default function RequestsPage() {
       )}
 
       {/* Main Table or Card List */}
-      <div className="bg-white rounded-lg border border-frido-line shadow-sm overflow-hidden">
+      <div className="bg-white rounded-xl border border-frido-line shadow-2xs overflow-hidden">
         {loading ? (
-          /* Table Skeleton Loader (eliminates layout shift) */
+          /* Table Skeleton Loader */
           <div className="divide-y divide-frido-line bg-white">
             {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="px-4 py-3 flex items-center justify-between gap-4 animate-pulse">
+              <div key={i} className="px-4 py-3.5 flex items-center justify-between gap-4 animate-pulse">
                 <div className="w-24 h-4 bg-zinc-100 rounded" />
                 <div className="w-36 h-4 bg-zinc-100 rounded hidden sm:block" />
                 <div className="w-52 h-4 bg-zinc-100 rounded flex-1" />
@@ -366,7 +426,7 @@ export default function RequestsPage() {
         ) : items.length === 0 ? (
           /* Empty state */
           <div className="p-12 text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-zinc-100 flex items-center justify-center mx-auto text-zinc-400">
+            <div className="w-12 h-12 rounded-full bg-purple-50 flex items-center justify-center mx-auto text-frido-violet">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
@@ -384,7 +444,7 @@ export default function RequestsPage() {
                   setStatusFilter('');
                   setReasonFilter('');
                 }}
-                className="mt-2 text-xs font-semibold text-frido-amber-dark hover:underline"
+                className="mt-2 text-xs font-semibold text-frido-violet hover:underline"
               >
                 Clear all filters
               </button>
@@ -395,7 +455,7 @@ export default function RequestsPage() {
             {/* Desktop Table View */}
             <div className="hidden md:block overflow-x-auto">
               <table className="min-w-full divide-y divide-frido-line text-left text-sm">
-                <thead className="bg-[#F7F7F7] text-[11px] font-semibold text-zinc-500 uppercase tracking-wider select-none">
+                <thead className="bg-[#FAF9F6] text-[11px] font-semibold text-zinc-500 uppercase tracking-wider select-none">
                   <tr>
                     <th scope="col" className="px-4 py-3">
                       <button
@@ -452,13 +512,13 @@ export default function RequestsPage() {
                   {items.map((item) => (
                     <tr
                       key={item.id}
-                      className="hover:bg-amber-50/25 transition-colors group cursor-pointer"
+                      className="hover:bg-purple-50/30 transition-colors group cursor-pointer"
                       onClick={() => (window.location.href = `/requests/${item.id}`)}
                     >
                       <td className="px-4 py-3 whitespace-nowrap">
                         <Link
                           href={`/requests/${item.id}`}
-                          className="font-mono text-xs font-bold text-frido-ink group-hover:text-amber-800 hover:underline"
+                          className="font-mono text-xs font-bold text-frido-ink group-hover:text-frido-violet hover:underline"
                           onClick={(e) => e.stopPropagation()}
                         >
                           {item.reference}
@@ -473,7 +533,7 @@ export default function RequestsPage() {
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-1.5 font-medium text-xs text-zinc-900">
                           <span className="line-clamp-1 max-w-[240px]">{item.item_name}</span>
-                          <span className="px-1.5 py-0.2 rounded bg-zinc-100 text-[10px] font-mono text-zinc-600 font-semibold shrink-0">
+                          <span className="px-1.5 py-0.2 rounded bg-purple-50 text-[10px] font-mono text-purple-700 font-semibold border border-purple-100 shrink-0">
                             ×{item.quantity}
                           </span>
                         </div>
@@ -503,7 +563,7 @@ export default function RequestsPage() {
                       </td>
                       <td className="px-2 py-3 text-right">
                         <svg
-                          className="w-4 h-4 text-zinc-300 group-hover:text-zinc-600 transition-colors ml-auto"
+                          className="w-4 h-4 text-zinc-300 group-hover:text-frido-violet transition-colors ml-auto"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -564,7 +624,7 @@ export default function RequestsPage() {
 
         {/* Pagination Footer */}
         {!loading && pagination.total > 0 && (
-          <div className="bg-[#F7F7F7] px-4 py-3 border-t border-frido-line flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-600">
+          <div className="bg-[#FAF9F6] px-4 py-3 border-t border-frido-line flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-600">
             <div>
               Showing{' '}
               <span className="font-semibold text-zinc-900">

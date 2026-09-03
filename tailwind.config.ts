@@ -10,15 +10,18 @@ const config: Config = {
     extend: {
       colors: {
         frido: {
-          ink: '#131313', // primary text
-          charcoal: '#222222', // secondary dark surfaces
-          amber: '#FCD00F', // brand accent yellow
-          yellow: '#FCD00F', // alias
-          'amber-dark': '#E5BC00', // hover / pressed yellow
-          cream: '#F7F7F7', // page background
-          bg: '#F7F7F7', // alias
-          white: '#FFFFFF', // clean white surfaces
-          line: '#E5E5E5', // hairline borders
+          ink: '#1E293B', // deep slate text
+          charcoal: '#334155', // secondary slate
+          violet: '#7C3AED', // primary royal violet accent
+          'violet-dark': '#6D28D9', // violet hover state
+          'violet-light': '#EDE9FE', // soft lilac pill background
+          porcelain: '#FAF9F6', // warm porcelain canvas
+          cream: '#FAF9F6', // alias for background
+          bg: '#FAF9F6', // alias
+          white: '#FFFFFF', // pure card white
+          line: '#E4E4E7', // clean zinc-200 borders
+          amber: '#F59E0B', // warm amber indicator
+          'amber-dark': '#D97706',
         },
       },
     },

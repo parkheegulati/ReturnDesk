@@ -222,7 +222,7 @@ export default function RequestDetailPage() {
   if (loading) {
     return (
       <div className="py-20 text-center text-zinc-500">
-        <div className="inline-block animate-spin w-6 h-6 border-2 border-frido-amber border-t-transparent rounded-full mb-3" />
+        <div className="inline-block animate-spin w-6 h-6 border-2 border-frido-violet border-t-transparent rounded-full mb-3" />
         <p className="text-sm font-medium">Loading ticket details...</p>
       </div>
     );
@@ -242,7 +242,7 @@ export default function RequestDetailPage() {
         </p>
         <Link
           href="/"
-          className="inline-flex items-center text-sm font-semibold text-frido-amber-dark hover:underline"
+          className="inline-flex items-center text-sm font-semibold text-frido-violet hover:underline"
         >
           &larr; Back to Returns Desk
         </Link>
@@ -519,7 +519,7 @@ export default function RequestDetailPage() {
                 detail.notes.map((note, idx) => (
                   <div
                     key={note.id}
-                    className="p-3 rounded-md bg-[#F7F7F7] border border-frido-line text-xs space-y-1"
+                    className="p-3 rounded-lg bg-[#FAF9F6] border border-frido-line text-xs space-y-1"
                   >
                     <div className="flex items-center justify-between text-[11px] text-zinc-500">
                       <span className="font-semibold text-zinc-700">Agent Note #{idx + 1}</span>
@@ -551,12 +551,12 @@ export default function RequestDetailPage() {
                 placeholder="Record customer communication, warehouse findings, or inspection notes..."
                 value={newNoteBody}
                 onChange={(e) => setNewNoteBody(e.target.value)}
-                className="w-full text-xs p-2.5 rounded border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-amber focus:border-transparent bg-zinc-50 focus:bg-white text-zinc-900"
+                className="w-full text-xs p-2.5 rounded-lg border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-violet focus:border-transparent bg-zinc-50 focus:bg-white text-zinc-900"
               />
               <button
                 type="submit"
                 disabled={submittingNote || !newNoteBody.trim()}
-                className="w-full py-2 px-3 text-xs font-semibold rounded bg-frido-charcoal hover:bg-frido-ink text-white transition-colors disabled:opacity-40 shadow-sm"
+                className="w-full py-2 px-3 text-xs font-semibold rounded-lg bg-frido-violet hover:bg-frido-violet-dark text-white transition-all disabled:opacity-40 shadow-xs"
               >
                 {submittingNote ? 'Saving...' : 'Add Note to Ticket'}
               </button>
@@ -582,7 +582,7 @@ export default function RequestDetailPage() {
                 <select
                   value={approveResolution}
                   onChange={(e) => setApproveResolution(e.target.value as any)}
-                  className="w-full p-2 rounded border border-zinc-300 text-xs focus:ring-2 focus:ring-frido-amber"
+                  className="w-full p-2 rounded border border-zinc-300 text-xs focus:ring-2 focus:ring-frido-violet"
                 >
                   <option value="refund">Refund (Credit Card / Original Method)</option>
                   <option value="replacement">Replacement Product</option>
@@ -603,7 +603,7 @@ export default function RequestDetailPage() {
                     value={approveRefundAmount}
                     onChange={(e) => setApproveRefundAmount(e.target.value)}
                     required
-                    className="w-full p-2 rounded border border-zinc-300 text-xs focus:ring-2 focus:ring-frido-amber font-mono"
+                    className="w-full p-2 rounded border border-zinc-300 text-xs focus:ring-2 focus:ring-frido-violet font-mono"
                   />
                   <span className="text-[11px] text-zinc-500 mt-1 block">
                     Must be a positive amount greater than 0.
@@ -659,7 +659,7 @@ export default function RequestDetailPage() {
                   required
                   value={editForm.customer_name}
                   onChange={(e) => setEditForm({ ...editForm, customer_name: e.target.value })}
-                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-amber"
+                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-violet"
                 />
               </div>
 
@@ -670,7 +670,7 @@ export default function RequestDetailPage() {
                   required
                   value={editForm.customer_contact}
                   onChange={(e) => setEditForm({ ...editForm, customer_contact: e.target.value })}
-                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-amber"
+                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-violet"
                 />
               </div>
 
@@ -682,7 +682,7 @@ export default function RequestDetailPage() {
                     required
                     value={editForm.order_id}
                     onChange={(e) => setEditForm({ ...editForm, order_id: e.target.value })}
-                    className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-amber font-mono"
+                    className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-violet font-mono"
                   />
                 </div>
                 <div>
@@ -693,7 +693,7 @@ export default function RequestDetailPage() {
                     required
                     value={editForm.quantity}
                     onChange={(e) => setEditForm({ ...editForm, quantity: parseInt(e.target.value) || 1 })}
-                    className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-amber"
+                    className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-violet"
                   />
                 </div>
               </div>
@@ -705,7 +705,7 @@ export default function RequestDetailPage() {
                   required
                   value={editForm.item_name}
                   onChange={(e) => setEditForm({ ...editForm, item_name: e.target.value })}
-                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-amber"
+                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-violet"
                 />
               </div>
 
@@ -714,7 +714,7 @@ export default function RequestDetailPage() {
                 <select
                   value={editForm.reason}
                   onChange={(e) => setEditForm({ ...editForm, reason: e.target.value as any })}
-                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-amber"
+                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-violet"
                 >
                   <option value="damaged">Damaged</option>
                   <option value="wrong_item">Wrong Item</option>
@@ -735,7 +735,7 @@ export default function RequestDetailPage() {
                 <button
                   type="submit"
                   disabled={savingEdit}
-                  className="px-4 py-2 text-xs font-semibold rounded bg-frido-amber hover:bg-frido-amber-dark text-frido-ink font-bold transition-colors disabled:opacity-50"
+                  className="px-4 py-2 text-xs font-semibold rounded-lg bg-frido-violet hover:bg-frido-violet-dark text-white transition-all disabled:opacity-50 shadow-xs"
                 >
                   {savingEdit ? 'Saving...' : 'Save Changes'}
                 </button>
