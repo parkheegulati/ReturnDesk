@@ -4,11 +4,12 @@ import { Pool } from 'pg';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import * as schema from './schema';
 
-// Resilient DNS fallback:
+// Resilient DNS fallback for local development only:
 // If the local Wi-Fi router or ISP resolver fails with ENOTFOUND/EREFUSED on external cloud
 // database endpoints, automatically fall back to public DNS (8.8.8.8, 1.1.1.1).
+// Do NOT run on Vercel or cloud environments where AWS Lambda VPC handles DNS natively.
 const globalForDns = globalThis as unknown as { _dnsPatched?: boolean };
-if (!globalForDns._dnsPatched) {
+if (!process.env.VERCEL && process.env.NODE_ENV !== 'production' && !globalForDns._dnsPatched) {
   const originalLookup = dns.lookup;
   const resolver = new dns.promises.Resolver();
   resolver.setServers(['8.8.8.8', '1.1.1.1']);

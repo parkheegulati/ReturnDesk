@@ -7,7 +7,7 @@ It is a dedicated returns operations and lifecycle management desk engineered fo
 
 ---
 
-- 🌐 **Live Deployed Application**: `https://your-deployment-url.vercel.app` *(update with your live Vercel URL)*
+- 🌐 **Live Deployed Application**: [https://return-desk-ebon.vercel.app](https://return-desk-ebon.vercel.app)
 - 💻 **GitHub Repository**: [https://github.com/parkheegulati/ReturnDesk](https://github.com/parkheegulati/ReturnDesk)
 - ⏱️ **Time Spent**: ~3 hours
 
