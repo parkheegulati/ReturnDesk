@@ -54,17 +54,17 @@ export default function NewRequestPage() {
       <div>
         <Link
           href="/"
-          className="inline-flex items-center gap-1 text-xs font-semibold text-zinc-500 hover:text-frido-ink transition-colors mb-3"
+          className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 hover:text-slate-900 transition-colors mb-3"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
           Back to Desk
         </Link>
-        <h1 className="text-2xl font-bold tracking-tight text-frido-ink">
+        <h1 className="text-2xl sm:text-3xl font-medium tracking-tight text-slate-900">
           Raise Return / Replacement Request
         </h1>
-        <p className="text-sm text-zinc-600 mt-1">
+        <p className="text-sm font-normal text-slate-600 mt-1">
           Internal agent form. The reference number will be generated automatically by the server.
         </p>
       </div>

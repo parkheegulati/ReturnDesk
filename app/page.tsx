@@ -143,10 +143,10 @@ export default function RequestsPage() {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
+          <h1 className="text-2xl sm:text-3xl font-medium tracking-tight text-slate-900">
             Returns Operations
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 mt-1">
+          <p className="text-xs sm:text-sm font-normal text-slate-600 mt-1">
             Real-time customer return tickets, lifecycle progression, and resolutions.
           </p>
         </div>
@@ -169,7 +169,7 @@ export default function RequestsPage() {
             <span className="font-medium">Total Returns</span>
             <span className="w-2 h-2 rounded-full bg-blue-600" />
           </div>
-          <div className="text-2xl sm:text-3xl font-bold font-mono text-slate-900 mt-2">
+          <div className="text-2xl sm:text-3xl font-medium font-mono text-slate-900 mt-2">
             {pagination.total}
           </div>
           <div className="text-[11px] text-green-600 font-medium mt-1 flex items-center gap-1">
@@ -183,7 +183,7 @@ export default function RequestsPage() {
             <span className="font-medium">In Review</span>
             <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
           </div>
-          <div className="text-2xl sm:text-3xl font-bold font-mono text-amber-900 mt-2">
+          <div className="text-2xl sm:text-3xl font-medium font-mono text-amber-900 mt-2">
             {inReviewCount}
           </div>
           <div className="text-[11px] text-amber-700 font-medium mt-1">
@@ -197,7 +197,7 @@ export default function RequestsPage() {
             <span className="font-medium">Approved</span>
             <span className="w-2 h-2 rounded-full bg-blue-600" />
           </div>
-          <div className="text-2xl sm:text-3xl font-bold font-mono text-blue-900 mt-2">
+          <div className="text-2xl sm:text-3xl font-medium font-mono text-blue-900 mt-2">
             {approvedCount}
           </div>
           <div className="text-[11px] text-blue-700 font-medium mt-1 font-mono">
@@ -211,7 +211,7 @@ export default function RequestsPage() {
             <span className="font-medium">Completed</span>
             <span className="w-2 h-2 rounded-full bg-green-600" />
           </div>
-          <div className="text-2xl sm:text-3xl font-bold font-mono text-green-900 mt-2">
+          <div className="text-2xl sm:text-3xl font-medium font-mono text-green-900 mt-2">
             {completedCount}
           </div>
           <div className="text-[11px] text-slate-500 font-medium mt-1">

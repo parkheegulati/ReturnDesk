@@ -19,8 +19,8 @@ export function Navbar() {
                   priority
                 />
               </div>
-              <span className="font-bold text-xl tracking-tight text-slate-900 flex items-center">
-                Return<span className="text-blue-600">Desk</span>
+              <span className="font-medium text-xl tracking-tight text-slate-900 flex items-center">
+                Return<span className="text-blue-600 font-semibold">Desk</span>
               </span>
             </Link>
 
