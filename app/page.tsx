@@ -163,7 +163,7 @@ export default function RequestsPage() {
         </div>
       </div>
 
-      {/* 4 Executive Metric Cards */}
+      {/* 4 Executive Metric Cards with Allotted Transparent Status Colors */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {/* Card 1: Total Returns */}
         <div className="bg-[var(--surface-2)] rounded-[12px] p-5 border border-[var(--border)]">
@@ -181,8 +181,8 @@ export default function RequestsPage() {
           </div>
         </div>
 
-        {/* Card 2: In Review (Featured / Urgent Card: 2px warning border per design system) */}
-        <div className="bg-[var(--surface-2)] rounded-[12px] p-5 border-2 border-[var(--border-warning)]">
+        {/* Card 2: In Review (Allotted transparent yellowish / amber color) */}
+        <div className="bg-[var(--bg-warning)]/30 rounded-[12px] p-5 border-2 border-[var(--border-warning)]">
           <div className="flex items-center justify-between">
             <span className="text-[12px] text-[var(--text-warning)] uppercase tracking-[0.4px] font-medium">
               In review
@@ -192,20 +192,20 @@ export default function RequestsPage() {
           <div className="text-[32px] font-medium font-mono text-[var(--text-warning)] mt-2 leading-none">
             {stats.in_review}
           </div>
-          <div className="text-[12px] text-[var(--text-warning)] mt-2">
-            Needs attention
+          <div className="text-[12px] text-[var(--text-warning)] mt-2 font-medium">
+            Pending agent action
           </div>
         </div>
 
-        {/* Card 3: Approved */}
-        <div className="bg-[var(--surface-2)] rounded-[12px] p-5 border border-[var(--border)]">
+        {/* Card 3: Approved (Allotted transparent blue / accent color) */}
+        <div className="bg-[var(--bg-accent)]/30 rounded-[12px] p-5 border border-[var(--border)]">
           <div className="flex items-center justify-between">
-            <span className="text-[12px] text-[var(--text-secondary)] uppercase tracking-[0.4px] font-medium">
+            <span className="text-[12px] text-[var(--text-accent)] uppercase tracking-[0.4px] font-medium">
               Approved
             </span>
             <span className="w-[7px] h-[7px] rounded-full bg-[var(--fill-accent)] inline-block" />
           </div>
-          <div className="text-[32px] font-medium font-mono text-[var(--text-primary)] mt-2 leading-none">
+          <div className="text-[32px] font-medium font-mono text-[var(--text-accent)] mt-2 leading-none">
             {stats.approved}
           </div>
           <div className="text-[12px] text-[var(--text-secondary)] mt-2 font-mono">
@@ -213,18 +213,18 @@ export default function RequestsPage() {
           </div>
         </div>
 
-        {/* Card 4: Completed */}
-        <div className="bg-[var(--surface-2)] rounded-[12px] p-5 border border-[var(--border)]">
+        {/* Card 4: Completed (Allotted transparent green color) */}
+        <div className="bg-[var(--bg-success)]/30 rounded-[12px] p-5 border border-[var(--border-success)]">
           <div className="flex items-center justify-between">
-            <span className="text-[12px] text-[var(--text-secondary)] uppercase tracking-[0.4px] font-medium">
+            <span className="text-[12px] text-[var(--text-success)] uppercase tracking-[0.4px] font-medium">
               Completed
             </span>
             <span className="w-[7px] h-[7px] rounded-full bg-[var(--fill-success)] inline-block" />
           </div>
-          <div className="text-[32px] font-medium font-mono text-[var(--text-primary)] mt-2 leading-none">
+          <div className="text-[32px] font-medium font-mono text-[var(--text-success)] mt-2 leading-none">
             {stats.completed}
           </div>
-          <div className="text-[12px] text-[var(--text-secondary)] mt-2">
+          <div className="text-[12px] text-[var(--text-success)] mt-2 font-medium">
             Closed & fulfilled
           </div>
         </div>
@@ -514,15 +514,20 @@ export default function RequestsPage() {
                     <th scope="col" className="w-8 px-2 py-3.5" />
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[var(--border)] bg-[var(--surface-2)]">
+                <tbody className="divide-y divide-[var(--border)]">
                   {items.map((item) => {
-                    const isActionNeeded = item.status === 'in_review';
+                    const statusRowClasses = {
+                      completed: 'bg-[var(--bg-success)]/40 hover:bg-[var(--bg-success)]/65 border-l-2 border-l-[var(--fill-success)]',
+                      in_review: 'bg-[var(--bg-warning)]/40 hover:bg-[var(--bg-warning)]/65 border-l-2 border-l-[var(--fill-warning)]',
+                      approved: 'bg-[var(--bg-accent)]/35 hover:bg-[var(--bg-accent)]/60 border-l-2 border-l-[var(--fill-accent)]',
+                      rejected: 'bg-[var(--bg-danger)]/30 hover:bg-[var(--bg-danger)]/55 border-l-2 border-l-[var(--fill-danger)]',
+                      open: 'bg-[var(--surface-2)] hover:bg-[var(--surface-1)] border-l-2 border-l-[var(--border-strong)]',
+                    }[item.status] || 'hover:bg-[var(--surface-1)]';
+
                     return (
                       <tr
                         key={item.id}
-                        className={`transition-colors cursor-pointer ${
-                          isActionNeeded ? 'bg-[var(--bg-warning)]/40 hover:bg-[var(--bg-warning)]/60' : 'hover:bg-[rgba(0,0,0,0.015)]'
-                        }`}
+                        className={`transition-colors cursor-pointer ${statusRowClasses}`}
                         onClick={() => (window.location.href = `/requests/${item.id}`)}
                       >
                         <td className="px-4 py-3.5 whitespace-nowrap">
@@ -590,45 +595,55 @@ export default function RequestsPage() {
 
             {/* Mobile Card View (down to 375px) */}
             <div className="md:hidden divide-y divide-[var(--border)]">
-              {items.map((item) => (
-                <Link
-                  key={item.id}
-                  href={`/requests/${item.id}`}
-                  className="block p-4 hover:bg-[var(--surface-1)] transition-colors space-y-2"
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="font-mono font-medium text-[13px] text-[var(--text-primary)]">
-                      {item.reference}
-                    </span>
-                    <StatusBadge status={item.status} size="sm" />
-                  </div>
+              {items.map((item) => {
+                const statusCardClasses = {
+                  completed: 'bg-[var(--bg-success)]/40 hover:bg-[var(--bg-success)]/65 border-l-4 border-l-[var(--fill-success)]',
+                  in_review: 'bg-[var(--bg-warning)]/40 hover:bg-[var(--bg-warning)]/65 border-l-4 border-l-[var(--fill-warning)]',
+                  approved: 'bg-[var(--bg-accent)]/35 hover:bg-[var(--bg-accent)]/60 border-l-4 border-l-[var(--fill-accent)]',
+                  rejected: 'bg-[var(--bg-danger)]/30 hover:bg-[var(--bg-danger)]/55 border-l-4 border-l-[var(--fill-danger)]',
+                  open: 'bg-[var(--surface-2)] hover:bg-[var(--surface-1)] border-l-4 border-l-[var(--border-strong)]',
+                }[item.status] || 'hover:bg-[var(--surface-1)]';
 
-                  <div>
-                    <div className="font-medium text-[13px] text-[var(--text-primary)]">{item.customer_name}</div>
-                    <div className="text-[12px] text-[var(--text-secondary)] line-clamp-1 mt-0.5">
-                      {item.item_name} <span className="text-[var(--text-muted)]">×{item.quantity}</span>
+                return (
+                  <Link
+                    key={item.id}
+                    href={`/requests/${item.id}`}
+                    className={`block p-4 transition-colors space-y-2 ${statusCardClasses}`}
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-mono font-medium text-[13px] text-[var(--text-primary)]">
+                        {item.reference}
+                      </span>
+                      <StatusBadge status={item.status} size="sm" />
                     </div>
-                  </div>
 
-                  <div className="flex items-center justify-between text-[12px] pt-1">
-                    <div className="flex items-center gap-1.5 flex-wrap">
-                      <ReasonBadge reason={item.reason} />
-                      {item.resolution && (
-                        <ResolutionBadge
-                          resolution={item.resolution}
-                          refundAmount={item.refund_amount}
-                        />
-                      )}
+                    <div>
+                      <div className="font-medium text-[13px] text-[var(--text-primary)]">{item.customer_name}</div>
+                      <div className="text-[12px] text-[var(--text-secondary)] line-clamp-1 mt-0.5">
+                        {item.item_name} <span className="text-[var(--text-muted)]">×{item.quantity}</span>
+                      </div>
                     </div>
-                    <span className="font-mono text-[12px] text-[var(--text-muted)]">
-                      {new Date(item.created_at).toLocaleDateString(undefined, {
-                        month: 'short',
-                        day: 'numeric',
-                      })}
-                    </span>
-                  </div>
-                </Link>
-              ))}
+
+                    <div className="flex items-center justify-between text-[12px] pt-1">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <ReasonBadge reason={item.reason} />
+                        {item.resolution && (
+                          <ResolutionBadge
+                            resolution={item.resolution}
+                            refundAmount={item.refund_amount}
+                          />
+                        )}
+                      </div>
+                      <span className="font-mono text-[12px] text-[var(--text-muted)]">
+                        {new Date(item.created_at).toLocaleDateString(undefined, {
+                          month: 'short',
+                          day: 'numeric',
+                        })}
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </>
         )}
