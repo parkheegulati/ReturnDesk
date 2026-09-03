@@ -66,17 +66,20 @@ export function handleApiError(err: unknown): NextResponse<ApiErrorBody> {
     );
   }
 
-  // Check for Postgres errors
-  const pgErr = err as { code?: string; constraint?: string; message?: string };
-  if (pgErr && pgErr.code === '23505') {
-    if (pgErr.constraint === 'uq_live_request_per_item') {
+  // Check for Postgres errors (Drizzle wraps pg errors inside err.cause)
+  const anyErr = err as any;
+  const pgErr = anyErr?.cause ?? anyErr;
+
+  if (pgErr && (pgErr.code === '23505' || anyErr?.code === '23505')) {
+    const constraint = pgErr.constraint || anyErr?.constraint;
+    if (constraint === 'uq_live_request_per_item') {
       return errorResponse(
         409,
         'DUPLICATE_LIVE_REQUEST',
         'A live return request already exists for this item on this order. Only one active request is allowed at a time.'
       );
     }
-    if (pgErr.constraint === 'requests_reference_unique') {
+    if (constraint === 'requests_reference_unique') {
       return errorResponse(
         409,
         'REFERENCE_EXISTS',
