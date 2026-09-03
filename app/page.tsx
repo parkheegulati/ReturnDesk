@@ -269,9 +269,9 @@ export default function RequestsPage() {
 
       {/* Filter and Search Bar Surface */}
       <div className="bg-[var(--surface-2)] rounded-[12px] border border-[var(--border)] p-4 space-y-3">
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-          {/* Debounced Search */}
-          <div className="relative sm:col-span-2">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          {/* Debounced Search on Left Side */}
+          <div className="relative flex-1 max-w-xl">
             <input
               type="text"
               placeholder="Search by reference, order, or customer..."
@@ -303,39 +303,41 @@ export default function RequestsPage() {
             </div>
           </div>
 
-          {/* Reason Filter */}
-          <div>
-            <select
-              value={reasonFilter}
-              onChange={(e) => {
-                setReasonFilter(e.target.value);
-                setPagination((p) => ({ ...p, page: 1 }));
-              }}
-              className="w-full h-11 px-3 text-[13px] rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] focus:border-[var(--fill-accent)] focus:outline-none"
-            >
-              <option value="">All return reasons</option>
-              <option value="damaged">Damaged</option>
-              <option value="wrong_item">Wrong item</option>
-              <option value="size_issue">Size issue</option>
-              <option value="not_as_described">Not as described</option>
-              <option value="changed_mind">Changed mind</option>
-            </select>
-          </div>
+          {/* Right Side: Reason Filter Toggle + Reset button */}
+          <div className="flex items-center gap-2.5 sm:ml-auto w-full sm:w-auto">
+            <div className="w-full sm:w-56">
+              <select
+                value={reasonFilter}
+                onChange={(e) => {
+                  setReasonFilter(e.target.value);
+                  setPagination((p) => ({ ...p, page: 1 }));
+                }}
+                className="w-full h-11 px-3 text-[13px] rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] focus:border-[var(--fill-accent)] focus:outline-none cursor-pointer"
+              >
+                <option value="">All return reasons</option>
+                <option value="damaged">Damaged</option>
+                <option value="wrong_item">Wrong item</option>
+                <option value="size_issue">Size issue</option>
+                <option value="not_as_described">Not as described</option>
+                <option value="changed_mind">Changed mind</option>
+              </select>
+            </div>
 
-          {/* Reset Filters button */}
-          {(search || statusFilter || reasonFilter) && (
-            <button
-              onClick={() => {
-                setSearch('');
-                setStatusFilter('');
-                setReasonFilter('');
-                setPagination((p) => ({ ...p, page: 1 }));
-              }}
-              className="h-11 px-4 text-[13px] font-medium text-[var(--text-secondary)] border border-[var(--border-strong)] rounded-[var(--radius)] bg-transparent hover:border-[var(--border-strong)] transition-colors flex items-center justify-center gap-1"
-            >
-              Reset filters
-            </button>
-          )}
+            {/* Reset Filters button */}
+            {(search || statusFilter || reasonFilter) && (
+              <button
+                onClick={() => {
+                  setSearch('');
+                  setStatusFilter('');
+                  setReasonFilter('');
+                  setPagination((p) => ({ ...p, page: 1 }));
+                }}
+                className="h-11 px-3.5 text-[13px] font-medium text-[var(--text-secondary)] border border-[var(--border-strong)] rounded-[var(--radius)] bg-transparent hover:border-[var(--border-strong)] transition-colors flex items-center justify-center gap-1 shrink-0"
+              >
+                Reset filters
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Active Filter Chips */}
