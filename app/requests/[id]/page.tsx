@@ -270,7 +270,7 @@ export default function RequestDetailPage() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-frido-line">
           <div>
             <div className="flex items-center gap-3">
-              <h1 className="text-2xl sm:text-3xl font-medium font-mono tracking-tight text-slate-900">
+              <h1 className="text-2xl sm:text-3xl font-bold font-mono text-frido-ink">
                 {detail.reference}
               </h1>
               <StatusBadge status={detail.status} size="lg" />

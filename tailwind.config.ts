@@ -8,9 +8,6 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['var(--font-inter)', 'Inter', 'sans-serif'],
-      },
       colors: {
         frido: {
           bg: '#F8FAFC', // slate-50

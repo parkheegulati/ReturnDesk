@@ -58,8 +58,8 @@ export async function GET(req: NextRequest) {
 
     const offset = (query.page - 1) * query.limit;
 
-    // Run data fetch and total count concurrently in PostgreSQL
-    const [data, totalCountRes] = await Promise.all([
+    // Run data fetch, filtered total, global status breakdown, and approved refund sum concurrently in PostgreSQL
+    const [data, totalCountRes, statusCountsRes, approvedRefundRes] = await Promise.all([
       db
         .select()
         .from(requests)
@@ -71,10 +71,37 @@ export async function GET(req: NextRequest) {
         .select({ count: sql<number>`count(*)::int` })
         .from(requests)
         .where(whereClause),
+      db
+        .select({
+          status: requests.status,
+          count: sql<number>`count(*)::int`,
+        })
+        .from(requests)
+        .where(isNull(requests.removed_at))
+        .groupBy(requests.status),
+      db
+        .select({
+          totalRefund: sql<string>`COALESCE(sum(refund_amount), 0)::text`,
+        })
+        .from(requests)
+        .where(and(isNull(requests.removed_at), eq(requests.status, 'approved'))),
     ]);
 
     const total = totalCountRes[0]?.count ?? 0;
     const totalPages = Math.ceil(total / query.limit);
+
+    const counts: Record<string, number> = {
+      open: 0,
+      in_review: 0,
+      approved: 0,
+      completed: 0,
+      rejected: 0,
+    };
+    let globalTotal = 0;
+    for (const row of statusCountsRes) {
+      counts[row.status] = row.count;
+      globalTotal += row.count;
+    }
 
     return NextResponse.json({
       data,
@@ -83,6 +110,15 @@ export async function GET(req: NextRequest) {
         limit: query.limit,
         total,
         totalPages,
+      },
+      stats: {
+        total: globalTotal,
+        open: counts.open,
+        in_review: counts.in_review,
+        approved: counts.approved,
+        completed: counts.completed,
+        rejected: counts.rejected,
+        totalApprovedRefunds: parseFloat(approvedRefundRes[0]?.totalRefund ?? '0'),
       },
     });
   } catch (err) {

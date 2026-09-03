@@ -38,6 +38,16 @@ export default function RequestsPage() {
     totalPages: 0,
   });
 
+  const [stats, setStats] = useState({
+    total: 0,
+    open: 0,
+    in_review: 0,
+    approved: 0,
+    completed: 0,
+    rejected: 0,
+    totalApprovedRefunds: 0,
+  });
+
   const [search, setSearch] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('');
@@ -82,6 +92,9 @@ export default function RequestsPage() {
 
       setItems(json.data);
       setPagination(json.pagination);
+      if (json.stats) {
+        setStats(json.stats);
+      }
     } catch (err: any) {
       setError(err.message || 'Failed to load return requests from the desk.');
     } finally {
@@ -113,40 +126,31 @@ export default function RequestsPage() {
   const getSortIcon = (column: string) => {
     if (sortBy !== column) {
       return (
-        <svg className="w-3.5 h-3.5 text-zinc-400 group-hover:text-zinc-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
         </svg>
       );
     }
     return sortOrder === 'asc' ? (
-      <svg className="w-3.5 h-3.5 text-frido-ink" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-3.5 h-3.5 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 15l7-7 7 7" />
       </svg>
     ) : (
-      <svg className="w-3.5 h-3.5 text-frido-ink" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg className="w-3.5 h-3.5 text-slate-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
       </svg>
     );
   };
-
-  // Calculate live operational metrics from loaded items
-  const openCount = items.filter((i) => i.status === 'open').length;
-  const inReviewCount = items.filter((i) => i.status === 'in_review').length;
-  const approvedCount = items.filter((i) => i.status === 'approved').length;
-  const completedCount = items.filter((i) => i.status === 'completed').length;
-  const totalApprovedRefunds = items
-    .filter((i) => i.status === 'approved' && i.refund_amount)
-    .reduce((sum, i) => sum + Number(i.refund_amount || 0), 0);
 
   return (
     <div className="space-y-6">
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-medium tracking-tight text-slate-900">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
             Returns Operations
           </h1>
-          <p className="text-xs sm:text-sm font-normal text-slate-600 mt-1">
+          <p className="text-xs sm:text-sm text-slate-600 mt-1">
             Real-time customer return tickets, lifecycle progression, and resolutions.
           </p>
         </div>
@@ -169,8 +173,8 @@ export default function RequestsPage() {
             <span className="font-medium">Total Returns</span>
             <span className="w-2 h-2 rounded-full bg-blue-600" />
           </div>
-          <div className="text-2xl sm:text-3xl font-medium font-mono text-slate-900 mt-2">
-            {pagination.total}
+          <div className="text-2xl sm:text-3xl font-bold font-mono text-slate-900 mt-2">
+            {stats.total}
           </div>
           <div className="text-[11px] text-green-600 font-medium mt-1 flex items-center gap-1">
             <span>↑ Live tickets</span>
@@ -183,8 +187,8 @@ export default function RequestsPage() {
             <span className="font-medium">In Review</span>
             <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
           </div>
-          <div className="text-2xl sm:text-3xl font-medium font-mono text-amber-900 mt-2">
-            {inReviewCount}
+          <div className="text-2xl sm:text-3xl font-bold font-mono text-amber-900 mt-2">
+            {stats.in_review}
           </div>
           <div className="text-[11px] text-amber-700 font-medium mt-1">
             Pending agent action
@@ -197,11 +201,11 @@ export default function RequestsPage() {
             <span className="font-medium">Approved</span>
             <span className="w-2 h-2 rounded-full bg-blue-600" />
           </div>
-          <div className="text-2xl sm:text-3xl font-medium font-mono text-blue-900 mt-2">
-            {approvedCount}
+          <div className="text-2xl sm:text-3xl font-bold font-mono text-blue-900 mt-2">
+            {stats.approved}
           </div>
           <div className="text-[11px] text-blue-700 font-medium mt-1 font-mono">
-            {totalApprovedRefunds > 0 ? `₹${totalApprovedRefunds.toFixed(0)} refunds` : 'Ready to fulfill'}
+            {stats.totalApprovedRefunds > 0 ? `₹${stats.totalApprovedRefunds.toFixed(0)} refunds` : 'Ready to fulfill'}
           </div>
         </div>
 
@@ -211,8 +215,8 @@ export default function RequestsPage() {
             <span className="font-medium">Completed</span>
             <span className="w-2 h-2 rounded-full bg-green-600" />
           </div>
-          <div className="text-2xl sm:text-3xl font-medium font-mono text-green-900 mt-2">
-            {completedCount}
+          <div className="text-2xl sm:text-3xl font-bold font-mono text-green-900 mt-2">
+            {stats.completed}
           </div>
           <div className="text-[11px] text-slate-500 font-medium mt-1">
             Closed & fulfilled
@@ -223,12 +227,12 @@ export default function RequestsPage() {
       {/* Status Filter Tabs */}
       <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 border-b border-slate-200 scrollbar-none">
         {[
-          { key: '', label: 'All Returns', count: pagination.total },
-          { key: 'open', label: 'Open', count: openCount },
-          { key: 'in_review', label: 'In Review', count: inReviewCount },
-          { key: 'approved', label: 'Approved', count: approvedCount },
-          { key: 'completed', label: 'Completed', count: completedCount },
-          { key: 'rejected', label: 'Rejected' },
+          { key: '', label: 'All Returns', count: stats.total },
+          { key: 'open', label: 'Open', count: stats.open },
+          { key: 'in_review', label: 'In Review', count: stats.in_review },
+          { key: 'approved', label: 'Approved', count: stats.approved },
+          { key: 'completed', label: 'Completed', count: stats.completed },
+          { key: 'rejected', label: 'Rejected', count: stats.rejected },
         ].map((tab) => {
           const isActive = statusFilter === tab.key;
           return (
