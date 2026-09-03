@@ -131,35 +131,67 @@ export default function RequestsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Top Title & Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      {/* Top Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-frido-ink">
-            Returns Desk
+            Returns Overview
           </h1>
-          <p className="text-sm text-zinc-600 mt-1">
-            Manage customer return and replacement requests through the support lifecycle.
+          <p className="text-xs sm:text-sm text-zinc-500 mt-1">
+            Real-time customer return tickets, lifecycle progression, and resolutions.
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
-          <Link
-            href="/requests/new"
-            className="inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-md bg-frido-amber hover:bg-frido-amber-dark text-frido-ink transition-colors shadow-sm"
-          >
-            + Raise Return Request
-          </Link>
+        {/* Live Metrics Summary */}
+        <div className="flex items-center gap-2 text-xs">
+          <div className="bg-white border border-frido-line rounded-md px-3 py-1.5 shadow-sm">
+            <span className="text-zinc-500">Total Live:</span>{' '}
+            <span className="font-bold font-mono text-frido-ink">{pagination.total}</span>
+          </div>
         </div>
       </div>
 
+      {/* Status Filter Tabs (One-click lifecycle filtering) */}
+      <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 border-b border-frido-line scrollbar-none">
+        {[
+          { key: '', label: 'All' },
+          { key: 'open', label: 'Open' },
+          { key: 'in_review', label: 'In Review' },
+          { key: 'approved', label: 'Approved' },
+          { key: 'completed', label: 'Completed' },
+          { key: 'rejected', label: 'Rejected' },
+        ].map((tab) => {
+          const isActive = statusFilter === tab.key;
+          return (
+            <button
+              key={tab.key}
+              onClick={() => {
+                setStatusFilter(tab.key);
+                setPagination((p) => ({ ...p, page: 1 }));
+              }}
+              className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all whitespace-nowrap flex items-center gap-1.5 ${
+                isActive
+                  ? 'bg-frido-ink text-white shadow-sm'
+                  : 'bg-white text-zinc-600 hover:text-frido-ink hover:bg-zinc-100 border border-frido-line'
+              }`}
+            >
+              {tab.key === 'in_review' && (
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FCD00F]" />
+              )}
+              <span>{tab.label}</span>
+            </button>
+          );
+        })}
+      </div>
+
       {/* Filter and Search Bar Card */}
-      <div className="bg-white rounded-lg border border-frido-line p-4 shadow-sm space-y-3">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="bg-white rounded-lg border border-frido-line p-3.5 shadow-sm space-y-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3">
           {/* Debounced Search */}
-          <div className="relative">
+          <div className="relative sm:col-span-2">
             <input
               type="text"
-              placeholder="Search reference, order, customer..."
+              placeholder="Search by reference (RD-...), order ID, customer name, or item..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full pl-9 pr-8 py-2 text-sm rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-amber focus:border-transparent bg-zinc-50 focus:bg-white text-zinc-900"
@@ -181,25 +213,6 @@ export default function RequestsPage() {
             )}
           </div>
 
-          {/* Status Filter */}
-          <div>
-            <select
-              value={statusFilter}
-              onChange={(e) => {
-                setStatusFilter(e.target.value);
-                setPagination((p) => ({ ...p, page: 1 }));
-              }}
-              className="w-full py-2 px-3 text-sm rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-amber focus:border-transparent bg-zinc-50 focus:bg-white text-zinc-800"
-            >
-              <option value="">All Statuses</option>
-              <option value="open">Open</option>
-              <option value="in_review">In Review</option>
-              <option value="approved">Approved</option>
-              <option value="completed">Completed</option>
-              <option value="rejected">Rejected</option>
-            </select>
-          </div>
-
           {/* Reason Filter */}
           <div>
             <select
@@ -210,7 +223,7 @@ export default function RequestsPage() {
               }}
               className="w-full py-2 px-3 text-sm rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-amber focus:border-transparent bg-zinc-50 focus:bg-white text-zinc-800"
             >
-              <option value="">All Reasons</option>
+              <option value="">All Return Reasons</option>
               <option value="damaged">Damaged</option>
               <option value="wrong_item">Wrong Item</option>
               <option value="size_issue">Size Issue</option>
