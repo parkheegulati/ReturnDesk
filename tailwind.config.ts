@@ -10,18 +10,21 @@ const config: Config = {
     extend: {
       colors: {
         frido: {
-          ink: '#1E293B', // deep slate text
-          charcoal: '#334155', // secondary slate
-          violet: '#7C3AED', // primary royal violet accent
-          'violet-dark': '#6D28D9', // violet hover state
-          'violet-light': '#EDE9FE', // soft lilac pill background
-          porcelain: '#FAF9F6', // warm porcelain canvas
-          cream: '#FAF9F6', // alias for background
-          bg: '#FAF9F6', // alias
-          white: '#FFFFFF', // pure card white
-          line: '#E4E4E7', // clean zinc-200 borders
-          amber: '#F59E0B', // warm amber indicator
-          'amber-dark': '#D97706',
+          bg: '#F8FAFC', // slate-50
+          cream: '#F8FAFC', // alias
+          white: '#FFFFFF', // surfaces/cards
+          line: '#E2E8F0', // slate-200
+          ink: '#0F172A', // slate-900
+          muted: '#475569', // slate-600
+          primary: '#2563EB', // blue-600
+          'primary-hover': '#1D4ED8', // blue-700
+          ring: '#3B82F6', // blue-500
+          // Status token aliases
+          open: '#6B7280', // gray-500
+          inReview: '#F59E0B', // amber-500
+          approved: '#2563EB', // blue-600
+          completed: '#16A34A', // green-600
+          rejected: '#DC2626', // red-600
         },
       },
     },

@@ -222,8 +222,8 @@ export default function RequestDetailPage() {
   if (loading) {
     return (
       <div className="py-20 text-center text-zinc-500">
-        <div className="inline-block animate-spin w-6 h-6 border-2 border-frido-violet border-t-transparent rounded-full mb-3" />
-        <p className="text-sm font-medium">Loading ticket details...</p>
+        <div className="inline-block animate-spin w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full mb-3" />
+        <p className="text-sm font-medium text-slate-600">Loading ticket details...</p>
       </div>
     );
   }
@@ -231,18 +231,18 @@ export default function RequestDetailPage() {
   if (error || !detail) {
     return (
       <div className="py-12 max-w-lg mx-auto text-center space-y-4">
-        <div className="w-12 h-12 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mx-auto">
+        <div className="w-12 h-12 rounded-full bg-red-100 text-red-600 flex items-center justify-center mx-auto">
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
           </svg>
         </div>
-        <h2 className="text-xl font-bold text-frido-ink">Request Not Found</h2>
-        <p className="text-sm text-zinc-600">
+        <h2 className="text-xl font-bold text-slate-900">Request Not Found</h2>
+        <p className="text-sm text-slate-600">
           {error || 'This return request does not exist or has been removed from the desk.'}
         </p>
         <Link
           href="/"
-          className="inline-flex items-center text-sm font-semibold text-frido-violet hover:underline"
+          className="inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-700 hover:underline"
         >
           &larr; Back to Returns Desk
         </Link>
@@ -288,14 +288,14 @@ export default function RequestDetailPage() {
                 <button
                   disabled={transitioning}
                   onClick={() => handleTransition('in_review')}
-                  className="px-3.5 py-1.5 text-xs font-semibold rounded bg-amber-500 hover:bg-amber-600 text-white transition-colors shadow-sm disabled:opacity-50"
+                  className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-amber-500 hover:bg-amber-600 text-white transition-all shadow-xs disabled:opacity-50"
                 >
                   Start Review
                 </button>
                 <button
                   disabled={transitioning}
                   onClick={() => handleTransition('rejected')}
-                  className="px-3.5 py-1.5 text-xs font-semibold rounded bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 transition-colors disabled:opacity-50"
+                  className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 transition-colors disabled:opacity-50"
                 >
                   Reject
                 </button>
@@ -308,14 +308,14 @@ export default function RequestDetailPage() {
                 <button
                   disabled={transitioning}
                   onClick={() => setShowApproveModal(true)}
-                  className="px-3.5 py-1.5 text-xs font-semibold rounded bg-teal-600 hover:bg-teal-700 text-white transition-colors shadow-sm disabled:opacity-50"
+                  className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-xs disabled:opacity-50"
                 >
                   Approve Request...
                 </button>
                 <button
                   disabled={transitioning}
                   onClick={() => handleTransition('rejected')}
-                  className="px-3.5 py-1.5 text-xs font-semibold rounded bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 transition-colors disabled:opacity-50"
+                  className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 transition-colors disabled:opacity-50"
                 >
                   Reject
                 </button>
@@ -327,7 +327,7 @@ export default function RequestDetailPage() {
               <button
                 disabled={transitioning}
                 onClick={() => handleTransition('completed')}
-                className="px-3.5 py-1.5 text-xs font-semibold rounded bg-emerald-600 hover:bg-emerald-700 text-white transition-colors shadow-sm disabled:opacity-50"
+                className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-green-600 hover:bg-green-700 text-white transition-all shadow-xs disabled:opacity-50"
               >
                 Mark as Completed
               </button>
@@ -519,10 +519,10 @@ export default function RequestDetailPage() {
                 detail.notes.map((note, idx) => (
                   <div
                     key={note.id}
-                    className="p-3 rounded-lg bg-[#FAF9F6] border border-frido-line text-xs space-y-1"
+                    className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs space-y-1"
                   >
-                    <div className="flex items-center justify-between text-[11px] text-zinc-500">
-                      <span className="font-semibold text-zinc-700">Agent Note #{idx + 1}</span>
+                    <div className="flex items-center justify-between text-[11px] text-slate-500">
+                      <span className="font-semibold text-slate-700">Agent Note #{idx + 1}</span>
                       <span className="font-mono">
                         {new Date(note.created_at).toLocaleString([], {
                           month: 'short',
@@ -532,7 +532,7 @@ export default function RequestDetailPage() {
                         })}
                       </span>
                     </div>
-                    <p className="text-zinc-800 whitespace-pre-wrap leading-relaxed">
+                    <p className="text-slate-800 whitespace-pre-wrap leading-relaxed">
                       {note.body}
                     </p>
                   </div>
@@ -541,8 +541,8 @@ export default function RequestDetailPage() {
             </div>
 
             {/* Add Note Form — Available in ANY status per Rule 4 */}
-            <form onSubmit={handleAddNote} className="pt-3 border-t border-frido-line space-y-2">
-              <label htmlFor="note-input" className="text-xs font-semibold text-zinc-700 block">
+            <form onSubmit={handleAddNote} className="pt-3 border-t border-slate-200 space-y-2">
+              <label htmlFor="note-input" className="text-xs font-semibold text-slate-700 block">
                 Append Internal Note
               </label>
               <textarea
@@ -551,12 +551,12 @@ export default function RequestDetailPage() {
                 placeholder="Record customer communication, warehouse findings, or inspection notes..."
                 value={newNoteBody}
                 onChange={(e) => setNewNoteBody(e.target.value)}
-                className="w-full text-xs p-2.5 rounded-lg border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-frido-violet focus:border-transparent bg-zinc-50 focus:bg-white text-zinc-900"
+                className="w-full text-xs p-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-slate-50/70 focus:bg-white text-slate-900"
               />
               <button
                 type="submit"
                 disabled={submittingNote || !newNoteBody.trim()}
-                className="w-full py-2 px-3 text-xs font-semibold rounded-lg bg-frido-violet hover:bg-frido-violet-dark text-white transition-all disabled:opacity-40 shadow-xs"
+                className="w-full py-2 px-3 text-xs font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all disabled:opacity-40 shadow-xs"
               >
                 {submittingNote ? 'Saving...' : 'Add Note to Ticket'}
               </button>
@@ -582,7 +582,7 @@ export default function RequestDetailPage() {
                 <select
                   value={approveResolution}
                   onChange={(e) => setApproveResolution(e.target.value as any)}
-                  className="w-full p-2 rounded border border-zinc-300 text-xs focus:ring-2 focus:ring-frido-violet"
+                  className="w-full p-2 rounded border border-zinc-300 text-xs focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="refund">Refund (Credit Card / Original Method)</option>
                   <option value="replacement">Replacement Product</option>
@@ -603,7 +603,7 @@ export default function RequestDetailPage() {
                     value={approveRefundAmount}
                     onChange={(e) => setApproveRefundAmount(e.target.value)}
                     required
-                    className="w-full p-2 rounded border border-zinc-300 text-xs focus:ring-2 focus:ring-frido-violet font-mono"
+                    className="w-full p-2 rounded border border-zinc-300 text-xs focus:ring-2 focus:ring-blue-500 font-mono"
                   />
                   <span className="text-[11px] text-zinc-500 mt-1 block">
                     Must be a positive amount greater than 0.
@@ -633,7 +633,7 @@ export default function RequestDetailPage() {
                     approveResolution === 'refund' ? parseFloat(approveRefundAmount) : null
                   )
                 }
-                className="px-4 py-2 text-xs font-semibold rounded bg-teal-600 hover:bg-teal-700 text-white transition-colors disabled:opacity-40"
+                className="px-4 py-2 text-xs font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all disabled:opacity-40 shadow-xs"
               >
                 {transitioning ? 'Approving...' : 'Confirm Approval'}
               </button>
@@ -659,7 +659,7 @@ export default function RequestDetailPage() {
                   required
                   value={editForm.customer_name}
                   onChange={(e) => setEditForm({ ...editForm, customer_name: e.target.value })}
-                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-violet"
+                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -670,7 +670,7 @@ export default function RequestDetailPage() {
                   required
                   value={editForm.customer_contact}
                   onChange={(e) => setEditForm({ ...editForm, customer_contact: e.target.value })}
-                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-violet"
+                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -682,7 +682,7 @@ export default function RequestDetailPage() {
                     required
                     value={editForm.order_id}
                     onChange={(e) => setEditForm({ ...editForm, order_id: e.target.value })}
-                    className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-violet font-mono"
+                    className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-blue-500 font-mono"
                   />
                 </div>
                 <div>
@@ -693,7 +693,7 @@ export default function RequestDetailPage() {
                     required
                     value={editForm.quantity}
                     onChange={(e) => setEditForm({ ...editForm, quantity: parseInt(e.target.value) || 1 })}
-                    className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-violet"
+                    className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
               </div>
@@ -705,7 +705,7 @@ export default function RequestDetailPage() {
                   required
                   value={editForm.item_name}
                   onChange={(e) => setEditForm({ ...editForm, item_name: e.target.value })}
-                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-violet"
+                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-blue-500"
                 />
               </div>
 
@@ -714,7 +714,7 @@ export default function RequestDetailPage() {
                 <select
                   value={editForm.reason}
                   onChange={(e) => setEditForm({ ...editForm, reason: e.target.value as any })}
-                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-frido-violet"
+                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-blue-500"
                 >
                   <option value="damaged">Damaged</option>
                   <option value="wrong_item">Wrong Item</option>
@@ -735,7 +735,7 @@ export default function RequestDetailPage() {
                 <button
                   type="submit"
                   disabled={savingEdit}
-                  className="px-4 py-2 text-xs font-semibold rounded-lg bg-frido-violet hover:bg-frido-violet-dark text-white transition-all disabled:opacity-50 shadow-xs"
+                  className="px-4 py-2 text-xs font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all disabled:opacity-50 shadow-xs"
                 >
                   {savingEdit ? 'Saving...' : 'Save Changes'}
                 </button>

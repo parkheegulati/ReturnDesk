@@ -11,16 +11,16 @@ const REASON_LABELS: Record<string, string> = {
 export function ReasonBadge({ reason }: { reason: ReturnReason | string }) {
   const label = REASON_LABELS[reason] || reason;
   return (
-    <span className="inline-flex items-center text-xs font-medium text-zinc-700 bg-zinc-100 border border-zinc-200 px-2 py-0.5 rounded">
+    <span className="inline-flex items-center text-xs font-medium text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">
       {label}
     </span>
   );
 }
 
 const RESOLUTION_LABELS: Record<string, { label: string; bg: string; text: string }> = {
-  refund: { label: 'Refund', bg: 'bg-emerald-50 border-emerald-200', text: 'text-emerald-800' },
-  replacement: { label: 'Replacement', bg: 'bg-blue-50 border-blue-200', text: 'text-blue-800' },
-  store_credit: { label: 'Store Credit', bg: 'bg-purple-50 border-purple-200', text: 'text-purple-800' },
+  refund: { label: 'Refund', bg: 'bg-blue-50 border-blue-200', text: 'text-blue-800' },
+  replacement: { label: 'Replacement', bg: 'bg-slate-100 border-slate-200', text: 'text-slate-800' },
+  store_credit: { label: 'Store Credit', bg: 'bg-indigo-50 border-indigo-200', text: 'text-indigo-800' },
 };
 
 export function ResolutionBadge({
@@ -33,8 +33,8 @@ export function ResolutionBadge({
   if (!resolution) return null;
   const item = RESOLUTION_LABELS[resolution] || {
     label: resolution,
-    bg: 'bg-zinc-50 border-zinc-200',
-    text: 'text-zinc-800',
+    bg: 'bg-slate-50 border-slate-200',
+    text: 'text-slate-800',
   };
 
   return (

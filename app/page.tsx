@@ -143,17 +143,17 @@ export default function RequestsPage() {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-frido-ink">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
             Returns Operations
           </h1>
-          <p className="text-xs sm:text-sm text-zinc-500 mt-1">
+          <p className="text-xs sm:text-sm text-slate-600 mt-1">
             Real-time customer return tickets, lifecycle progression, and resolutions.
           </p>
         </div>
 
         <div className="hidden sm:flex items-center gap-2">
-          <div className="px-3 py-1.5 rounded-lg bg-white border border-frido-line text-xs font-medium text-zinc-600 shadow-2xs flex items-center gap-1.5">
-            <svg className="w-3.5 h-3.5 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-medium text-slate-600 shadow-2xs flex items-center gap-1.5">
+            <svg className="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
             <span>Live Sync</span>
@@ -161,27 +161,27 @@ export default function RequestsPage() {
         </div>
       </div>
 
-      {/* 4 Executive KPI Metric Cards (Option 2 Layout) */}
+      {/* 4 Executive KPI Metric Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {/* Card 1: Total Live Returns */}
-        <div className="bg-white rounded-xl border border-frido-line p-4 shadow-2xs hover:shadow-xs transition-shadow">
-          <div className="flex items-center justify-between text-xs text-zinc-500">
+        <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs hover:shadow-xs transition-shadow">
+          <div className="flex items-center justify-between text-xs text-slate-600">
             <span className="font-medium">Total Returns</span>
-            <span className="w-2 h-2 rounded-full bg-frido-violet" />
+            <span className="w-2 h-2 rounded-full bg-blue-600" />
           </div>
-          <div className="text-2xl sm:text-3xl font-bold font-mono text-frido-ink mt-2">
+          <div className="text-2xl sm:text-3xl font-bold font-mono text-slate-900 mt-2">
             {pagination.total}
           </div>
-          <div className="text-[11px] text-emerald-600 font-medium mt-1 flex items-center gap-1">
+          <div className="text-[11px] text-green-600 font-medium mt-1 flex items-center gap-1">
             <span>↑ Live tickets</span>
           </div>
         </div>
 
-        {/* Card 2: In Review */}
-        <div className="bg-white rounded-xl border border-frido-line p-4 shadow-2xs hover:shadow-xs transition-shadow">
-          <div className="flex items-center justify-between text-xs text-zinc-500">
+        {/* Card 2: In Review (amber-500) */}
+        <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs hover:shadow-xs transition-shadow">
+          <div className="flex items-center justify-between text-xs text-slate-600">
             <span className="font-medium">In Review</span>
-            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
           </div>
           <div className="text-2xl sm:text-3xl font-bold font-mono text-amber-900 mt-2">
             {inReviewCount}
@@ -191,37 +191,37 @@ export default function RequestsPage() {
           </div>
         </div>
 
-        {/* Card 3: Approved */}
-        <div className="bg-white rounded-xl border border-frido-line p-4 shadow-2xs hover:shadow-xs transition-shadow">
-          <div className="flex items-center justify-between text-xs text-zinc-500">
+        {/* Card 3: Approved (blue-600) */}
+        <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs hover:shadow-xs transition-shadow">
+          <div className="flex items-center justify-between text-xs text-slate-600">
             <span className="font-medium">Approved</span>
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
+            <span className="w-2 h-2 rounded-full bg-blue-600" />
           </div>
-          <div className="text-2xl sm:text-3xl font-bold font-mono text-emerald-900 mt-2">
+          <div className="text-2xl sm:text-3xl font-bold font-mono text-blue-900 mt-2">
             {approvedCount}
           </div>
-          <div className="text-[11px] text-emerald-700 font-medium mt-1 font-mono">
+          <div className="text-[11px] text-blue-700 font-medium mt-1 font-mono">
             {totalApprovedRefunds > 0 ? `₹${totalApprovedRefunds.toFixed(0)} refunds` : 'Ready to fulfill'}
           </div>
         </div>
 
-        {/* Card 4: Completed */}
-        <div className="bg-white rounded-xl border border-frido-line p-4 shadow-2xs hover:shadow-xs transition-shadow">
-          <div className="flex items-center justify-between text-xs text-zinc-500">
+        {/* Card 4: Completed (green-600) */}
+        <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs hover:shadow-xs transition-shadow">
+          <div className="flex items-center justify-between text-xs text-slate-600">
             <span className="font-medium">Completed</span>
-            <span className="w-2 h-2 rounded-full bg-slate-400" />
+            <span className="w-2 h-2 rounded-full bg-green-600" />
           </div>
-          <div className="text-2xl sm:text-3xl font-bold font-mono text-slate-700 mt-2">
+          <div className="text-2xl sm:text-3xl font-bold font-mono text-green-900 mt-2">
             {completedCount}
           </div>
-          <div className="text-[11px] text-zinc-500 font-medium mt-1">
+          <div className="text-[11px] text-slate-500 font-medium mt-1">
             Closed & fulfilled
           </div>
         </div>
       </div>
 
-      {/* Status Filter Tabs (Option 2: Soft Lilac/Violet Pill style) */}
-      <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 border-b border-frido-line scrollbar-none">
+      {/* Status Filter Tabs */}
+      <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 border-b border-slate-200 scrollbar-none">
         {[
           { key: '', label: 'All Returns', count: pagination.total },
           { key: 'open', label: 'Open', count: openCount },
@@ -240,8 +240,8 @@ export default function RequestsPage() {
               }}
               className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all whitespace-nowrap flex items-center gap-1.5 ${
                 isActive
-                  ? 'bg-purple-100/90 text-purple-900 border border-purple-200 shadow-2xs'
-                  : 'bg-white text-zinc-600 hover:text-frido-ink hover:bg-zinc-50 border border-frido-line'
+                  ? 'bg-blue-50 text-blue-700 border border-blue-200 shadow-2xs'
+                  : 'bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-slate-200'
               }`}
             >
               <span>{tab.label}</span>
@@ -249,8 +249,8 @@ export default function RequestsPage() {
                 <span
                   className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full font-bold ${
                     isActive
-                      ? 'bg-purple-200/80 text-purple-900'
-                      : 'bg-zinc-100 text-zinc-500'
+                      ? 'bg-blue-200/80 text-blue-900'
+                      : 'bg-slate-100 text-slate-600'
                   }`}
                 >
                   {tab.count}
@@ -262,7 +262,7 @@ export default function RequestsPage() {
       </div>
 
       {/* Filter and Search Bar Card */}
-      <div className="bg-white rounded-xl border border-frido-line p-3.5 shadow-2xs space-y-3">
+      <div className="bg-white rounded-xl border border-slate-200 p-3.5 shadow-2xs space-y-3">
         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3">
           {/* Debounced Search */}
           <div className="relative sm:col-span-2">
@@ -271,9 +271,9 @@ export default function RequestsPage() {
               placeholder="Search by reference, order, or customer..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-12 py-2 text-sm rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-frido-violet focus:border-transparent bg-zinc-50/70 focus:bg-white text-zinc-900 placeholder:text-zinc-400"
+              className="w-full pl-9 pr-12 py-2 text-sm rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-slate-50/70 focus:bg-white text-slate-900 placeholder:text-slate-400"
             />
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-400">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
@@ -282,7 +282,7 @@ export default function RequestsPage() {
               {search ? (
                 <button
                   onClick={() => setSearch('')}
-                  className="text-zinc-400 hover:text-zinc-600"
+                  className="text-slate-400 hover:text-slate-600"
                   aria-label="Clear search"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -290,7 +290,7 @@ export default function RequestsPage() {
                   </svg>
                 </button>
               ) : (
-                <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono text-zinc-400 bg-zinc-100 border border-zinc-200 rounded">
+                <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono text-slate-400 bg-slate-100 border border-slate-200 rounded">
                   /
                 </kbd>
               )}
@@ -305,7 +305,7 @@ export default function RequestsPage() {
                 setReasonFilter(e.target.value);
                 setPagination((p) => ({ ...p, page: 1 }));
               }}
-              className="w-full py-2 px-3 text-sm rounded-lg border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-frido-violet focus:border-transparent bg-zinc-50/70 focus:bg-white text-zinc-800"
+              className="w-full py-2 px-3 text-sm rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-slate-50/70 focus:bg-white text-slate-800"
             >
               <option value="">All Return Reasons</option>
               <option value="damaged">Damaged</option>
@@ -325,7 +325,7 @@ export default function RequestsPage() {
                 setReasonFilter('');
                 setPagination((p) => ({ ...p, page: 1 }));
               }}
-              className="text-xs font-semibold text-zinc-600 hover:text-frido-violet border border-dashed border-zinc-300 rounded-lg py-2 px-3 hover:border-zinc-400 transition-colors flex items-center justify-center gap-1"
+              className="text-xs font-semibold text-slate-600 hover:text-blue-600 border border-dashed border-slate-300 rounded-lg py-2 px-3 hover:border-slate-400 transition-colors flex items-center justify-center gap-1"
             >
               Reset Filters
             </button>
@@ -334,16 +334,16 @@ export default function RequestsPage() {
 
         {/* Active Filter Chips */}
         {(debouncedSearch || statusFilter || reasonFilter) && (
-          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-zinc-100 text-xs">
-            <span className="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
+          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100 text-xs">
+            <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
               Active:
             </span>
             {debouncedSearch && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-900 font-medium text-xs border border-purple-200">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-900 font-medium text-xs border border-blue-200">
                 Query: &ldquo;{debouncedSearch}&rdquo;
                 <button
                   onClick={() => setSearch('')}
-                  className="text-purple-400 hover:text-purple-700 font-bold"
+                  className="text-blue-400 hover:text-blue-700 font-bold"
                   aria-label="Remove search filter"
                 >
                   ✕
@@ -351,11 +351,11 @@ export default function RequestsPage() {
               </span>
             )}
             {statusFilter && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-900 font-medium text-xs border border-purple-200 capitalize">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-900 font-medium text-xs border border-blue-200 capitalize">
                 Status: {statusFilter.replace('_', ' ')}
                 <button
                   onClick={() => setStatusFilter('')}
-                  className="text-purple-400 hover:text-purple-700 font-bold"
+                  className="text-blue-400 hover:text-blue-700 font-bold"
                   aria-label="Remove status filter"
                 >
                   ✕
@@ -363,11 +363,11 @@ export default function RequestsPage() {
               </span>
             )}
             {reasonFilter && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-900 font-medium text-xs border border-purple-200 capitalize">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-900 font-medium text-xs border border-blue-200 capitalize">
                 Reason: {reasonFilter.replace('_', ' ')}
                 <button
                   onClick={() => setReasonFilter('')}
-                  className="text-purple-400 hover:text-purple-700 font-bold"
+                  className="text-blue-400 hover:text-blue-700 font-bold"
                   aria-label="Remove reason filter"
                 >
                   ✕
@@ -380,7 +380,7 @@ export default function RequestsPage() {
                 setStatusFilter('');
                 setReasonFilter('');
               }}
-              className="text-xs font-semibold text-frido-violet hover:text-frido-violet-dark hover:underline ml-1"
+              className="text-xs font-semibold text-blue-600 hover:text-blue-700 hover:underline ml-1"
             >
               Clear all
             </button>
@@ -390,17 +390,17 @@ export default function RequestsPage() {
 
       {/* Error state */}
       {error && (
-        <div className="rounded-xl bg-rose-50 border border-rose-200 p-4 text-sm text-rose-800 flex items-start gap-3 shadow-2xs">
-          <svg className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="rounded-xl bg-red-50 border border-red-200 p-4 text-sm text-red-800 flex items-start gap-3 shadow-2xs">
+          <svg className="w-5 h-5 text-red-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <div className="flex-1">
             <p className="font-semibold">Failed to fetch return requests</p>
-            <p className="mt-0.5 text-rose-700">{error}</p>
+            <p className="mt-0.5 text-red-700">{error}</p>
           </div>
           <button
             onClick={() => fetchRequests()}
-            className="text-xs font-semibold px-2.5 py-1 rounded-md bg-rose-100 hover:bg-rose-200 text-rose-800 transition-colors"
+            className="text-xs font-semibold px-2.5 py-1 rounded-md bg-red-100 hover:bg-red-200 text-red-800 transition-colors"
           >
             Retry
           </button>
@@ -408,31 +408,31 @@ export default function RequestsPage() {
       )}
 
       {/* Main Table or Card List */}
-      <div className="bg-white rounded-xl border border-frido-line shadow-2xs overflow-hidden">
+      <div className="bg-white rounded-xl border border-slate-200 shadow-2xs overflow-hidden">
         {loading ? (
           /* Table Skeleton Loader */
-          <div className="divide-y divide-frido-line bg-white">
+          <div className="divide-y divide-slate-200 bg-white">
             {[1, 2, 3, 4, 5].map((i) => (
               <div key={i} className="px-4 py-3.5 flex items-center justify-between gap-4 animate-pulse">
-                <div className="w-24 h-4 bg-zinc-100 rounded" />
-                <div className="w-36 h-4 bg-zinc-100 rounded hidden sm:block" />
-                <div className="w-52 h-4 bg-zinc-100 rounded flex-1" />
-                <div className="w-20 h-4 bg-zinc-100 rounded hidden md:block" />
-                <div className="w-24 h-5 bg-zinc-100 rounded-full" />
-                <div className="w-16 h-4 bg-zinc-100 rounded text-right" />
+                <div className="w-24 h-4 bg-slate-100 rounded" />
+                <div className="w-36 h-4 bg-slate-100 rounded hidden sm:block" />
+                <div className="w-52 h-4 bg-slate-100 rounded flex-1" />
+                <div className="w-20 h-4 bg-slate-100 rounded hidden md:block" />
+                <div className="w-24 h-5 bg-slate-100 rounded-full" />
+                <div className="w-16 h-4 bg-slate-100 rounded text-right" />
               </div>
             ))}
           </div>
         ) : items.length === 0 ? (
           /* Empty state */
           <div className="p-12 text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-purple-50 flex items-center justify-center mx-auto text-frido-violet">
+            <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mx-auto text-blue-600">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
-            <h3 className="text-base font-semibold text-frido-ink">No return requests found</h3>
-            <p className="text-sm text-zinc-500 max-w-sm mx-auto">
+            <h3 className="text-base font-semibold text-slate-900">No return requests found</h3>
+            <p className="text-sm text-slate-600 max-w-sm mx-auto">
               {debouncedSearch || statusFilter || reasonFilter
                 ? 'No requests match your current search and filter criteria. Try adjusting or clearing filters.'
                 : 'There are currently no active return requests on the desk.'}
@@ -444,7 +444,7 @@ export default function RequestsPage() {
                   setStatusFilter('');
                   setReasonFilter('');
                 }}
-                className="mt-2 text-xs font-semibold text-frido-violet hover:underline"
+                className="mt-2 text-xs font-semibold text-blue-600 hover:underline"
               >
                 Clear all filters
               </button>
@@ -454,13 +454,13 @@ export default function RequestsPage() {
           <>
             {/* Desktop Table View */}
             <div className="hidden md:block overflow-x-auto">
-              <table className="min-w-full divide-y divide-frido-line text-left text-sm">
-                <thead className="bg-[#FAF9F6] text-[11px] font-semibold text-zinc-500 uppercase tracking-wider select-none">
+              <table className="min-w-full divide-y divide-slate-200 text-left text-sm">
+                <thead className="bg-slate-50 text-[11px] font-semibold text-slate-600 uppercase tracking-wider select-none">
                   <tr>
                     <th scope="col" className="px-4 py-3">
                       <button
                         onClick={() => handleSort('reference')}
-                        className="flex items-center gap-1 group hover:text-frido-ink focus:outline-none"
+                        className="flex items-center gap-1 group hover:text-slate-900 focus:outline-none"
                       >
                         Reference {getSortIcon('reference')}
                       </button>
@@ -468,7 +468,7 @@ export default function RequestsPage() {
                     <th scope="col" className="px-4 py-3">
                       <button
                         onClick={() => handleSort('customer_name')}
-                        className="flex items-center gap-1 group hover:text-frido-ink focus:outline-none"
+                        className="flex items-center gap-1 group hover:text-slate-900 focus:outline-none"
                       >
                         Customer {getSortIcon('customer_name')}
                       </button>
@@ -476,7 +476,7 @@ export default function RequestsPage() {
                     <th scope="col" className="px-4 py-3">
                       <button
                         onClick={() => handleSort('order_id')}
-                        className="flex items-center gap-1 group hover:text-frido-ink focus:outline-none"
+                        className="flex items-center gap-1 group hover:text-slate-900 focus:outline-none"
                       >
                         Item & Order {getSortIcon('order_id')}
                       </button>
@@ -484,7 +484,7 @@ export default function RequestsPage() {
                     <th scope="col" className="px-4 py-3">
                       <button
                         onClick={() => handleSort('reason')}
-                        className="flex items-center gap-1 group hover:text-frido-ink focus:outline-none"
+                        className="flex items-center gap-1 group hover:text-slate-900 focus:outline-none"
                       >
                         Reason {getSortIcon('reason')}
                       </button>
@@ -492,7 +492,7 @@ export default function RequestsPage() {
                     <th scope="col" className="px-4 py-3">
                       <button
                         onClick={() => handleSort('status')}
-                        className="flex items-center gap-1 group hover:text-frido-ink focus:outline-none"
+                        className="flex items-center gap-1 group hover:text-slate-900 focus:outline-none"
                       >
                         Status {getSortIcon('status')}
                       </button>
@@ -500,7 +500,7 @@ export default function RequestsPage() {
                     <th scope="col" className="px-4 py-3 text-right">
                       <button
                         onClick={() => handleSort('created_at')}
-                        className="inline-flex items-center gap-1 group hover:text-frido-ink focus:outline-none"
+                        className="inline-flex items-center gap-1 group hover:text-slate-900 focus:outline-none"
                       >
                         Created {getSortIcon('created_at')}
                       </button>
@@ -508,36 +508,36 @@ export default function RequestsPage() {
                     <th scope="col" className="w-8 px-2 py-3" />
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-frido-line bg-white">
+                <tbody className="divide-y divide-slate-200 bg-white">
                   {items.map((item) => (
                     <tr
                       key={item.id}
-                      className="hover:bg-purple-50/30 transition-colors group cursor-pointer"
+                      className="hover:bg-slate-50/80 transition-colors group cursor-pointer"
                       onClick={() => (window.location.href = `/requests/${item.id}`)}
                     >
                       <td className="px-4 py-3 whitespace-nowrap">
                         <Link
                           href={`/requests/${item.id}`}
-                          className="font-mono text-xs font-bold text-frido-ink group-hover:text-frido-violet hover:underline"
+                          className="font-mono text-xs font-bold text-slate-900 group-hover:text-blue-600 hover:underline"
                           onClick={(e) => e.stopPropagation()}
                         >
                           {item.reference}
                         </Link>
                       </td>
                       <td className="px-4 py-3">
-                        <div className="font-semibold text-xs text-zinc-900">{item.customer_name}</div>
-                        <div className="text-[11px] font-mono text-zinc-400 truncate max-w-[160px]">
+                        <div className="font-semibold text-xs text-slate-900">{item.customer_name}</div>
+                        <div className="text-[11px] font-mono text-slate-500 truncate max-w-[160px]">
                           {item.customer_contact}
                         </div>
                       </td>
                       <td className="px-4 py-3">
-                        <div className="flex items-center gap-1.5 font-medium text-xs text-zinc-900">
+                        <div className="flex items-center gap-1.5 font-medium text-xs text-slate-900">
                           <span className="line-clamp-1 max-w-[240px]">{item.item_name}</span>
-                          <span className="px-1.5 py-0.2 rounded bg-purple-50 text-[10px] font-mono text-purple-700 font-semibold border border-purple-100 shrink-0">
+                          <span className="px-1.5 py-0.2 rounded bg-slate-100 text-[10px] font-mono text-slate-700 font-semibold border border-slate-200 shrink-0">
                             ×{item.quantity}
                           </span>
                         </div>
-                        <div className="text-[11px] font-mono text-zinc-400 mt-0.5">
+                        <div className="text-[11px] font-mono text-slate-500 mt-0.5">
                           {item.order_id}
                         </div>
                       </td>
@@ -555,7 +555,7 @@ export default function RequestsPage() {
                           )}
                         </div>
                       </td>
-                      <td className="px-4 py-3 whitespace-nowrap text-right text-xs text-zinc-500 font-mono">
+                      <td className="px-4 py-3 whitespace-nowrap text-right text-xs text-slate-500 font-mono">
                         {new Date(item.created_at).toLocaleDateString(undefined, {
                           month: 'short',
                           day: 'numeric',
@@ -563,7 +563,7 @@ export default function RequestsPage() {
                       </td>
                       <td className="px-2 py-3 text-right">
                         <svg
-                          className="w-4 h-4 text-zinc-300 group-hover:text-frido-violet transition-colors ml-auto"
+                          className="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors ml-auto"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -624,36 +624,36 @@ export default function RequestsPage() {
 
         {/* Pagination Footer */}
         {!loading && pagination.total > 0 && (
-          <div className="bg-[#FAF9F6] px-4 py-3 border-t border-frido-line flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-600">
+          <div className="bg-slate-50 px-4 py-3 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
             <div>
               Showing{' '}
-              <span className="font-semibold text-zinc-900">
+              <span className="font-semibold text-slate-900">
                 {(pagination.page - 1) * pagination.limit + 1}
               </span>{' '}
               to{' '}
-              <span className="font-semibold text-zinc-900">
+              <span className="font-semibold text-slate-900">
                 {Math.min(pagination.page * pagination.limit, pagination.total)}
               </span>{' '}
-              of <span className="font-semibold text-zinc-900">{pagination.total}</span> requests
+              of <span className="font-semibold text-slate-900">{pagination.total}</span> requests
             </div>
 
             <div className="flex items-center gap-2">
               <button
                 disabled={pagination.page <= 1}
                 onClick={() => setPagination((p) => ({ ...p, page: p.page - 1 }))}
-                className="px-3 py-1.5 rounded border border-zinc-300 bg-white hover:bg-zinc-50 disabled:opacity-40 disabled:cursor-not-allowed font-medium text-zinc-700 transition-colors"
+                className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed font-medium text-slate-700 transition-colors shadow-2xs"
               >
                 Previous
               </button>
 
-              <span className="px-2 py-1 text-zinc-700 font-mono">
+              <span className="px-2 py-1 text-slate-700 font-mono">
                 {pagination.page} / {pagination.totalPages || 1}
               </span>
 
               <button
                 disabled={pagination.page >= pagination.totalPages}
                 onClick={() => setPagination((p) => ({ ...p, page: p.page + 1 }))}
-                className="px-3 py-1.5 rounded border border-zinc-300 bg-white hover:bg-zinc-50 disabled:opacity-40 disabled:cursor-not-allowed font-medium text-zinc-700 transition-colors"
+                className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed font-medium text-slate-700 transition-colors shadow-2xs"
               >
                 Next
               </button>

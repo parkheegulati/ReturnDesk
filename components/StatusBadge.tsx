@@ -11,48 +11,48 @@ const STATUS_CONFIG: Record<
 > = {
   open: {
     label: 'Open',
-    bg: 'bg-sky-50',
-    text: 'text-sky-800',
-    border: 'border-sky-200',
-    dot: 'bg-sky-500',
+    bg: 'bg-gray-50',
+    text: 'text-gray-700',
+    border: 'border-gray-200',
+    dot: 'bg-gray-500',
   },
   in_review: {
     label: 'In Review',
     bg: 'bg-amber-50',
-    text: 'text-amber-900',
+    text: 'text-amber-800',
     border: 'border-amber-200',
     dot: 'bg-amber-500',
   },
   approved: {
     label: 'Approved',
-    bg: 'bg-emerald-50',
-    text: 'text-emerald-800',
-    border: 'border-emerald-200',
-    dot: 'bg-emerald-600',
+    bg: 'bg-blue-50',
+    text: 'text-blue-800',
+    border: 'border-blue-200',
+    dot: 'bg-blue-600',
   },
   completed: {
     label: 'Completed',
-    bg: 'bg-slate-100',
-    text: 'text-slate-700',
-    border: 'border-slate-200',
-    dot: 'bg-slate-500',
+    bg: 'bg-green-50',
+    text: 'text-green-800',
+    border: 'border-green-200',
+    dot: 'bg-green-600',
   },
   rejected: {
     label: 'Rejected',
-    bg: 'bg-rose-50',
-    text: 'text-rose-800',
-    border: 'border-rose-200',
-    dot: 'bg-rose-500',
+    bg: 'bg-red-50',
+    text: 'text-red-800',
+    border: 'border-red-200',
+    dot: 'bg-red-600',
   },
 };
 
 export function StatusBadge({ status, size = 'md' }: StatusBadgeProps) {
   const config = STATUS_CONFIG[status] ?? {
     label: status,
-    bg: 'bg-zinc-100',
-    text: 'text-zinc-800',
-    border: 'border-zinc-200',
-    dot: 'bg-zinc-400',
+    bg: 'bg-gray-100',
+    text: 'text-gray-800',
+    border: 'border-gray-200',
+    dot: 'bg-gray-400',
   };
 
   const sizeClasses = {

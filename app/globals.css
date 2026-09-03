@@ -7,8 +7,8 @@
 }
 
 body {
-  background-color: #FAF9F6;
-  color: #1E293B;
+  background-color: #F8FAFC; /* slate-50 */
+  color: #0F172A; /* slate-900 */
   font-family: var(--font-sans);
   min-height: 100vh;
 }
