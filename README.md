@@ -1,4 +1,5 @@
-# ReturnDesk - Track and resolve customer returns in real time 📦
+# ReturnDesk 
+**_Track and resolve customer returns in real time 📦_**
 
 It is a dedicated returns operations and lifecycle management desk engineered for e-commerce support teams. In modern online retail, the post-purchase return experience is one of the highest friction touchpoints between a business and its customers. Rather than relying on generic, lenient CRUD scaffolding, ReturnDesk is architected around **strict, server-enforced business domain rules**.
 
