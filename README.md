@@ -132,7 +132,7 @@ A request cannot transition to `Approved` without specifying `resolution` (`refu
   ```bash
   curl -X PATCH http://localhost:3000/api/requests/<ID>/status \
     -H "Content-Type: application/json" \
-    -d '{"status":"approved","resolution":"refund","refund_amount":49.99}'
+    -d '{"status":"approved","resolution":"refund","refund_amount":1499.00}'
   # Response: HTTP 200 OK
   ```
 
@@ -168,7 +168,7 @@ A request cannot transition to `Approved` without specifying `resolution` (`refu
   ```bash
   curl -X PATCH http://localhost:3000/api/requests/<ID>/status \
     -H "Content-Type: application/json" \
-    -d '{"status":"approved","resolution":"replacement","refund_amount":25.00}'
+    -d '{"status":"approved","resolution":"replacement","refund_amount":500.00}'
   # Response: HTTP 409 Conflict
   # {
   #   "error": {

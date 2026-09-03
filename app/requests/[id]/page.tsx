@@ -470,7 +470,7 @@ export default function RequestDetailPage() {
                   <div>
                     <span className="text-xs text-zinc-500 block">Refund Amount</span>
                     <span className="text-lg font-bold font-mono text-emerald-800">
-                      ${Number(detail.refund_amount).toFixed(2)}
+                      ₹{Number(detail.refund_amount).toFixed(2)}
                     </span>
                   </div>
                 )}
@@ -593,13 +593,13 @@ export default function RequestDetailPage() {
               {approveResolution === 'refund' && (
                 <div>
                   <label className="font-semibold text-zinc-700 block mb-1">
-                    Refund Amount ($) <span className="text-rose-500">*</span>
+                    Refund Amount (₹) <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="number"
                     step="0.01"
                     min="0.01"
-                    placeholder="e.g. 49.99"
+                    placeholder="e.g. 1499.00"
                     value={approveRefundAmount}
                     onChange={(e) => setApproveRefundAmount(e.target.value)}
                     required

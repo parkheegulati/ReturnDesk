@@ -43,7 +43,7 @@ export function ResolutionBadge({
     >
       <span>{item.label}</span>
       {resolution === 'refund' && refundAmount && (
-        <span className="font-mono font-bold">(${Number(refundAmount).toFixed(2)})</span>
+        <span className="font-mono font-bold">(₹{Number(refundAmount).toFixed(2)})</span>
       )}
     </span>
   );
