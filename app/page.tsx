@@ -147,92 +147,98 @@ export default function RequestsPage() {
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">
+          <h1 className="text-[24px] font-medium tracking-tight text-[var(--text-primary)] m-0">
             Returns Operations
           </h1>
-          <p className="text-xs sm:text-sm text-slate-600 mt-1">
+          <p className="text-[13px] font-normal text-[var(--text-secondary)] mt-1">
             Real-time customer return tickets, lifecycle progression, and resolutions.
           </p>
         </div>
 
         <div className="hidden sm:flex items-center gap-2">
-          <div className="px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-medium text-slate-600 shadow-2xs flex items-center gap-1.5">
-            <svg className="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span>Live Sync</span>
+          <div className="px-3 py-1 rounded-[var(--radius)] bg-[var(--bg-success)] border border-[var(--border-success)] text-[12px] font-medium text-[var(--text-success)] flex items-center gap-2">
+            <span className="w-[7px] h-[7px] rounded-full bg-[var(--fill-success)] pulse-dot inline-block" />
+            <span>Live sync</span>
           </div>
         </div>
       </div>
 
-      {/* 4 Executive KPI Metric Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        {/* Card 1: Total Live Returns */}
-        <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs hover:shadow-xs transition-shadow">
-          <div className="flex items-center justify-between text-xs text-slate-600">
-            <span className="font-medium">Total Returns</span>
-            <span className="w-2 h-2 rounded-full bg-blue-600" />
+      {/* 4 Executive Metric Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        {/* Card 1: Total Returns */}
+        <div className="bg-[var(--surface-2)] rounded-[12px] p-5 border border-[var(--border)]">
+          <div className="flex items-center justify-between">
+            <span className="text-[12px] text-[var(--text-secondary)] uppercase tracking-[0.4px] font-medium">
+              Total returns
+            </span>
+            <span className="w-[7px] h-[7px] rounded-full bg-[var(--fill-accent)] inline-block" />
           </div>
-          <div className="text-2xl sm:text-3xl font-bold font-mono text-slate-900 mt-2">
+          <div className="text-[32px] font-medium font-mono text-[var(--text-primary)] mt-2 leading-none">
             {stats.total}
           </div>
-          <div className="text-[11px] text-green-600 font-medium mt-1 flex items-center gap-1">
-            <span>↑ Live tickets</span>
+          <div className="text-[12px] text-[var(--text-secondary)] mt-2">
+            Live tickets across desk
           </div>
         </div>
 
-        {/* Card 2: In Review (amber-500) */}
-        <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs hover:shadow-xs transition-shadow">
-          <div className="flex items-center justify-between text-xs text-slate-600">
-            <span className="font-medium">In Review</span>
-            <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+        {/* Card 2: In Review (Featured / Urgent Card: 2px warning border per design system) */}
+        <div className="bg-[var(--surface-2)] rounded-[12px] p-5 border-2 border-[var(--border-warning)]">
+          <div className="flex items-center justify-between">
+            <span className="text-[12px] text-[var(--text-warning)] uppercase tracking-[0.4px] font-medium">
+              In review
+            </span>
+            <span className="w-[7px] h-[7px] rounded-full bg-[var(--fill-warning)] pulse-dot inline-block" />
           </div>
-          <div className="text-2xl sm:text-3xl font-bold font-mono text-amber-900 mt-2">
+          <div className="text-[32px] font-medium font-mono text-[var(--text-warning)] mt-2 leading-none">
             {stats.in_review}
           </div>
-          <div className="text-[11px] text-amber-700 font-medium mt-1">
-            Pending agent action
+          <div className="text-[12px] text-[var(--text-warning)] mt-2">
+            Needs attention
           </div>
         </div>
 
-        {/* Card 3: Approved (blue-600) */}
-        <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs hover:shadow-xs transition-shadow">
-          <div className="flex items-center justify-between text-xs text-slate-600">
-            <span className="font-medium">Approved</span>
-            <span className="w-2 h-2 rounded-full bg-blue-600" />
+        {/* Card 3: Approved */}
+        <div className="bg-[var(--surface-2)] rounded-[12px] p-5 border border-[var(--border)]">
+          <div className="flex items-center justify-between">
+            <span className="text-[12px] text-[var(--text-secondary)] uppercase tracking-[0.4px] font-medium">
+              Approved
+            </span>
+            <span className="w-[7px] h-[7px] rounded-full bg-[var(--fill-accent)] inline-block" />
           </div>
-          <div className="text-2xl sm:text-3xl font-bold font-mono text-blue-900 mt-2">
+          <div className="text-[32px] font-medium font-mono text-[var(--text-primary)] mt-2 leading-none">
             {stats.approved}
           </div>
-          <div className="text-[11px] text-blue-700 font-medium mt-1 font-mono">
-            {stats.totalApprovedRefunds > 0 ? `₹${stats.totalApprovedRefunds.toFixed(0)} refunds` : 'Ready to fulfill'}
+          <div className="text-[12px] text-[var(--text-secondary)] mt-2 font-mono">
+            {stats.totalApprovedRefunds > 0 ? `₹${stats.totalApprovedRefunds.toFixed(0)} in refunds` : 'Ready to fulfill'}
           </div>
         </div>
 
-        {/* Card 4: Completed (green-600) */}
-        <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-2xs hover:shadow-xs transition-shadow">
-          <div className="flex items-center justify-between text-xs text-slate-600">
-            <span className="font-medium">Completed</span>
-            <span className="w-2 h-2 rounded-full bg-green-600" />
+        {/* Card 4: Completed */}
+        <div className="bg-[var(--surface-2)] rounded-[12px] p-5 border border-[var(--border)]">
+          <div className="flex items-center justify-between">
+            <span className="text-[12px] text-[var(--text-secondary)] uppercase tracking-[0.4px] font-medium">
+              Completed
+            </span>
+            <span className="w-[7px] h-[7px] rounded-full bg-[var(--fill-success)] inline-block" />
           </div>
-          <div className="text-2xl sm:text-3xl font-bold font-mono text-green-900 mt-2">
+          <div className="text-[32px] font-medium font-mono text-[var(--text-primary)] mt-2 leading-none">
             {stats.completed}
           </div>
-          <div className="text-[11px] text-slate-500 font-medium mt-1">
+          <div className="text-[12px] text-[var(--text-secondary)] mt-2">
             Closed & fulfilled
           </div>
         </div>
       </div>
 
-      {/* Status Filter Tabs */}
-      <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 border-b border-slate-200 scrollbar-none">
+      {/* Filter/Tab Buttons */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-1 border-b border-[var(--border)] scrollbar-none">
         {[
-          { key: '', label: 'All Returns', count: stats.total },
-          { key: 'open', label: 'Open', count: stats.open },
-          { key: 'in_review', label: 'In Review', count: stats.in_review },
-          { key: 'approved', label: 'Approved', count: stats.approved },
-          { key: 'completed', label: 'Completed', count: stats.completed },
-          { key: 'rejected', label: 'Rejected', count: stats.rejected },
+          { key: '', label: 'All returns', count: stats.total, dotColor: 'var(--fill-accent)' },
+          { key: 'open', label: 'Open', count: stats.open, dotColor: 'var(--text-muted)' },
+          { key: 'in_review', label: 'In review', count: stats.in_review, dotColor: 'var(--fill-warning)' },
+          { key: 'approved', label: 'Approved', count: stats.approved, dotColor: 'var(--fill-accent)' },
+          { key: 'completed', label: 'Completed', count: stats.completed, dotColor: 'var(--fill-success)' },
+          { key: 'rejected', label: 'Rejected', count: stats.rejected, dotColor: 'var(--fill-danger)' },
         ].map((tab) => {
           const isActive = statusFilter === tab.key;
           return (
@@ -242,31 +248,27 @@ export default function RequestsPage() {
                 setStatusFilter(tab.key);
                 setPagination((p) => ({ ...p, page: 1 }));
               }}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all whitespace-nowrap flex items-center gap-1.5 ${
+              className={`px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] transition-colors whitespace-nowrap flex items-center gap-2 ${
                 isActive
-                  ? 'bg-blue-50 text-blue-700 border border-blue-200 shadow-2xs'
-                  : 'bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-50 border border-slate-200'
+                  ? 'bg-[var(--fill-accent)] text-[var(--on-accent)] border-none'
+                  : 'bg-transparent border border-[var(--border)] text-[var(--text-secondary)] hover:border-[var(--border-strong)]'
               }`}
             >
+              <span
+                className="w-[7px] h-[7px] rounded-full inline-block shrink-0"
+                style={{ backgroundColor: isActive ? 'var(--on-accent)' : tab.dotColor }}
+              />
               <span>{tab.label}</span>
-              {typeof tab.count === 'number' && (
-                <span
-                  className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full font-bold ${
-                    isActive
-                      ? 'bg-blue-200/80 text-blue-900'
-                      : 'bg-slate-100 text-slate-600'
-                  }`}
-                >
-                  {tab.count}
-                </span>
-              )}
+              <span className={`text-[12px] font-mono ${isActive ? 'text-[var(--on-accent)]' : 'text-[var(--text-muted)]'}`}>
+                ({tab.count})
+              </span>
             </button>
           );
         })}
       </div>
 
-      {/* Filter and Search Bar Card */}
-      <div className="bg-white rounded-xl border border-slate-200 p-3.5 shadow-2xs space-y-3">
+      {/* Filter and Search Bar Surface */}
+      <div className="bg-[var(--surface-2)] rounded-[12px] border border-[var(--border)] p-4 space-y-3">
         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 gap-3">
           {/* Debounced Search */}
           <div className="relative sm:col-span-2">
@@ -275,9 +277,9 @@ export default function RequestsPage() {
               placeholder="Search by reference, order, or customer..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-12 py-2 text-sm rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-slate-50/70 focus:bg-white text-slate-900 placeholder:text-slate-400"
+              className="w-full pl-10 pr-10 h-11 text-[13px] rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--fill-accent)] focus:outline-none"
             />
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[var(--text-muted)]">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
@@ -286,7 +288,7 @@ export default function RequestsPage() {
               {search ? (
                 <button
                   onClick={() => setSearch('')}
-                  className="text-slate-400 hover:text-slate-600"
+                  className="text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
                   aria-label="Clear search"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -294,7 +296,7 @@ export default function RequestsPage() {
                   </svg>
                 </button>
               ) : (
-                <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono text-slate-400 bg-slate-100 border border-slate-200 rounded">
+                <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[11px] font-mono text-[var(--text-muted)] bg-[var(--surface-2)] border border-[var(--border)] rounded">
                   /
                 </kbd>
               )}
@@ -309,14 +311,14 @@ export default function RequestsPage() {
                 setReasonFilter(e.target.value);
                 setPagination((p) => ({ ...p, page: 1 }));
               }}
-              className="w-full py-2 px-3 text-sm rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-slate-50/70 focus:bg-white text-slate-800"
+              className="w-full h-11 px-3 text-[13px] rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] focus:border-[var(--fill-accent)] focus:outline-none"
             >
-              <option value="">All Return Reasons</option>
+              <option value="">All return reasons</option>
               <option value="damaged">Damaged</option>
-              <option value="wrong_item">Wrong Item</option>
-              <option value="size_issue">Size Issue</option>
-              <option value="not_as_described">Not as Described</option>
-              <option value="changed_mind">Changed Mind</option>
+              <option value="wrong_item">Wrong item</option>
+              <option value="size_issue">Size issue</option>
+              <option value="not_as_described">Not as described</option>
+              <option value="changed_mind">Changed mind</option>
             </select>
           </div>
 
@@ -329,25 +331,25 @@ export default function RequestsPage() {
                 setReasonFilter('');
                 setPagination((p) => ({ ...p, page: 1 }));
               }}
-              className="text-xs font-semibold text-slate-600 hover:text-blue-600 border border-dashed border-slate-300 rounded-lg py-2 px-3 hover:border-slate-400 transition-colors flex items-center justify-center gap-1"
+              className="h-11 px-4 text-[13px] font-medium text-[var(--text-secondary)] border border-[var(--border-strong)] rounded-[var(--radius)] bg-transparent hover:border-[var(--border-strong)] transition-colors flex items-center justify-center gap-1"
             >
-              Reset Filters
+              Reset filters
             </button>
           )}
         </div>
 
         {/* Active Filter Chips */}
         {(debouncedSearch || statusFilter || reasonFilter) && (
-          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-100 text-xs">
-            <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-[var(--border)] text-[12px]">
+            <span className="text-[12px] font-medium text-[var(--text-secondary)] uppercase tracking-[0.4px]">
               Active:
             </span>
             {debouncedSearch && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-900 font-medium text-xs border border-blue-200">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-[3px] rounded-[4px] bg-[var(--bg-accent)] text-[var(--text-accent)] font-medium text-[12px] border border-[var(--border)]">
                 Query: &ldquo;{debouncedSearch}&rdquo;
                 <button
                   onClick={() => setSearch('')}
-                  className="text-blue-400 hover:text-blue-700 font-bold"
+                  className="text-[var(--text-accent)] hover:opacity-75"
                   aria-label="Remove search filter"
                 >
                   ✕
@@ -355,11 +357,11 @@ export default function RequestsPage() {
               </span>
             )}
             {statusFilter && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-900 font-medium text-xs border border-blue-200 capitalize">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-[3px] rounded-[4px] bg-[var(--bg-accent)] text-[var(--text-accent)] font-medium text-[12px] border border-[var(--border)]">
                 Status: {statusFilter.replace('_', ' ')}
                 <button
                   onClick={() => setStatusFilter('')}
-                  className="text-blue-400 hover:text-blue-700 font-bold"
+                  className="text-[var(--text-accent)] hover:opacity-75"
                   aria-label="Remove status filter"
                 >
                   ✕
@@ -367,11 +369,11 @@ export default function RequestsPage() {
               </span>
             )}
             {reasonFilter && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-900 font-medium text-xs border border-blue-200 capitalize">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-[3px] rounded-[4px] bg-[var(--bg-accent)] text-[var(--text-accent)] font-medium text-[12px] border border-[var(--border)]">
                 Reason: {reasonFilter.replace('_', ' ')}
                 <button
                   onClick={() => setReasonFilter('')}
-                  className="text-blue-400 hover:text-blue-700 font-bold"
+                  className="text-[var(--text-accent)] hover:opacity-75"
                   aria-label="Remove reason filter"
                 >
                   ✕
@@ -384,7 +386,7 @@ export default function RequestsPage() {
                 setStatusFilter('');
                 setReasonFilter('');
               }}
-              className="text-xs font-semibold text-blue-600 hover:text-blue-700 hover:underline ml-1"
+              className="text-[12px] font-medium text-[var(--text-accent)] hover:underline ml-1"
             >
               Clear all
             </button>
@@ -394,17 +396,17 @@ export default function RequestsPage() {
 
       {/* Error state */}
       {error && (
-        <div className="rounded-xl bg-red-50 border border-red-200 p-4 text-sm text-red-800 flex items-start gap-3 shadow-2xs">
-          <svg className="w-5 h-5 text-red-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="rounded-[12px] bg-[var(--bg-danger)] border border-[var(--border-danger)] p-4 text-[13px] text-[var(--text-danger)] flex items-start gap-3">
+          <svg className="w-5 h-5 text-[var(--text-danger)] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <div className="flex-1">
-            <p className="font-semibold">Failed to fetch return requests</p>
-            <p className="mt-0.5 text-red-700">{error}</p>
+            <p className="font-medium">Failed to fetch return requests</p>
+            <p className="mt-0.5 text-[12px] text-[var(--text-danger)]">{error}</p>
           </div>
           <button
             onClick={() => fetchRequests()}
-            className="text-xs font-semibold px-2.5 py-1 rounded-md bg-red-100 hover:bg-red-200 text-red-800 transition-colors"
+            className="text-[12px] font-medium px-3 py-1 rounded-[var(--radius)] bg-transparent border border-[var(--border-danger)] text-[var(--text-danger)] hover:bg-[var(--bg-danger)]"
           >
             Retry
           </button>
@@ -412,31 +414,31 @@ export default function RequestsPage() {
       )}
 
       {/* Main Table or Card List */}
-      <div className="bg-white rounded-xl border border-slate-200 shadow-2xs overflow-hidden">
+      <div className="bg-[var(--surface-2)] rounded-[12px] border border-[var(--border)] overflow-hidden">
         {loading ? (
           /* Table Skeleton Loader */
-          <div className="divide-y divide-slate-200 bg-white">
+          <div className="divide-y divide-[var(--border)] bg-[var(--surface-2)]">
             {[1, 2, 3, 4, 5].map((i) => (
               <div key={i} className="px-4 py-3.5 flex items-center justify-between gap-4 animate-pulse">
-                <div className="w-24 h-4 bg-slate-100 rounded" />
-                <div className="w-36 h-4 bg-slate-100 rounded hidden sm:block" />
-                <div className="w-52 h-4 bg-slate-100 rounded flex-1" />
-                <div className="w-20 h-4 bg-slate-100 rounded hidden md:block" />
-                <div className="w-24 h-5 bg-slate-100 rounded-full" />
-                <div className="w-16 h-4 bg-slate-100 rounded text-right" />
+                <div className="w-24 h-4 bg-[var(--surface-1)] rounded-[4px]" />
+                <div className="w-36 h-4 bg-[var(--surface-1)] rounded-[4px] hidden sm:block" />
+                <div className="w-52 h-4 bg-[var(--surface-1)] rounded-[4px] flex-1" />
+                <div className="w-20 h-4 bg-[var(--surface-1)] rounded-[4px] hidden md:block" />
+                <div className="w-24 h-5 bg-[var(--surface-1)] rounded-[4px]" />
+                <div className="w-16 h-4 bg-[var(--surface-1)] rounded-[4px] text-right" />
               </div>
             ))}
           </div>
         ) : items.length === 0 ? (
           /* Empty state */
           <div className="p-12 text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center mx-auto text-blue-600">
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="w-10 h-10 rounded-[var(--radius)] bg-[var(--bg-accent)] flex items-center justify-center mx-auto text-[var(--text-accent)]">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
-            <h3 className="text-base font-semibold text-slate-900">No return requests found</h3>
-            <p className="text-sm text-slate-600 max-w-sm mx-auto">
+            <h3 className="text-[16px] font-medium text-[var(--text-primary)] m-0">No return requests found</h3>
+            <p className="text-[13px] text-[var(--text-secondary)] max-w-sm mx-auto">
               {debouncedSearch || statusFilter || reasonFilter
                 ? 'No requests match your current search and filter criteria. Try adjusting or clearing filters.'
                 : 'There are currently no active return requests on the desk.'}
@@ -448,7 +450,7 @@ export default function RequestsPage() {
                   setStatusFilter('');
                   setReasonFilter('');
                 }}
-                className="mt-2 text-xs font-semibold text-blue-600 hover:underline"
+                className="mt-2 text-[13px] font-medium text-[var(--text-accent)] hover:underline"
               >
                 Clear all filters
               </button>
@@ -458,152 +460,157 @@ export default function RequestsPage() {
           <>
             {/* Desktop Table View */}
             <div className="hidden md:block overflow-x-auto">
-              <table className="min-w-full divide-y divide-slate-200 text-left text-sm">
-                <thead className="bg-slate-50 text-[11px] font-semibold text-slate-600 uppercase tracking-wider select-none">
+              <table className="min-w-full divide-y divide-[var(--border)] text-left text-[13px]">
+                <thead className="bg-[var(--surface-1)] text-[12px] font-medium text-[var(--text-secondary)] uppercase tracking-[0.4px] select-none">
                   <tr>
-                    <th scope="col" className="px-4 py-3">
+                    <th scope="col" className="px-4 py-3.5">
                       <button
                         onClick={() => handleSort('reference')}
-                        className="flex items-center gap-1 group hover:text-slate-900 focus:outline-none"
+                        className="flex items-center gap-1 group hover:text-[var(--text-primary)] focus:outline-none"
                       >
                         Reference {getSortIcon('reference')}
                       </button>
                     </th>
-                    <th scope="col" className="px-4 py-3">
+                    <th scope="col" className="px-4 py-3.5">
                       <button
                         onClick={() => handleSort('customer_name')}
-                        className="flex items-center gap-1 group hover:text-slate-900 focus:outline-none"
+                        className="flex items-center gap-1 group hover:text-[var(--text-primary)] focus:outline-none"
                       >
                         Customer {getSortIcon('customer_name')}
                       </button>
                     </th>
-                    <th scope="col" className="px-4 py-3">
+                    <th scope="col" className="px-4 py-3.5">
                       <button
                         onClick={() => handleSort('order_id')}
-                        className="flex items-center gap-1 group hover:text-slate-900 focus:outline-none"
+                        className="flex items-center gap-1 group hover:text-[var(--text-primary)] focus:outline-none"
                       >
-                        Item & Order {getSortIcon('order_id')}
+                        Item & order {getSortIcon('order_id')}
                       </button>
                     </th>
-                    <th scope="col" className="px-4 py-3">
+                    <th scope="col" className="px-4 py-3.5">
                       <button
                         onClick={() => handleSort('reason')}
-                        className="flex items-center gap-1 group hover:text-slate-900 focus:outline-none"
+                        className="flex items-center gap-1 group hover:text-[var(--text-primary)] focus:outline-none"
                       >
                         Reason {getSortIcon('reason')}
                       </button>
                     </th>
-                    <th scope="col" className="px-4 py-3">
+                    <th scope="col" className="px-4 py-3.5">
                       <button
                         onClick={() => handleSort('status')}
-                        className="flex items-center gap-1 group hover:text-slate-900 focus:outline-none"
+                        className="flex items-center gap-1 group hover:text-[var(--text-primary)] focus:outline-none"
                       >
                         Status {getSortIcon('status')}
                       </button>
                     </th>
-                    <th scope="col" className="px-4 py-3 text-right">
+                    <th scope="col" className="px-4 py-3.5 text-right">
                       <button
                         onClick={() => handleSort('created_at')}
-                        className="inline-flex items-center gap-1 group hover:text-slate-900 focus:outline-none"
+                        className="inline-flex items-center gap-1 group hover:text-[var(--text-primary)] focus:outline-none"
                       >
                         Created {getSortIcon('created_at')}
                       </button>
                     </th>
-                    <th scope="col" className="w-8 px-2 py-3" />
+                    <th scope="col" className="w-8 px-2 py-3.5" />
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-200 bg-white">
-                  {items.map((item) => (
-                    <tr
-                      key={item.id}
-                      className="hover:bg-slate-50/80 transition-colors group cursor-pointer"
-                      onClick={() => (window.location.href = `/requests/${item.id}`)}
-                    >
-                      <td className="px-4 py-3 whitespace-nowrap">
-                        <Link
-                          href={`/requests/${item.id}`}
-                          className="font-mono text-xs font-bold text-slate-900 group-hover:text-blue-600 hover:underline"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          {item.reference}
-                        </Link>
-                      </td>
-                      <td className="px-4 py-3">
-                        <div className="font-semibold text-xs text-slate-900">{item.customer_name}</div>
-                        <div className="text-[11px] font-mono text-slate-500 truncate max-w-[160px]">
-                          {item.customer_contact}
-                        </div>
-                      </td>
-                      <td className="px-4 py-3">
-                        <div className="flex items-center gap-1.5 font-medium text-xs text-slate-900">
-                          <span className="line-clamp-1 max-w-[240px]">{item.item_name}</span>
-                          <span className="px-1.5 py-0.2 rounded bg-slate-100 text-[10px] font-mono text-slate-700 font-semibold border border-slate-200 shrink-0">
-                            ×{item.quantity}
-                          </span>
-                        </div>
-                        <div className="text-[11px] font-mono text-slate-500 mt-0.5">
-                          {item.order_id}
-                        </div>
-                      </td>
-                      <td className="px-4 py-3 whitespace-nowrap">
-                        <ReasonBadge reason={item.reason} />
-                      </td>
-                      <td className="px-4 py-3 whitespace-nowrap">
-                        <div className="flex flex-col gap-1 items-start">
-                          <StatusBadge status={item.status} size="sm" />
-                          {item.resolution && (
-                            <ResolutionBadge
-                              resolution={item.resolution}
-                              refundAmount={item.refund_amount}
-                            />
-                          )}
-                        </div>
-                      </td>
-                      <td className="px-4 py-3 whitespace-nowrap text-right text-xs text-slate-500 font-mono">
-                        {new Date(item.created_at).toLocaleDateString(undefined, {
-                          month: 'short',
-                          day: 'numeric',
-                        })}
-                      </td>
-                      <td className="px-2 py-3 text-right">
-                        <svg
-                          className="w-4 h-4 text-slate-300 group-hover:text-blue-600 transition-colors ml-auto"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </td>
-                    </tr>
-                  ))}
+                <tbody className="divide-y divide-[var(--border)] bg-[var(--surface-2)]">
+                  {items.map((item) => {
+                    const isActionNeeded = item.status === 'in_review';
+                    return (
+                      <tr
+                        key={item.id}
+                        className={`transition-colors cursor-pointer ${
+                          isActionNeeded ? 'bg-[var(--bg-warning)]/40 hover:bg-[var(--bg-warning)]/60' : 'hover:bg-[rgba(0,0,0,0.015)]'
+                        }`}
+                        onClick={() => (window.location.href = `/requests/${item.id}`)}
+                      >
+                        <td className="px-4 py-3.5 whitespace-nowrap">
+                          <Link
+                            href={`/requests/${item.id}`}
+                            className="font-mono text-[13px] font-medium text-[var(--text-primary)] hover:text-[var(--text-accent)] hover:underline"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            {item.reference}
+                          </Link>
+                        </td>
+                        <td className="px-4 py-3.5">
+                          <div className="font-medium text-[13px] text-[var(--text-primary)]">{item.customer_name}</div>
+                          <div className="text-[12px] font-mono text-[var(--text-secondary)] truncate max-w-[160px]">
+                            {item.customer_contact}
+                          </div>
+                        </td>
+                        <td className="px-4 py-3.5">
+                          <div className="flex items-center gap-1.5 font-normal text-[13px] text-[var(--text-primary)]">
+                            <span className="line-clamp-1 max-w-[240px]">{item.item_name}</span>
+                            <span className="px-1.5 py-[1px] rounded-[4px] bg-[var(--surface-1)] text-[11px] font-mono text-[var(--text-secondary)] font-medium border border-[var(--border)] shrink-0">
+                              ×{item.quantity}
+                            </span>
+                          </div>
+                          <div className="text-[12px] font-mono text-[var(--text-secondary)] mt-0.5">
+                            {item.order_id}
+                          </div>
+                        </td>
+                        <td className="px-4 py-3.5 whitespace-nowrap">
+                          <ReasonBadge reason={item.reason} />
+                        </td>
+                        <td className="px-4 py-3.5 whitespace-nowrap">
+                          <div className="flex flex-col gap-1 items-start">
+                            <StatusBadge status={item.status} size="sm" />
+                            {item.resolution && (
+                              <ResolutionBadge
+                                resolution={item.resolution}
+                                refundAmount={item.refund_amount}
+                              />
+                            )}
+                          </div>
+                        </td>
+                        <td className="px-4 py-3.5 whitespace-nowrap text-right text-[12px] text-[var(--text-secondary)] font-mono">
+                          {new Date(item.created_at).toLocaleDateString(undefined, {
+                            month: 'short',
+                            day: 'numeric',
+                          })}
+                        </td>
+                        <td className="px-2 py-3.5 text-right">
+                          <svg
+                            className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[var(--text-accent)] transition-colors ml-auto"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
 
             {/* Mobile Card View (down to 375px) */}
-            <div className="md:hidden divide-y divide-frido-line">
+            <div className="md:hidden divide-y divide-[var(--border)]">
               {items.map((item) => (
                 <Link
                   key={item.id}
                   href={`/requests/${item.id}`}
-                  className="block p-4 hover:bg-zinc-50 active:bg-zinc-100 transition-colors space-y-2.5"
+                  className="block p-4 hover:bg-[var(--surface-1)] transition-colors space-y-2"
                 >
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-mono font-bold text-sm text-frido-ink">
+                    <span className="font-mono font-medium text-[13px] text-[var(--text-primary)]">
                       {item.reference}
                     </span>
                     <StatusBadge status={item.status} size="sm" />
                   </div>
 
                   <div>
-                    <div className="font-semibold text-sm text-frido-ink">{item.customer_name}</div>
-                    <div className="text-xs text-zinc-600 line-clamp-1 mt-0.5">
-                      {item.item_name} <span className="text-zinc-500">×{item.quantity}</span>
+                    <div className="font-medium text-[13px] text-[var(--text-primary)]">{item.customer_name}</div>
+                    <div className="text-[12px] text-[var(--text-secondary)] line-clamp-1 mt-0.5">
+                      {item.item_name} <span className="text-[var(--text-muted)]">×{item.quantity}</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between text-xs pt-1">
+                  <div className="flex items-center justify-between text-[12px] pt-1">
                     <div className="flex items-center gap-1.5 flex-wrap">
                       <ReasonBadge reason={item.reason} />
                       {item.resolution && (
@@ -613,7 +620,7 @@ export default function RequestsPage() {
                         />
                       )}
                     </div>
-                    <span className="font-mono text-zinc-400">
+                    <span className="font-mono text-[12px] text-[var(--text-muted)]">
                       {new Date(item.created_at).toLocaleDateString(undefined, {
                         month: 'short',
                         day: 'numeric',
@@ -628,36 +635,36 @@ export default function RequestsPage() {
 
         {/* Pagination Footer */}
         {!loading && pagination.total > 0 && (
-          <div className="bg-slate-50 px-4 py-3 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
+          <div className="bg-[var(--surface-1)] px-4 py-3 border-t border-[var(--border)] flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px] text-[var(--text-secondary)]">
             <div>
               Showing{' '}
-              <span className="font-semibold text-slate-900">
+              <span className="font-medium text-[var(--text-primary)]">
                 {(pagination.page - 1) * pagination.limit + 1}
               </span>{' '}
               to{' '}
-              <span className="font-semibold text-slate-900">
+              <span className="font-medium text-[var(--text-primary)]">
                 {Math.min(pagination.page * pagination.limit, pagination.total)}
               </span>{' '}
-              of <span className="font-semibold text-slate-900">{pagination.total}</span> requests
+              of <span className="font-medium text-[var(--text-primary)]">{pagination.total}</span> requests
             </div>
 
             <div className="flex items-center gap-2">
               <button
                 disabled={pagination.page <= 1}
                 onClick={() => setPagination((p) => ({ ...p, page: p.page - 1 }))}
-                className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed font-medium text-slate-700 transition-colors shadow-2xs"
+                className="px-3.5 py-1.5 rounded-[var(--radius)] border border-[var(--border-strong)] bg-[var(--surface-2)] hover:bg-[var(--surface-1)] disabled:opacity-40 disabled:cursor-not-allowed font-medium text-[13px] text-[var(--text-secondary)] transition-colors"
               >
                 Previous
               </button>
 
-              <span className="px-2 py-1 text-slate-700 font-mono">
+              <span className="px-2 py-1 text-[var(--text-secondary)] font-mono text-[12px]">
                 {pagination.page} / {pagination.totalPages || 1}
               </span>
 
               <button
                 disabled={pagination.page >= pagination.totalPages}
                 onClick={() => setPagination((p) => ({ ...p, page: p.page + 1 }))}
-                className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed font-medium text-slate-700 transition-colors shadow-2xs"
+                className="px-3.5 py-1.5 rounded-[var(--radius)] border border-[var(--border-strong)] bg-[var(--surface-2)] hover:bg-[var(--surface-1)] disabled:opacity-40 disabled:cursor-not-allowed font-medium text-[13px] text-[var(--text-secondary)] transition-colors"
               >
                 Next
               </button>

@@ -259,23 +259,23 @@ export default function RequestDetailPage() {
       <div>
         <Link
           href="/"
-          className="inline-flex items-center gap-1 text-xs font-semibold text-zinc-500 hover:text-frido-ink transition-colors mb-3"
+          className="inline-flex items-center gap-1 text-[13px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors mb-3"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          Back to Desk
+          Back to desk
         </Link>
 
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-frido-line">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-[var(--border)]">
           <div>
             <div className="flex items-center gap-3">
-              <h1 className="text-2xl sm:text-3xl font-bold font-mono text-frido-ink">
+              <h1 className="text-[24px] font-medium font-mono tracking-tight text-[var(--text-primary)] m-0">
                 {detail.reference}
               </h1>
               <StatusBadge status={detail.status} size="lg" />
             </div>
-            <p className="text-xs text-zinc-500 mt-1">
+            <p className="text-[12px] text-[var(--text-secondary)] mt-1">
               Created on {new Date(detail.created_at).toLocaleString()} &bull; Last updated {new Date(detail.updated_at).toLocaleString()}
             </p>
           </div>
@@ -288,14 +288,14 @@ export default function RequestDetailPage() {
                 <button
                   disabled={transitioning}
                   onClick={() => handleTransition('in_review')}
-                  className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-amber-500 hover:bg-amber-600 text-white transition-all shadow-xs disabled:opacity-50"
+                  className="px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] bg-[var(--fill-warning)] text-[var(--on-warning)] hover:opacity-90 transition-opacity disabled:opacity-50"
                 >
-                  Start Review
+                  Start review
                 </button>
                 <button
                   disabled={transitioning}
                   onClick={() => handleTransition('rejected')}
-                  className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 transition-colors disabled:opacity-50"
+                  className="px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] bg-[var(--bg-danger)] text-[var(--text-danger)] border border-[var(--border-danger)] hover:bg-[var(--bg-danger)] transition-colors disabled:opacity-50"
                 >
                   Reject
                 </button>
@@ -308,14 +308,14 @@ export default function RequestDetailPage() {
                 <button
                   disabled={transitioning}
                   onClick={() => setShowApproveModal(true)}
-                  className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-xs disabled:opacity-50"
+                  className="px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] bg-[var(--fill-accent)] text-[var(--on-accent)] hover:opacity-90 transition-opacity disabled:opacity-50"
                 >
-                  Approve Request...
+                  Approve request...
                 </button>
                 <button
                   disabled={transitioning}
                   onClick={() => handleTransition('rejected')}
-                  className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 transition-colors disabled:opacity-50"
+                  className="px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] bg-[var(--bg-danger)] text-[var(--text-danger)] border border-[var(--border-danger)] hover:bg-[var(--bg-danger)] transition-colors disabled:opacity-50"
                 >
                   Reject
                 </button>
@@ -327,9 +327,9 @@ export default function RequestDetailPage() {
               <button
                 disabled={transitioning}
                 onClick={() => handleTransition('completed')}
-                className="px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-green-600 hover:bg-green-700 text-white transition-all shadow-xs disabled:opacity-50"
+                className="px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] bg-[var(--fill-success)] text-[var(--on-success)] hover:opacity-90 transition-opacity disabled:opacity-50"
               >
-                Mark as Completed
+                Mark as completed
               </button>
             )}
 
@@ -337,9 +337,9 @@ export default function RequestDetailPage() {
             {!locked && (
               <button
                 onClick={() => setShowEditModal(true)}
-                className="px-3.5 py-1.5 text-xs font-semibold rounded bg-white hover:bg-zinc-50 text-zinc-700 border border-zinc-300 transition-colors"
+                className="px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] bg-transparent hover:border-[var(--border-strong)] text-[var(--text-secondary)] border border-[var(--border-strong)] transition-colors"
               >
-                Edit Details
+                Edit details
               </button>
             )}
 
@@ -347,9 +347,9 @@ export default function RequestDetailPage() {
             {removable && (
               <button
                 onClick={() => setShowRemoveModal(true)}
-                className="px-3.5 py-1.5 text-xs font-semibold rounded bg-white hover:bg-rose-50 text-rose-600 border border-rose-200 transition-colors"
+                className="px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] bg-transparent hover:bg-[var(--bg-danger)] text-[var(--text-danger)] border border-[var(--border-danger)] transition-colors"
               >
-                Remove from Desk
+                Remove from desk
               </button>
             )}
           </div>
@@ -358,31 +358,31 @@ export default function RequestDetailPage() {
 
       {/* Notifications */}
       {actionError && (
-        <div className="rounded-lg bg-rose-50 border border-rose-200 p-3.5 text-sm text-rose-800 flex items-start justify-between gap-2 shadow-sm">
+        <div className="rounded-[12px] bg-[var(--bg-danger)] border border-[var(--border-danger)] p-3.5 text-[13px] text-[var(--text-danger)] flex items-start justify-between gap-2">
           <div className="flex items-start gap-2">
-            <svg className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-5 h-5 text-[var(--text-danger)] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <div>
-              <p className="font-semibold">Action Refused</p>
-              <p className="text-xs text-rose-700 mt-0.5">{actionError}</p>
+              <p className="font-medium">Action refused</p>
+              <p className="text-[12px] text-[var(--text-danger)] mt-0.5">{actionError}</p>
             </div>
           </div>
-          <button onClick={() => setActionError(null)} className="text-rose-400 hover:text-rose-600">
+          <button onClick={() => setActionError(null)} className="text-[var(--text-danger)] hover:opacity-75">
             &times;
           </button>
         </div>
       )}
 
       {actionSuccess && (
-        <div className="rounded-lg bg-emerald-50 border border-emerald-200 p-3.5 text-sm text-emerald-800 flex items-center justify-between gap-2 shadow-sm">
+        <div className="rounded-[12px] bg-[var(--bg-success)] border border-[var(--border-success)] p-3.5 text-[13px] text-[var(--text-success)] flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-5 h-5 text-[var(--text-success)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
-            <p className="font-medium text-xs sm:text-sm">{actionSuccess}</p>
+            <p className="font-medium text-[13px]">{actionSuccess}</p>
           </div>
-          <button onClick={() => setActionSuccess(null)} className="text-emerald-500 hover:text-emerald-700">
+          <button onClick={() => setActionSuccess(null)} className="text-[var(--text-success)] hover:opacity-75">
             &times;
           </button>
         </div>
@@ -393,83 +393,76 @@ export default function RequestDetailPage() {
         {/* Left Column: Request Details (2 cols) */}
         <div className="lg:col-span-2 space-y-6">
           {/* Card: Item & Order Information */}
-          <div className="bg-white rounded-lg border border-frido-line p-5 shadow-sm space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-frido-line">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-zinc-500">
-                Item & Order Details
+          <div className="bg-[var(--surface-2)] rounded-[12px] border border-[var(--border)] p-5 space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
+              <h2 className="text-[12px] font-medium uppercase tracking-[0.4px] text-[var(--text-secondary)] m-0">
+                Item & order details
               </h2>
               {locked && (
-                <span className="inline-flex items-center gap-1 text-xs text-zinc-500 bg-zinc-100 px-2 py-0.5 rounded font-mono">
-                  <svg className="w-3 h-3 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <span className="inline-flex items-center gap-1 text-[11px] text-[var(--text-secondary)] bg-[var(--surface-1)] border border-[var(--border)] px-2 py-0.5 rounded-[4px] font-mono">
+                  <svg className="w-3 h-3 text-[var(--text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
-                  Locked (Decided)
+                  Locked (decided)
                 </span>
               )}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[13px]">
               <div>
-                <span className="text-xs text-zinc-500 block">Item Name</span>
-                <span className="font-semibold text-zinc-900">{detail.item_name}</span>
+                <span className="text-[12px] text-[var(--text-secondary)] block">Item name</span>
+                <span className="font-medium text-[var(--text-primary)]">{detail.item_name}</span>
               </div>
               <div>
-                <span className="text-xs text-zinc-500 block">Quantity</span>
-                <span className="font-semibold text-zinc-900">{detail.quantity} unit(s)</span>
+                <span className="text-[12px] text-[var(--text-secondary)] block">Quantity</span>
+                <span className="font-medium text-[var(--text-primary)]">{detail.quantity} unit(s)</span>
               </div>
               <div>
-                <span className="text-xs text-zinc-500 block">Order ID</span>
-                <span className="font-mono font-semibold text-zinc-900">{detail.order_id}</span>
+                <span className="text-[12px] text-[var(--text-secondary)] block">Order ID</span>
+                <span className="font-mono font-medium text-[var(--text-primary)]">{detail.order_id}</span>
               </div>
               <div>
-                <span className="text-xs text-zinc-500 block">Return Reason</span>
-                <div className="mt-0.5">
-                  <ReasonBadge reason={detail.reason} />
-                </div>
+                <span className="text-[12px] text-[var(--text-secondary)] block mb-1">Return reason</span>
+                <ReasonBadge reason={detail.reason} />
               </div>
             </div>
           </div>
 
           {/* Card: Customer Information */}
-          <div className="bg-white rounded-lg border border-frido-line p-5 shadow-sm space-y-4">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-zinc-500 pb-3 border-b border-frido-line">
-              Customer Information
+          <div className="bg-[var(--surface-2)] rounded-[12px] border border-[var(--border)] p-5 space-y-4">
+            <h2 className="text-[12px] font-medium uppercase tracking-[0.4px] text-[var(--text-secondary)] pb-3 border-b border-[var(--border)] m-0">
+              Customer information
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[13px]">
               <div>
-                <span className="text-xs text-zinc-500 block">Customer Name</span>
-                <span className="font-semibold text-zinc-900">{detail.customer_name}</span>
+                <span className="text-[12px] text-[var(--text-secondary)] block">Customer name</span>
+                <span className="font-medium text-[var(--text-primary)]">{detail.customer_name}</span>
               </div>
               <div>
-                <span className="text-xs text-zinc-500 block">Contact / Email</span>
-                <span className="font-mono text-zinc-800 break-all">{detail.customer_contact}</span>
+                <span className="text-[12px] text-[var(--text-secondary)] block">Contact / Email</span>
+                <span className="font-mono text-[var(--text-primary)] break-all">{detail.customer_contact}</span>
               </div>
             </div>
           </div>
 
           {/* Card: Decision & Resolution (if decided) */}
           {(detail.status === 'approved' || detail.status === 'completed' || detail.resolution) && (
-            <div className="bg-white rounded-lg border border-teal-200 p-5 shadow-sm space-y-3">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-teal-900 pb-2 border-b border-teal-100 flex items-center gap-2">
-                <svg className="w-4 h-4 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Approved Resolution
+            <div className="bg-[var(--surface-2)] rounded-[12px] border border-[var(--border)] p-5 space-y-3">
+              <h2 className="text-[12px] font-medium uppercase tracking-[0.4px] text-[var(--text-secondary)] pb-2 border-b border-[var(--border)] flex items-center gap-2 m-0">
+                Approved resolution
               </h2>
-              <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-sm pt-1">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-[13px] pt-1">
                 <div>
-                  <span className="text-xs text-zinc-500 block">Resolution Type</span>
-                  <div className="mt-1">
-                    <ResolutionBadge
-                      resolution={detail.resolution}
-                      refundAmount={detail.refund_amount}
-                    />
-                  </div>
+                  <span className="text-[12px] text-[var(--text-secondary)] block mb-1">Resolution type</span>
+                  <ResolutionBadge
+                    resolution={detail.resolution}
+                    refundAmount={detail.refund_amount}
+                  />
                 </div>
                 {detail.resolution === 'refund' && detail.refund_amount && (
                   <div>
-                    <span className="text-xs text-zinc-500 block">Refund Amount</span>
-                    <span className="text-lg font-bold font-mono text-emerald-800">
+                    <span className="text-[12px] text-[var(--text-secondary)] block">Refund amount</span>
+                    <span className="text-[18px] font-medium font-mono text-[var(--text-success)]">
                       ₹{Number(detail.refund_amount).toFixed(2)}
                     </span>
                   </div>
@@ -480,13 +473,13 @@ export default function RequestDetailPage() {
 
           {/* Terminal Banner for Rejected */}
           {detail.status === 'rejected' && (
-            <div className="bg-rose-50 rounded-lg border border-rose-200 p-4 text-sm text-rose-800 flex items-center gap-3">
-              <svg className="w-5 h-5 text-rose-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="bg-[var(--bg-danger)] rounded-[12px] border border-[var(--border-danger)] p-4 text-[13px] text-[var(--text-danger)] flex items-center gap-3">
+              <svg className="w-5 h-5 text-[var(--text-danger)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <div>
-                <p className="font-semibold">Request Rejected</p>
-                <p className="text-xs text-rose-700">
+                <p className="font-medium">Request rejected</p>
+                <p className="text-[12px] text-[var(--text-danger)] mt-0.5">
                   This return request has been rejected. It cannot be transitioned or reopened.
                 </p>
               </div>
@@ -496,34 +489,31 @@ export default function RequestDetailPage() {
 
         {/* Right Column: Complete Note History (Append-Only) */}
         <div className="space-y-6">
-          <div className="bg-white rounded-lg border border-frido-line p-5 shadow-sm space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-frido-line">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-zinc-500 flex items-center gap-1.5">
-                <svg className="w-4 h-4 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                </svg>
-                Note History ({detail.notes?.length || 0})
+          <div className="bg-[var(--surface-2)] rounded-[12px] border border-[var(--border)] p-5 space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-[var(--border)]">
+              <h2 className="text-[12px] font-medium uppercase tracking-[0.4px] text-[var(--text-secondary)] flex items-center gap-1.5 m-0">
+                Note history ({detail.notes?.length || 0})
               </h2>
-              <span className="text-[10px] text-zinc-400 uppercase font-semibold tracking-wider">
-                Append-Only
+              <span className="text-[11px] text-[var(--text-muted)] uppercase font-medium tracking-[0.4px]">
+                Append-only
               </span>
             </div>
 
             {/* Note List (chronological order) */}
             <div className="space-y-3 max-h-[380px] overflow-y-auto pr-1">
               {!detail.notes || detail.notes.length === 0 ? (
-                <p className="text-xs text-zinc-400 text-center py-6 italic">
+                <p className="text-[13px] text-[var(--text-muted)] text-center py-6">
                   No internal notes recorded yet.
                 </p>
               ) : (
                 detail.notes.map((note, idx) => (
                   <div
                     key={note.id}
-                    className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs space-y-1"
+                    className="p-3 rounded-[var(--radius)] bg-[var(--surface-1)] border border-[var(--border)] text-[13px] space-y-1"
                   >
-                    <div className="flex items-center justify-between text-[11px] text-slate-500">
-                      <span className="font-semibold text-slate-700">Agent Note #{idx + 1}</span>
-                      <span className="font-mono">
+                    <div className="flex items-center justify-between text-[11px] text-[var(--text-secondary)]">
+                      <span className="font-medium text-[var(--text-primary)]">Agent note #{idx + 1}</span>
+                      <span className="font-mono text-[var(--text-muted)]">
                         {new Date(note.created_at).toLocaleString([], {
                           month: 'short',
                           day: 'numeric',
@@ -532,7 +522,7 @@ export default function RequestDetailPage() {
                         })}
                       </span>
                     </div>
-                    <p className="text-slate-800 whitespace-pre-wrap leading-relaxed">
+                    <p className="text-[var(--text-primary)] whitespace-pre-wrap leading-relaxed font-normal">
                       {note.body}
                     </p>
                   </div>
@@ -541,9 +531,9 @@ export default function RequestDetailPage() {
             </div>
 
             {/* Add Note Form — Available in ANY status per Rule 4 */}
-            <form onSubmit={handleAddNote} className="pt-3 border-t border-slate-200 space-y-2">
-              <label htmlFor="note-input" className="text-xs font-semibold text-slate-700 block">
-                Append Internal Note
+            <form onSubmit={handleAddNote} className="pt-3 border-t border-[var(--border)] space-y-2">
+              <label htmlFor="note-input" className="text-[12px] font-medium text-[var(--text-primary)] block">
+                Append internal note
               </label>
               <textarea
                 id="note-input"
@@ -551,14 +541,14 @@ export default function RequestDetailPage() {
                 placeholder="Record customer communication, warehouse findings, or inspection notes..."
                 value={newNoteBody}
                 onChange={(e) => setNewNoteBody(e.target.value)}
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-slate-50/70 focus:bg-white text-slate-900"
+                className="w-full text-[13px] p-3 rounded-[var(--radius)] border border-[var(--border)] focus:border-[var(--fill-accent)] focus:outline-none bg-[var(--surface-1)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)]"
               />
               <button
                 type="submit"
                 disabled={submittingNote || !newNoteBody.trim()}
-                className="w-full py-2 px-3 text-xs font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all disabled:opacity-40 shadow-xs"
+                className="w-full py-[9px] px-4 text-[13px] font-medium rounded-[var(--radius)] bg-[var(--fill-accent)] text-[var(--on-accent)] hover:opacity-90 transition-opacity disabled:opacity-40"
               >
-                {submittingNote ? 'Saving...' : 'Add Note to Ticket'}
+                {submittingNote ? 'Saving...' : 'Add note to ticket'}
               </button>
             </form>
           </div>
@@ -567,33 +557,33 @@ export default function RequestDetailPage() {
 
       {/* MODAL: Approve Request (Rule 2: Atomic approval with resolution) */}
       {showApproveModal && (
-        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg max-w-md w-full p-6 shadow-xl space-y-4 border border-frido-line">
-            <h3 className="text-lg font-bold text-frido-ink">Approve Return Request</h3>
-            <p className="text-xs text-zinc-600">
+        <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4">
+          <div className="bg-[var(--surface-2)] rounded-[12px] max-w-md w-full p-6 space-y-4 border border-[var(--border)]">
+            <h3 className="text-[18px] font-medium text-[var(--text-primary)] m-0">Approve return request</h3>
+            <p className="text-[13px] text-[var(--text-secondary)]">
               Moving this request to <strong>Approved</strong> requires setting the resolution atomically.
             </p>
 
-            <div className="space-y-3 text-xs">
+            <div className="space-y-3 text-[13px]">
               <div>
-                <label className="font-semibold text-zinc-700 block mb-1">
-                  Resolution Type <span className="text-rose-500">*</span>
+                <label className="font-medium text-[var(--text-primary)] block mb-1">
+                  Resolution type <span className="text-[var(--text-danger)]">*</span>
                 </label>
                 <select
                   value={approveResolution}
                   onChange={(e) => setApproveResolution(e.target.value as any)}
-                  className="w-full p-2 rounded border border-zinc-300 text-xs focus:ring-2 focus:ring-blue-500"
+                  className="w-full h-11 px-3 rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] focus:border-[var(--fill-accent)] focus:outline-none"
                 >
-                  <option value="refund">Refund (Credit Card / Original Method)</option>
-                  <option value="replacement">Replacement Product</option>
-                  <option value="store_credit">Store Credit Voucher</option>
+                  <option value="refund">Refund (Original payment method)</option>
+                  <option value="replacement">Replacement product</option>
+                  <option value="store_credit">Store credit voucher</option>
                 </select>
               </div>
 
               {approveResolution === 'refund' && (
                 <div>
-                  <label className="font-semibold text-zinc-700 block mb-1">
-                    Refund Amount (₹) <span className="text-rose-500">*</span>
+                  <label className="font-medium text-[var(--text-primary)] block mb-1">
+                    Refund amount (₹) <span className="text-[var(--text-danger)]">*</span>
                   </label>
                   <input
                     type="number"
@@ -603,20 +593,20 @@ export default function RequestDetailPage() {
                     value={approveRefundAmount}
                     onChange={(e) => setApproveRefundAmount(e.target.value)}
                     required
-                    className="w-full p-2 rounded border border-zinc-300 text-xs focus:ring-2 focus:ring-blue-500 font-mono"
+                    className="w-full h-11 px-3 rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] focus:border-[var(--fill-accent)] focus:outline-none font-mono"
                   />
-                  <span className="text-[11px] text-zinc-500 mt-1 block">
+                  <span className="text-[12px] text-[var(--text-muted)] mt-1 block">
                     Must be a positive amount greater than 0.
                   </span>
                 </div>
               )}
             </div>
 
-            <div className="flex items-center justify-end gap-2 pt-3 border-t border-frido-line">
+            <div className="flex items-center justify-end gap-2 pt-3 border-t border-[var(--border)]">
               <button
                 type="button"
                 onClick={() => setShowApproveModal(false)}
-                className="px-3 py-1.5 text-xs font-semibold text-zinc-600 hover:text-zinc-800"
+                className="px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] border border-[var(--border-strong)] bg-transparent text-[var(--text-secondary)] hover:border-[var(--border-strong)]"
               >
                 Cancel
               </button>
@@ -633,9 +623,9 @@ export default function RequestDetailPage() {
                     approveResolution === 'refund' ? parseFloat(approveRefundAmount) : null
                   )
                 }
-                className="px-4 py-2 text-xs font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all disabled:opacity-40 shadow-xs"
+                className="px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] bg-[var(--fill-accent)] text-[var(--on-accent)] hover:opacity-90 transition-opacity disabled:opacity-40"
               >
-                {transitioning ? 'Approving...' : 'Confirm Approval'}
+                {transitioning ? 'Approving...' : 'Confirm approval'}
               </button>
             </div>
           </div>
@@ -644,100 +634,100 @@ export default function RequestDetailPage() {
 
       {/* MODAL: General Edit Form (Rule 4: Allowed on Open/In Review only) */}
       {showEditModal && (
-        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg max-w-md w-full p-6 shadow-xl space-y-4 border border-frido-line">
-            <h3 className="text-lg font-bold text-frido-ink">Edit Request Details</h3>
-            <p className="text-xs text-zinc-500">
+        <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4">
+          <div className="bg-[var(--surface-2)] rounded-[12px] max-w-md w-full p-6 space-y-4 border border-[var(--border)]">
+            <h3 className="text-[18px] font-medium text-[var(--text-primary)] m-0">Edit request details</h3>
+            <p className="text-[13px] text-[var(--text-secondary)]">
               Only editable while in Open or In Review status.
             </p>
 
-            <form onSubmit={handleSaveEdit} className="space-y-3 text-xs">
+            <form onSubmit={handleSaveEdit} className="space-y-3 text-[13px]">
               <div>
-                <label className="font-semibold text-zinc-700 block mb-1">Customer Name</label>
+                <label className="font-medium text-[var(--text-primary)] block mb-1">Customer name</label>
                 <input
                   type="text"
                   required
                   value={editForm.customer_name}
                   onChange={(e) => setEditForm({ ...editForm, customer_name: e.target.value })}
-                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-blue-500"
+                  className="w-full h-11 px-3 rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] focus:border-[var(--fill-accent)] focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="font-semibold text-zinc-700 block mb-1">Customer Contact</label>
+                <label className="font-medium text-[var(--text-primary)] block mb-1">Customer contact</label>
                 <input
                   type="text"
                   required
                   value={editForm.customer_contact}
                   onChange={(e) => setEditForm({ ...editForm, customer_contact: e.target.value })}
-                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-blue-500"
+                  className="w-full h-11 px-3 rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] focus:border-[var(--fill-accent)] focus:outline-none"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-2">
                 <div>
-                  <label className="font-semibold text-zinc-700 block mb-1">Order ID</label>
+                  <label className="font-medium text-[var(--text-primary)] block mb-1">Order ID</label>
                   <input
                     type="text"
                     required
                     value={editForm.order_id}
                     onChange={(e) => setEditForm({ ...editForm, order_id: e.target.value })}
-                    className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-blue-500 font-mono"
+                    className="w-full h-11 px-3 rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] focus:border-[var(--fill-accent)] focus:outline-none font-mono"
                   />
                 </div>
                 <div>
-                  <label className="font-semibold text-zinc-700 block mb-1">Quantity</label>
+                  <label className="font-medium text-[var(--text-primary)] block mb-1">Quantity</label>
                   <input
                     type="number"
                     min="1"
                     required
                     value={editForm.quantity}
                     onChange={(e) => setEditForm({ ...editForm, quantity: parseInt(e.target.value) || 1 })}
-                    className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-blue-500"
+                    className="w-full h-11 px-3 rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] focus:border-[var(--fill-accent)] focus:outline-none"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="font-semibold text-zinc-700 block mb-1">Item Name</label>
+                <label className="font-medium text-[var(--text-primary)] block mb-1">Item name</label>
                 <input
                   type="text"
                   required
                   value={editForm.item_name}
                   onChange={(e) => setEditForm({ ...editForm, item_name: e.target.value })}
-                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-blue-500"
+                  className="w-full h-11 px-3 rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] focus:border-[var(--fill-accent)] focus:outline-none"
                 />
               </div>
 
               <div>
-                <label className="font-semibold text-zinc-700 block mb-1">Reason</label>
+                <label className="font-medium text-[var(--text-primary)] block mb-1">Reason</label>
                 <select
                   value={editForm.reason}
                   onChange={(e) => setEditForm({ ...editForm, reason: e.target.value as any })}
-                  className="w-full p-2 rounded border border-zinc-300 focus:ring-2 focus:ring-blue-500"
+                  className="w-full h-11 px-3 rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] focus:border-[var(--fill-accent)] focus:outline-none"
                 >
                   <option value="damaged">Damaged</option>
-                  <option value="wrong_item">Wrong Item</option>
-                  <option value="size_issue">Size Issue</option>
-                  <option value="not_as_described">Not as Described</option>
-                  <option value="changed_mind">Changed Mind</option>
+                  <option value="wrong_item">Wrong item</option>
+                  <option value="size_issue">Size issue</option>
+                  <option value="not_as_described">Not as described</option>
+                  <option value="changed_mind">Changed mind</option>
                 </select>
               </div>
 
-              <div className="flex items-center justify-end gap-2 pt-3 border-t border-frido-line">
+              <div className="flex items-center justify-end gap-2 pt-3 border-t border-[var(--border)]">
                 <button
                   type="button"
                   onClick={() => setShowEditModal(false)}
-                  className="px-3 py-1.5 text-xs font-semibold text-zinc-600 hover:text-zinc-800"
+                  className="px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] border border-[var(--border-strong)] bg-transparent text-[var(--text-secondary)] hover:border-[var(--border-strong)]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={savingEdit}
-                  className="px-4 py-2 text-xs font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all disabled:opacity-50 shadow-xs"
+                  className="px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] bg-[var(--fill-accent)] text-[var(--on-accent)] hover:opacity-90 transition-opacity disabled:opacity-50"
                 >
-                  {savingEdit ? 'Saving...' : 'Save Changes'}
+                  {savingEdit ? 'Saving...' : 'Save changes'}
                 </button>
               </div>
             </form>
@@ -747,19 +737,19 @@ export default function RequestDetailPage() {
 
       {/* MODAL: Remove Confirmation (Rule 5: Allowed on Open/Rejected only) */}
       {showRemoveModal && (
-        <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg max-w-sm w-full p-6 shadow-xl space-y-4 border border-frido-line">
-            <h3 className="text-lg font-bold text-rose-700">Remove from Desk?</h3>
-            <p className="text-xs text-zinc-600 leading-relaxed">
+        <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4">
+          <div className="bg-[var(--surface-2)] rounded-[12px] max-w-sm w-full p-6 space-y-4 border border-[var(--border)]">
+            <h3 className="text-[18px] font-medium text-[var(--text-danger)] m-0">Remove from desk?</h3>
+            <p className="text-[13px] text-[var(--text-secondary)] leading-relaxed">
               This will take <strong>{detail.reference}</strong> off the desk (soft-delete).
               The record is safely preserved in the database for audit history, but will no longer appear in active searches or lists.
             </p>
 
-            <div className="flex items-center justify-end gap-2 pt-3 border-t border-frido-line">
+            <div className="flex items-center justify-end gap-2 pt-3 border-t border-[var(--border)]">
               <button
                 type="button"
                 onClick={() => setShowRemoveModal(false)}
-                className="px-3 py-1.5 text-xs font-semibold text-zinc-600 hover:text-zinc-800"
+                className="px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] border border-[var(--border-strong)] bg-transparent text-[var(--text-secondary)] hover:border-[var(--border-strong)]"
               >
                 Cancel
               </button>
@@ -767,9 +757,9 @@ export default function RequestDetailPage() {
                 type="button"
                 disabled={removing}
                 onClick={handleRemove}
-                className="px-4 py-2 text-xs font-semibold rounded bg-rose-600 hover:bg-rose-700 text-white transition-colors disabled:opacity-50"
+                className="px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] bg-[var(--fill-danger)] text-[var(--on-danger)] hover:opacity-90 transition-opacity disabled:opacity-50"
               >
-                {removing ? 'Removing...' : 'Confirm Removal'}
+                {removing ? 'Removing...' : 'Confirm removal'}
               </button>
             </div>
           </div>

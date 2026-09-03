@@ -54,43 +54,43 @@ export default function NewRequestPage() {
       <div>
         <Link
           href="/"
-          className="inline-flex items-center gap-1 text-xs font-semibold text-zinc-500 hover:text-frido-ink transition-colors mb-3"
+          className="inline-flex items-center gap-1 text-[13px] font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors mb-3"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          Back to Desk
+          Back to desk
         </Link>
-        <h1 className="text-2xl font-bold tracking-tight text-frido-ink">
-          Raise Return / Replacement Request
+        <h1 className="text-[24px] font-medium tracking-tight text-[var(--text-primary)] m-0">
+          Raise return / replacement request
         </h1>
-        <p className="text-sm text-zinc-600 mt-1">
+        <p className="text-[13px] font-normal text-[var(--text-secondary)] mt-1">
           Internal agent form. The reference number will be generated automatically by the server.
         </p>
       </div>
 
       {error && (
-        <div className="rounded-lg bg-rose-50 border border-rose-200 p-4 text-sm text-rose-800 flex items-start gap-3 shadow-sm">
-          <svg className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="rounded-[12px] bg-[var(--bg-danger)] border border-[var(--border-danger)] p-4 text-[13px] text-[var(--text-danger)] flex items-start gap-3">
+          <svg className="w-5 h-5 text-[var(--text-danger)] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <div>
-            <p className="font-semibold">Unable to raise request</p>
-            <p className="mt-0.5 text-xs text-rose-700">{error}</p>
+            <p className="font-medium">Unable to raise request</p>
+            <p className="mt-0.5 text-[12px] text-[var(--text-danger)]">{error}</p>
           </div>
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-frido-line p-6 shadow-sm space-y-5">
+      <form onSubmit={handleSubmit} className="bg-[var(--surface-2)] rounded-[12px] border border-[var(--border)] p-6 space-y-5">
         <div className="space-y-4">
-          <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-500 pb-2 border-b border-frido-line">
-            Customer Details
+          <h2 className="text-[12px] font-medium uppercase tracking-[0.4px] text-[var(--text-secondary)] pb-2 border-b border-[var(--border)] m-0">
+            Customer details
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="customer_name" className="block text-xs font-semibold text-zinc-700 mb-1">
-                Customer Full Name <span className="text-rose-500">*</span>
+              <label htmlFor="customer_name" className="block text-[14px] font-medium text-[var(--text-primary)] mb-1">
+                Customer full name <span className="text-[var(--text-danger)]">*</span>
               </label>
               <input
                 id="customer_name"
@@ -99,13 +99,13 @@ export default function NewRequestPage() {
                 placeholder="e.g. John Doe"
                 value={form.customer_name}
                 onChange={(e) => setForm({ ...form, customer_name: e.target.value })}
-                className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white"
+                className="w-full h-11 px-4 text-[13px] rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--fill-accent)] focus:outline-none"
               />
             </div>
 
             <div>
-              <label htmlFor="customer_contact" className="block text-xs font-semibold text-zinc-700 mb-1">
-                Contact Email or Phone <span className="text-rose-500">*</span>
+              <label htmlFor="customer_contact" className="block text-[14px] font-medium text-[var(--text-primary)] mb-1">
+                Contact email or phone <span className="text-[var(--text-danger)]">*</span>
               </label>
               <input
                 id="customer_contact"
@@ -114,21 +114,21 @@ export default function NewRequestPage() {
                 placeholder="e.g. john@example.com or +1 555-0199"
                 value={form.customer_contact}
                 onChange={(e) => setForm({ ...form, customer_contact: e.target.value })}
-                className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white"
+                className="w-full h-11 px-4 text-[13px] rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--fill-accent)] focus:outline-none"
               />
             </div>
           </div>
         </div>
 
         <div className="space-y-4 pt-2">
-          <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-500 pb-2 border-b border-frido-line">
-            Order & Item Details
+          <h2 className="text-[12px] font-medium uppercase tracking-[0.4px] text-[var(--text-secondary)] pb-2 border-b border-[var(--border)] m-0">
+            Order & item details
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="sm:col-span-2">
-              <label htmlFor="order_id" className="block text-xs font-semibold text-zinc-700 mb-1">
-                Order Reference ID <span className="text-rose-500">*</span>
+              <label htmlFor="order_id" className="block text-[14px] font-medium text-[var(--text-primary)] mb-1">
+                Order reference ID <span className="text-[var(--text-danger)]">*</span>
               </label>
               <input
                 id="order_id"
@@ -137,13 +137,13 @@ export default function NewRequestPage() {
                 placeholder="e.g. ORD-2024-9941"
                 value={form.order_id}
                 onChange={(e) => setForm({ ...form, order_id: e.target.value })}
-                className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white font-mono"
+                className="w-full h-11 px-4 text-[13px] rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--fill-accent)] focus:outline-none font-mono"
               />
             </div>
 
             <div>
-              <label htmlFor="quantity" className="block text-xs font-semibold text-zinc-700 mb-1">
-                Quantity <span className="text-rose-500">*</span>
+              <label htmlFor="quantity" className="block text-[14px] font-medium text-[var(--text-primary)] mb-1">
+                Quantity <span className="text-[var(--text-danger)]">*</span>
               </label>
               <input
                 id="quantity"
@@ -152,14 +152,14 @@ export default function NewRequestPage() {
                 required
                 value={form.quantity}
                 onChange={(e) => setForm({ ...form, quantity: parseInt(e.target.value) || 1 })}
-                className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white"
+                className="w-full h-11 px-4 text-[13px] rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] focus:border-[var(--fill-accent)] focus:outline-none"
               />
             </div>
           </div>
 
           <div>
-            <label htmlFor="item_name" className="block text-xs font-semibold text-zinc-700 mb-1">
-              Item Name / SKU Description <span className="text-rose-500">*</span>
+            <label htmlFor="item_name" className="block text-[14px] font-medium text-[var(--text-primary)] mb-1">
+              Item name / SKU description <span className="text-[var(--text-danger)]">*</span>
             </label>
             <input
               id="item_name"
@@ -168,36 +168,36 @@ export default function NewRequestPage() {
               placeholder="e.g. Orthopedic Arch Support Insoles - Size 10"
               value={form.item_name}
               onChange={(e) => setForm({ ...form, item_name: e.target.value })}
-              className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white"
+              className="w-full h-11 px-4 text-[13px] rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--fill-accent)] focus:outline-none"
             />
-            <p className="text-[11px] text-zinc-500 mt-1">
+            <p className="text-[12px] text-[var(--text-muted)] mt-1">
               Note: Business Rule 3 ensures only one live request exists per (Order ID, Item Name).
             </p>
           </div>
 
           <div>
-            <label htmlFor="reason" className="block text-xs font-semibold text-zinc-700 mb-1">
-              Reason for Return <span className="text-rose-500">*</span>
+            <label htmlFor="reason" className="block text-[14px] font-medium text-[var(--text-primary)] mb-1">
+              Reason for return <span className="text-[var(--text-danger)]">*</span>
             </label>
             <select
               id="reason"
               value={form.reason}
               onChange={(e) => setForm({ ...form, reason: e.target.value as ReturnReason })}
-              className="w-full text-sm p-2.5 rounded-md border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-zinc-900 bg-zinc-50 focus:bg-white"
+              className="w-full h-11 px-4 text-[13px] rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface-1)] text-[var(--text-primary)] focus:border-[var(--fill-accent)] focus:outline-none"
             >
               <option value="damaged">Damaged (arrived defective or damaged in transit)</option>
-              <option value="wrong_item">Wrong Item (incorrect SKU received)</option>
-              <option value="size_issue">Size Issue (does not fit)</option>
-              <option value="not_as_described">Not as Described (differs from specs/photos)</option>
-              <option value="changed_mind">Changed Mind (buyer remorse)</option>
+              <option value="wrong_item">Wrong item (incorrect SKU received)</option>
+              <option value="size_issue">Size issue (does not fit)</option>
+              <option value="not_as_described">Not as described (differs from specs/photos)</option>
+              <option value="changed_mind">Changed mind (buyer remorse)</option>
             </select>
           </div>
         </div>
 
-        <div className="pt-4 border-t border-frido-line flex items-center justify-between">
+        <div className="pt-4 border-t border-[var(--border)] flex items-center justify-between">
           <Link
             href="/"
-            className="text-xs font-semibold text-zinc-600 hover:text-zinc-800"
+            className="px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] border border-[var(--border-strong)] bg-transparent text-[var(--text-secondary)] hover:border-[var(--border-strong)]"
           >
             Cancel
           </Link>
@@ -205,9 +205,9 @@ export default function NewRequestPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-xs hover:shadow-sm active:scale-[0.98] disabled:opacity-50"
+            className="inline-flex items-center justify-center px-5 py-[9px] text-[13px] font-medium rounded-[var(--radius)] bg-[var(--fill-accent)] text-[var(--on-accent)] hover:opacity-90 transition-opacity disabled:opacity-50"
           >
-            {submitting ? 'Creating Request...' : 'Submit Return Request'}
+            {submitting ? 'Creating request...' : 'Submit return request'}
           </button>
         </div>
       </form>

@@ -1,57 +1,58 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { ThemeToggle } from './ThemeToggle';
 
 export function Navbar() {
   return (
-    <header className="bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-0 z-30 shadow-2xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="bg-[var(--surface-2)] border-b border-[var(--border)] sticky top-0 z-10">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
-          {/* Brand Logo, Wordmark & Operations Pill */}
+          {/* Brand Logo, Wordmark & Status Badge */}
           <div className="flex items-center space-x-3 sm:space-x-4">
-            <Link href="/" className="flex items-center space-x-2.5 group">
-              <div className="relative w-8 h-9 flex items-center justify-center transition-transform group-hover:scale-105">
+            <Link href="/" className="flex items-center space-x-2.5">
+              <div className="relative w-8 h-8 flex items-center justify-center">
                 <Image
                   src="/logo.png"
                   alt="ReturnDesk Logo"
                   width={32}
-                  height={36}
-                  className="h-8 w-auto object-contain drop-shadow-2xs"
+                  height={32}
+                  className="h-8 w-auto object-contain"
                   priority
                 />
               </div>
-              <span className="font-bold text-xl tracking-tight text-slate-900 flex items-center">
-                Return<span className="text-blue-600">Desk</span>
+              <span className="font-medium text-[18px] tracking-tight text-[var(--text-primary)]">
+                Return<span className="text-[var(--text-accent)]">Desk</span>
               </span>
             </Link>
 
-            <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 border border-slate-200 text-[11px] text-slate-600 font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-              <span>Operations Live</span>
+            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-[var(--radius)] bg-[var(--bg-success)] border border-[var(--border-success)] text-[12px] font-medium text-[var(--text-success)]">
+              <span className="w-[7px] h-[7px] rounded-full bg-[var(--fill-success)] pulse-dot inline-block" />
+              <span>Operations live</span>
             </div>
           </div>
 
-          {/* Primary Action Button */}
-          <div className="flex items-center space-x-3">
+          {/* Action Buttons: Theme Mode Switch + Raise return */}
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            <ThemeToggle />
+
             <Link
               href="/requests/new"
-              className="inline-flex items-center justify-center px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all shadow-xs hover:shadow-sm active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="inline-flex items-center justify-center px-4 py-[9px] text-[13px] font-medium rounded-[var(--radius)] bg-[var(--fill-accent)] text-[var(--on-accent)] hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-[var(--bg-accent)]"
             >
               <svg
                 className="w-4 h-4 mr-1.5 shrink-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                strokeWidth={2.5}
+                strokeWidth={2}
               >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
               </svg>
-              Raise Return
+              Raise return
             </Link>
           </div>
         </div>
       </div>
-      {/* Brand accent hairline */}
-      <div className="h-[2px] bg-gradient-to-r from-blue-600 via-blue-400 to-transparent opacity-80" />
     </header>
   );
 }

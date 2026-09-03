@@ -2,25 +2,38 @@ import { ReturnReason, RequestResolution } from '@/drizzle/schema';
 
 const REASON_LABELS: Record<string, string> = {
   damaged: 'Damaged',
-  wrong_item: 'Wrong Item',
-  size_issue: 'Size Issue',
-  not_as_described: 'Not as Described',
-  changed_mind: 'Changed Mind',
+  wrong_item: 'Wrong item',
+  size_issue: 'Size issue',
+  not_as_described: 'Not as described',
+  changed_mind: 'Changed mind',
 };
 
 export function ReasonBadge({ reason }: { reason: ReturnReason | string }) {
   const label = REASON_LABELS[reason] || reason;
   return (
-    <span className="inline-flex items-center text-xs font-medium text-slate-700 bg-slate-100 border border-slate-200 px-2 py-0.5 rounded">
+    <span className="inline-flex items-center text-[12px] font-normal text-[var(--text-secondary)] bg-[var(--surface-1)] border border-[var(--border)] px-2 py-[2px] rounded-[4px]">
       {label}
     </span>
   );
 }
 
-const RESOLUTION_LABELS: Record<string, { label: string; bg: string; text: string }> = {
-  refund: { label: 'Refund', bg: 'bg-blue-50 border-blue-200', text: 'text-blue-800' },
-  replacement: { label: 'Replacement', bg: 'bg-slate-100 border-slate-200', text: 'text-slate-800' },
-  store_credit: { label: 'Store Credit', bg: 'bg-indigo-50 border-indigo-200', text: 'text-indigo-800' },
+const RESOLUTION_LABELS: Record<string, { label: string; bg: string; text: string; border?: string }> = {
+  refund: {
+    label: 'Refund',
+    bg: 'bg-[var(--bg-accent)]',
+    text: 'text-[var(--text-accent)]',
+  },
+  replacement: {
+    label: 'Replacement',
+    bg: 'bg-[var(--surface-1)]',
+    text: 'text-[var(--text-secondary)]',
+    border: 'border border-[var(--border)]',
+  },
+  store_credit: {
+    label: 'Store credit',
+    bg: 'bg-[var(--bg-warning)]',
+    text: 'text-[var(--text-warning)]',
+  },
 };
 
 export function ResolutionBadge({
@@ -33,17 +46,17 @@ export function ResolutionBadge({
   if (!resolution) return null;
   const item = RESOLUTION_LABELS[resolution] || {
     label: resolution,
-    bg: 'bg-slate-50 border-slate-200',
-    text: 'text-slate-800',
+    bg: 'bg-[var(--surface-1)]',
+    text: 'text-[var(--text-secondary)]',
   };
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-0.5 rounded-full border ${item.bg} ${item.text}`}
+      className={`inline-flex items-center gap-1 text-[12px] font-medium px-2.5 py-[3px] rounded-[4px] ${item.bg} ${item.text} ${item.border ?? ''}`}
     >
       <span>{item.label}</span>
       {resolution === 'refund' && refundAmount && (
-        <span className="font-mono font-bold">(₹{Number(refundAmount).toFixed(2)})</span>
+        <span className="font-mono">(₹{Number(refundAmount).toFixed(2)})</span>
       )}
     </span>
   );

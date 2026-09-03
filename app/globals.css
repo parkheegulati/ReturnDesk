@@ -3,12 +3,117 @@
 @tailwind utilities;
 
 :root {
+  /* Light Mode (Surface 0, 1, 2) */
+  --surface-0: #F8FAFC; /* Page background */
+  --surface-1: #F1F5F9; /* In-flow tiles, table header, inputs */
+  --surface-2: #FFFFFF; /* Cards, panels, sticky top bar */
+
+  /* Borders */
+  --border: #E2E8F0; /* Default hairline divider (0.5px) */
+  --border-strong: #CBD5E1; /* Emphasized dividers, hover states */
+  --border-warning: #F59E0B; /* Warning/urgent state borders (2px) */
+  --border-success: #86EFAC;
+  --border-danger: #FCA5A5;
+
+  /* Text Colors */
+  --text-primary: #0F172A; /* Body text, headings, primary content */
+  --text-secondary: #64748B; /* Supporting text, captions, secondary info */
+  --text-muted: #94A3B8; /* Placeholder text, metadata, hints */
+  --text-warning: #B45309; /* Warning/action-needed labels & badges */
+  --text-success: #15803D; /* Success, completed states */
+  --text-accent: #2563EB; /* Interactive elements, links, primary actions */
+  --text-danger: #B91C1C; /* Errors, critical alerts, destructive */
+
+  /* Fill & Background Colors */
+  --fill-accent: #2563EB;
+  --fill-success: #16A34A;
+  --fill-warning: #D97706;
+  --fill-danger: #DC2626;
+
+  --bg-accent: #EFF6FF;
+  --bg-success: #F0FDF4;
+  --bg-warning: #FEF3C7;
+  --bg-danger: #FEF2F2;
+
+  --on-accent: #FFFFFF;
+  --on-success: #FFFFFF;
+  --on-warning: #FFFFFF;
+  --on-danger: #FFFFFF;
+
+  --radius: 8px;
+  --radius-card: 12px;
+  --radius-badge: 4px;
+
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-body {
-  background-color: #F8FAFC; /* slate-50 */
-  color: #0F172A; /* slate-900 */
-  font-family: var(--font-sans);
-  min-height: 100vh;
+/* Explicit Dark Mode class toggle & OS fallback */
+html.dark,
+.dark {
+  --surface-0: #0B0F19;
+  --surface-1: #111827;
+  --surface-2: #1E293B;
+
+  --border: #334155;
+  --border-strong: #475569;
+  --border-warning: #F59E0B;
+  --border-success: #16A34A;
+  --border-danger: #EF4444;
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --text-accent: #60A5FA;
+  --text-warning: #FBBF24;
+  --text-success: #4ADE80;
+  --text-danger: #F87171;
+
+  --fill-accent: #2563EB;
+  --fill-success: #16A34A;
+  --fill-warning: #D97706;
+  --fill-danger: #DC2626;
+
+  --bg-accent: rgba(37, 99, 235, 0.16);
+  --bg-success: rgba(22, 163, 74, 0.16);
+  --bg-warning: rgba(217, 119, 6, 0.16);
+  --bg-danger: rgba(220, 38, 38, 0.16);
+
+  --on-accent: #FFFFFF;
+  --on-success: #FFFFFF;
+  --on-warning: #FFFFFF;
+  --on-danger: #FFFFFF;
+}
+
+@layer base {
+  body {
+    background-color: var(--surface-0);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-weight: 400; /* Regular */
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Critical rule: only weight 400 and weight 500 across entire app */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  /* Remove all browser default button styles and outline jumps */
+  button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--bg-accent);
+    border-color: var(--fill-accent);
+  }
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.pulse-dot {
+  animation: livePulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
