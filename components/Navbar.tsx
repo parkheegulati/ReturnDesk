@@ -1,17 +1,23 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export function Navbar() {
   return (
     <header className="bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-0 z-30 shadow-2xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Brand Wordmark & Operations Pill */}
+          {/* Brand Logo, Wordmark & Operations Pill */}
           <div className="flex items-center space-x-3 sm:space-x-4">
             <Link href="/" className="flex items-center space-x-2.5 group">
-              <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-xs group-hover:bg-blue-700 transition-colors">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h10a5 5 0 015 5v2m0 0l-4-4m4 4l4-4" />
-                </svg>
+              <div className="relative w-8 h-9 flex items-center justify-center transition-transform group-hover:scale-105">
+                <Image
+                  src="/logo.png"
+                  alt="ReturnDesk Logo"
+                  width={32}
+                  height={36}
+                  className="h-8 w-auto object-contain drop-shadow-2xs"
+                  priority
+                />
               </div>
               <span className="font-bold text-xl tracking-tight text-slate-900 flex items-center">
                 Return<span className="text-blue-600">Desk</span>
