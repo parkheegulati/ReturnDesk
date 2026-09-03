@@ -273,7 +273,7 @@ export default function RequestsPage() {
         {loading ? (
           <div className="p-12 text-center text-zinc-500">
             <div className="inline-block animate-spin w-6 h-6 border-2 border-frido-amber border-t-transparent rounded-full mb-3" />
-            <p className="text-sm font-medium">Loading return requests from PostgreSQL...</p>
+            <p className="text-sm font-medium">Loading return requests..</p>
           </div>
         ) : items.length === 0 ? (
           /* Empty state */
