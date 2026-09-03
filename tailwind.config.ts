@@ -10,12 +10,15 @@ const config: Config = {
     extend: {
       colors: {
         frido: {
-          ink: '#1a1a1a',
-          charcoal: '#2b2b2b',
-          amber: '#f5a623',
-          'amber-dark': '#d4890f',
-          cream: '#faf9f7',
-          line: '#e5e2dc',
+          ink: '#131313', // primary text
+          charcoal: '#222222', // secondary dark surfaces
+          amber: '#FCD00F', // brand accent yellow
+          yellow: '#FCD00F', // alias
+          'amber-dark': '#E5BC00', // hover / pressed yellow
+          cream: '#F7F7F7', // page background
+          bg: '#F7F7F7', // alias
+          white: '#FFFFFF', // clean white surfaces
+          line: '#E5E5E5', // hairline borders
         },
       },
     },

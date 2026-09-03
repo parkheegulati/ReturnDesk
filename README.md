@@ -21,7 +21,7 @@ ReturnDesk enforces all business constraints **server-side in PostgreSQL and Rou
 - **Database**: PostgreSQL (Neon serverless Postgres)
 - **ORM & Migrations**: Drizzle ORM + Drizzle Kit with `node-postgres` pool
 - **Validation**: Zod (strictly at all API boundaries)
-- **Styling**: Tailwind CSS v3 with Frido brand palette (`frido.ink`, `frido.charcoal`, `frido.amber`, `frido.cream`, `frido.line`)
+- **Styling**: Tailwind CSS v3 with Frido brand palette: Accent Yellow (`#FCD00F`), Card White (`#FFFFFF`), Page Background (`#F7F7F7`), and Text Ink (`#131313`)
 
 ---
 

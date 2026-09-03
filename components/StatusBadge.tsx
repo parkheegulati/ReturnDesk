@@ -18,10 +18,10 @@ const STATUS_CONFIG: Record<
   },
   in_review: {
     label: 'In Review',
-    bg: 'bg-amber-50',
-    text: 'text-[#945700]',
-    border: 'border-amber-300',
-    dot: 'bg-amber-500',
+    bg: 'bg-[#FFFBE5]',
+    text: 'text-[#876500]',
+    border: 'border-[#FCD00F]',
+    dot: 'bg-[#FCD00F]',
   },
   approved: {
     label: 'Approved',

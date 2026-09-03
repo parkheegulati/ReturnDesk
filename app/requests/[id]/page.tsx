@@ -449,7 +449,7 @@ export default function RequestDetailPage() {
 
           {/* Card: Decision & Resolution (if decided) */}
           {(detail.status === 'approved' || detail.status === 'completed' || detail.resolution) && (
-            <div className="bg-[#fcfbf9] rounded-lg border border-teal-200 p-5 shadow-sm space-y-3">
+            <div className="bg-white rounded-lg border border-teal-200 p-5 shadow-sm space-y-3">
               <h2 className="text-sm font-bold uppercase tracking-wider text-teal-900 pb-2 border-b border-teal-100 flex items-center gap-2">
                 <svg className="w-4 h-4 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -519,7 +519,7 @@ export default function RequestDetailPage() {
                 detail.notes.map((note, idx) => (
                   <div
                     key={note.id}
-                    className="p-3 rounded-md bg-[#faf9f7] border border-frido-line text-xs space-y-1"
+                    className="p-3 rounded-md bg-[#F7F7F7] border border-frido-line text-xs space-y-1"
                   >
                     <div className="flex items-center justify-between text-[11px] text-zinc-500">
                       <span className="font-semibold text-zinc-700">Agent Note #{idx + 1}</span>

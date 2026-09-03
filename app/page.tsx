@@ -294,7 +294,7 @@ export default function RequestsPage() {
             {/* Desktop Table View */}
             <div className="hidden md:block overflow-x-auto">
               <table className="min-w-full divide-y divide-frido-line text-left text-sm">
-                <thead className="bg-[#fcfbf9] text-xs font-semibold text-zinc-600 uppercase tracking-wider select-none">
+                <thead className="bg-[#F7F7F7] text-xs font-semibold text-zinc-600 uppercase tracking-wider select-none">
                   <tr>
                     <th scope="col" className="px-5 py-3.5">
                       <button
@@ -448,7 +448,7 @@ export default function RequestsPage() {
 
         {/* Pagination Footer */}
         {!loading && pagination.total > 0 && (
-          <div className="bg-[#fcfbf9] px-4 py-3 border-t border-frido-line flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-600">
+          <div className="bg-[#F7F7F7] px-4 py-3 border-t border-frido-line flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-600">
             <div>
               Showing{' '}
               <span className="font-semibold text-zinc-900">
