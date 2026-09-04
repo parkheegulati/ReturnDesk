@@ -1,5 +1,5 @@
-# ReturnDesk 
-**_Track and resolve customer returns in real time 📦_**
+# 📦 ReturnDesk 
+**_Track and resolve customer returns in real time_**
 
 It is a dedicated returns operations and lifecycle management desk engineered for e-commerce support teams. In modern online retail, the post-purchase return experience is one of the highest friction touchpoints between a business and its customers. Rather than relying on generic, lenient CRUD scaffolding, ReturnDesk is architected around **strict, server-enforced business domain rules**.
 
@@ -130,16 +130,16 @@ All refusals return honest HTTP status codes and a consistent, machine-readable 
 
 ## ⚖️ What Was Prioritized
 
-1. 🎯 **100% Server-Side Enforcement**: All 5 business rules validated in API route handlers and backed by 15 automated test assertions.
-2. 🗄️ **Relational Data Model**: Real PostgreSQL foreign keys, sequences, transactions, and partial unique constraints.
-3. ⚡ **Server-Side Operations**: Search (`ILIKE`), status filters, reason filters, sorting, and pagination all offloaded to SQL.
-4. 📱 **Accessible, Minimal UI**: Color-tinted queue scanning, dark/light mode toggle, debounced search, and responsive layout down to 375px.
+1. **100% Server-Side Enforcement**: All 5 business rules validated in API route handlers and backed by 15 automated test assertions.
+2. **Relational Data Model**: Real PostgreSQL foreign keys, sequences, transactions, and partial unique constraints.
+3. **Server-Side Operations**: Search (`ILIKE`), status filters, reason filters, sorting, and pagination all offloaded to SQL.
+4. **Accessible, Minimal UI**: Color-tinted queue scanning, dark/light mode toggle, debounced search, and responsive layout down to 375px.
 
 ---
 
 ## 🔮 What I Would Build Next (Given More Time)
 
-1. 📧 **Customer Email / Webhook Notifications**: Automated email notifications to the customer when a return is approved or refund processed.
-2. 📦 **Item Return Inspection Checklist**: A staging checklist for warehouse agents to log received condition before marking a return Completed.
-3. 📑 **Multi-Item Batch Returns**: Allowing a customer to raise returns for multiple items from the same order in a single workflow.
-4. 🕵️ **Audit Trail Log**: Tracking which agent changed which field, displayed as a timeline alongside staff notes.
+1. **Customer Email / Webhook Notifications**: Automated email notifications to the customer when a return is approved or refund processed.
+2. **Item Return Inspection Checklist**: A staging checklist for warehouse agents to log received condition before marking a return Completed.
+3. **Multi-Item Batch Returns**: Allowing a customer to raise returns for multiple items from the same order in a single workflow.
+4. **Audit Trail Log**: Tracking which agent changed which field, displayed as a timeline alongside staff notes.
